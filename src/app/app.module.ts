@@ -8,11 +8,11 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
-import { LandingpageComponent } from './landingpage/landingpage.component';
-import { HeaderComponent } from './landingpage/header/header.component';
-import { ExamplesComponent } from './landingpage/examples/examples.component';
-import { TextEditorComponent } from './landingpage/text-editor/text-editor.component';
-import { TextProcessedComponent } from './landingpage/text-processed/text-processed.component';
+import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { HeaderComponent } from './components/landingpage/header/header.component';
+import { TextEditorComponent } from './components/landingpage/text-editor/text-editor.component';
+import { TextProcessedComponent } from './components/landingpage/text-processed/text-processed.component';
+import { HeroComponent } from './components/landingpage/hero/hero.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -24,9 +24,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppComponent,
     LandingpageComponent,
     HeaderComponent,
-    ExamplesComponent,
     TextEditorComponent,
-    TextProcessedComponent
+    TextProcessedComponent,
+    HeroComponent
   ],
   imports: [
     BrowserModule,
