@@ -4,3 +4,8 @@
     font-size: 16px;
     font-family: 'Lato', sans-serif;
 }
+
+button:focus, 
+textarea:focus {
+    outline: 0;
+}

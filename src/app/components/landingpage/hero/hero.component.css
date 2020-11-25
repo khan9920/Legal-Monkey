@@ -1,9 +1,14 @@
-.container {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+.section {
+    margin: 50px 0;
+    height: 50vh;
 }
+
+/* .container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+} */
 
 .wrapper-hero h1 {
     font-weight: 700;
