@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SimplifyService } from 'src/app/services/simplify.service';
 
 @Component({
   selector: 'app-text-processed',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TextProcessedComponent implements OnInit {
 
-  constructor() { }
+  @Input() simplifiedData: [];
+
+  constructor(private simplifyService: SimplifyService) { }
 
   ngOnInit() {
+  }
+
+  onSimplify() {
+    this.simplifyService.setEditorStatus(true);
   }
 
 }

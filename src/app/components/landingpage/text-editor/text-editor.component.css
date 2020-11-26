@@ -43,10 +43,13 @@ button {
     border-radius: 50px;
 }
 
-button:hover {
-    background: #fff;
-    border: 2px solid #2e86de;
-    padding: 10px 30px;
-    color: #2e86de;
-    border-radius: 50px;
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
 }
