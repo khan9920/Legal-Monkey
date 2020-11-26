@@ -1,0 +1,31 @@
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="wrapper-hero">
+                    <h1>Reading Legal Docs <br>Made Easy</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, <br> adipisicing elitsit amet consectetur.</p>
+
+                    <button>Get started</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper-swiper">
+                    <swiper [config]="config" [disabled]="disabled">
+                        <div *ngFor="let slide of slides" class="swiper-slide">
+                            <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill class="slider">
+                                <div class="wrapper-slider-text">
+                                    <p class="title">What's written:</p>
+                                    <p class="input">"{{ slide.input }}"</p>
+
+                                    <p class="title">What it means:</p>
+                                    <p class="output">{{ slide.output }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </swiper>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

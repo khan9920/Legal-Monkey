@@ -1,0 +1,16 @@
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Your simplified clause</h4>
+                <div class="textarea-container">
+                    <div class="wrapper-simiplified" *ngFor="let data of simplifiedData">
+                        <p class="input">{{ data.input }}</p>
+                        <p class="output">{{ data.output }}</p>
+                    </div>
+                    <button (click)="onSimplify()">Simplify</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
