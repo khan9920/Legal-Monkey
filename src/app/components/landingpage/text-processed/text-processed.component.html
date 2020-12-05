@@ -6,7 +6,7 @@
                 <div class="textarea-container">
                     <div class="wrapper-simiplified" *ngFor="let data of simplifiedData">
                         <p class="input">{{ data.input }}</p>
-                        <p class="output">{{ data.output }}</p>
+                        <p class="output" *ngFor="let output of data.outputs">{{ output }}</p>
                     </div>
                     <button (click)="onSimplify()">Simplify</button>
                 </div>
