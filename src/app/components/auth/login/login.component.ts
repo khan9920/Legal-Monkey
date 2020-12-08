@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   onSignUp(): void {
     this.dialog.closeAll();
     this.dialog.open(SignupComponent, {
-      width: '400px',
+      width: '500px',
       maxHeight: '90vh'
     });
   }

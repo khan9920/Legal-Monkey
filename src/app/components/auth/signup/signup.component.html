@@ -4,28 +4,34 @@
             <h2>Sign up</h2>
             <p class="sub-title">Enter the details below to register an accoun</p>
         </div>
-        <div class="col-md-12">
-            <label>First name</label>
-            <input type="text" placeholder="John">
+        <div class="col-md-6">
+            <label>First name *</label>
+            <input type="text" placeholder="John" [(ngModel)]="user.firstName">
+        </div>
+        <div class="col-md-6">
+            <label>Last name *</label>
+            <input type="text" placeholder="Watson" [(ngModel)]="user.lastName">
         </div>
         <div class="col-md-12">
-            <label>Last name</label>
-            <input type="text" placeholder="Watson">
+            <label>Mobile *</label>
+            <input type="text" placeholder="+94775867889" [(ngModel)]="user.mobile">
         </div>
         <div class="col-md-12">
-            <label>Mobile</label>
-            <input type="text" placeholder="+94775867889">
+            <label>Email *</label>
+            <input type="email" placeholder="john@example.com" [(ngModel)]="user.email">
         </div>
         <div class="col-md-12">
-            <label>Password</label>
-            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+            <label>Password *</label>
+            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                [(ngModel)]="user.password">
         </div>
         <div class="col-md-12">
-            <label>Password</label>
-            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+            <label>Confirm password *</label>
+            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                [(ngModel)]="user.confirmPassword">
         </div>
         <div class="col-md-12">
-            <button (click)="onLogin()">SIGN UP</button>
+            <button (click)="onSignUp()">SIGN UP</button>
             <p class="text-login">Already have an account? <a (click)="onLogin()">Log in</a></p>
         </div>
     </div>
