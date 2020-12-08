@@ -6,8 +6,8 @@
                 <div class="textarea-container">
                     <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text">Your text...</textarea>
                     <button (click)="onSimplify()">
-                        <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20">
-                        </mat-spinner> Simplify
+                        <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                        Simplify
                     </button>
                 </div>
             </div>

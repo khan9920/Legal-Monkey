@@ -43,6 +43,8 @@ export class TextEditorComponent implements OnInit {
         this.isLoading = false;
         this.editorEnabled = false;
         this.simplifiedData = result.data;
+        console.log(result.data);
+
       }
     }, error => {
       this.isLoading = false;
