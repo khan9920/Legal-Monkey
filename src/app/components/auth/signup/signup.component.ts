@@ -20,6 +20,15 @@ export class SignupComponent implements OnInit {
     confirmPassword: '',
   }
 
+  public userValidation = {
+    firstName: 'valid',
+    lastName: 'valid',
+    email: 'valid',
+    mobile: 'valid',
+    password: 'valid',
+    confirmPassword: 'valid',
+  }
+
   constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {

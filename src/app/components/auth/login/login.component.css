@@ -1,5 +1,26 @@
 h2 {
     font-weight: 600;
+    display: inline-block;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2e86de;
 }
 
 .sub-title {

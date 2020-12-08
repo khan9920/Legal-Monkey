@@ -31,4 +31,8 @@ export class LoginComponent implements OnInit {
       maxHeight: '90vh'
     });
   }
+
+  onClose(): void {
+    this.dialog.closeAll();
+  }
 }
