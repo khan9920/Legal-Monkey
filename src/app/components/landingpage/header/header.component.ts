@@ -13,12 +13,13 @@ export class HeaderComponent implements OnInit {
 
   constructor(private dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  onLogin() {
+  onLogin(): void {
     this.dialog.open(LoginComponent, {
-      width: '400px'
+      width: '400px',
+      maxHeight: '90vh'
     });
   }
 }

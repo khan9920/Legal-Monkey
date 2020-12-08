@@ -49,4 +49,5 @@ button:hover {
 
 .text-reset-password a:hover, .text-sign-up a:hover {
     color: #226294;
+    cursor: pointer;
 }
