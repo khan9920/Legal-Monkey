@@ -9,6 +9,7 @@
                 <li><a href="#">ACCOUNT</a></li>
                 <li><a href="#">PRICING</a></li>
                 <li><a href="#">ABOUT US</a></li>
+                <li *ngIf="!isAuthenticated"><button>LOG IN</button></li>
             </ul>
         </div>
     </div>
