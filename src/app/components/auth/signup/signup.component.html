@@ -7,33 +7,36 @@
         </div>
         <div class="col-md-6">
             <label>First name *</label>
-            <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': validation.firstName == 'invalid' }"
-                [(ngModel)]="user.firstName">
+            <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': userValidation.firstName == 'invalid' }"
+                [disabled]="isLoading" [(ngModel)]="user.firstName">
         </div>
         <div class="col-md-6">
             <label>Last name *</label>
-            <input type="text" placeholder="Watson" [(ngModel)]="user.lastName">
+            <input type="text" placeholder="Watson" [disabled]="isLoading" [(ngModel)]="user.lastName">
         </div>
         <div class="col-md-12">
             <label>Mobile *</label>
-            <input type="text" placeholder="+94775867889" [(ngModel)]="user.mobile">
+            <input type="text" placeholder="+94775867889" [disabled]="isLoading" [(ngModel)]="user.mobile">
         </div>
         <div class="col-md-12">
             <label>Email *</label>
-            <input type="email" placeholder="john@example.com" [(ngModel)]="user.email">
+            <input type="email" placeholder="john@example.com" [disabled]="isLoading" [(ngModel)]="user.email">
         </div>
         <div class="col-md-12">
             <label>Password *</label>
             <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [(ngModel)]="user.password">
+                [disabled]="isLoading" [(ngModel)]="user.password">
         </div>
         <div class="col-md-12">
             <label>Confirm password *</label>
             <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [(ngModel)]="user.confirmPassword">
+                [disabled]="isLoading" [(ngModel)]="user.confirmPassword">
         </div>
         <div class="col-md-12">
-            <button (click)="onSignUp()">SIGN UP</button>
+            <button (click)="onSignUp()">
+                <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                SIGN UP
+            </button>
             <p class="text-login">Already have an account? <a (click)="onLogin()">Log in</a></p>
         </div>
     </div>

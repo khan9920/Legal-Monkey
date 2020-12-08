@@ -24,6 +24,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -40,7 +41,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HeroComponent,
     LoginComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    VerifyAccountComponent
   ],
   imports: [
     BrowserModule,

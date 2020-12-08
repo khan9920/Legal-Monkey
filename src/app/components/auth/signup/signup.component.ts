@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from '../login/login.component';
 
@@ -9,7 +10,7 @@ import { LoginComponent } from '../login/login.component';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
 
   public user = {
     firstName: '',
@@ -29,9 +30,15 @@ export class SignupComponent implements OnInit {
     confirmPassword: 'valid',
   }
 
+  public isLoading: boolean = false;
+  public isLoadingSub: Subscription;
+
   constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.isLoadingSub = this.authService.getLoadingStatus().subscribe(result => {
+      this.isLoading = result;
+    });
   }
 
   onSignUp() {
@@ -53,6 +60,7 @@ export class SignupComponent implements OnInit {
         mobile: this.user.mobile,
         password: this.user.password
       }
+      this.authService.setLoadingStatus(true);
       this.authService.signUp(user);
     }
   }
@@ -63,5 +71,9 @@ export class SignupComponent implements OnInit {
       width: '400px',
       maxHeight: '90vh'
     });
+  }
+
+  ngOnDestroy() {
+    this.isLoadingSub.unsubscribe();
   }
 }
