@@ -45,6 +45,21 @@ export class AuthService {
     });
   }
 
+  public login(data: any): void {
+    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
+      if (result.success) {
+        this.saveAuthData(result.data.token);
+        this.isLoading.next(false);
+        this.dialog.closeAll();
+      }
+    }, error => {
+      this.isLoading.next(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      })
+    });
+  }
+
   private saveAuthData(token: string): void {
     localStorage.setItem('token', token);
   }
