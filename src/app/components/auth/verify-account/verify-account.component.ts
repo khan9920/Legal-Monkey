@@ -16,5 +16,4 @@ export class VerifyAccountComponent implements OnInit {
   onClose() {
     this.dialog.closeAll();
   }
-
 }

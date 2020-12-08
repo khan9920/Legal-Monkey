@@ -21,4 +21,8 @@ export class ResetPasswordComponent implements OnInit {
       maxHeight: '90vh'
     });
   }
+
+  onClose() {
+    this.dialog.closeAll();
+  }
 }
