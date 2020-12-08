@@ -1,0 +1,59 @@
+h2 {
+    font-weight: 600;
+}
+
+.sub-title {
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    border: 2px solid #2f86de;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 50px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+button:hover {
+    background: #fff;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #2e86de;
+    border-radius: 50px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.text-login {
+    text-align: center;
+}
+
+.text-login a {
+    color: #2e86de;
+    text-decoration: none;
+}
+
+.text-login a:hover {
+    color: #226294;
+    cursor: pointer;
+}
+
+body{
+    width: 50%;
+    max-width: 250px;
+    margin: 0 auto;
+}
