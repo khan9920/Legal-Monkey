@@ -4,6 +4,7 @@ import { environment } from './../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+import { VerifyAccountComponent } from '../components/auth/verify-account/verify-account.component';
 
 const apiUrl = environment.apiURL;
 
@@ -29,6 +30,12 @@ export class AuthService {
       if (result.success) {
         this.saveAuthData(result.data.token);
         this.isLoading.next(false);
+        this.dialog.closeAll();
+        this.dialog.open(VerifyAccountComponent, {
+          width: '400px',
+          maxHeight: '90vh',
+          disableClose: true
+        })
       }
     }, error => {
       this.isLoading.next(false);
