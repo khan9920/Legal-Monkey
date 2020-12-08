@@ -7,30 +7,35 @@
         </div>
         <div class="col-md-6">
             <label>First name *</label>
-            <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': userValidation.firstName == 'invalid' }"
+            <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': !validation.firstName }"
                 [disabled]="isLoading" [(ngModel)]="user.firstName">
         </div>
         <div class="col-md-6">
             <label>Last name *</label>
-            <input type="text" placeholder="Watson" [disabled]="isLoading" [(ngModel)]="user.lastName">
+            <input type="text" placeholder="Watson" [ngClass]="{ 'invalid-input': !validation.lastName} "
+                [disabled]="isLoading" [(ngModel)]="user.lastName">
+        </div>
+        <div class=" col-md-12">
+            <label>Email *</label>
+            <input type="email" placeholder="john@example.com" [ngClass]="{ 'invalid-input': !validation.email}"
+                [disabled]="isLoading" [(ngModel)]="user.email">
         </div>
         <div class="col-md-12">
             <label>Mobile *</label>
-            <input type="text" placeholder="+94775867889" [disabled]="isLoading" [(ngModel)]="user.mobile">
-        </div>
-        <div class="col-md-12">
-            <label>Email *</label>
-            <input type="email" placeholder="john@example.com" [disabled]="isLoading" [(ngModel)]="user.email">
+            <input type="text" placeholder="+94775867889" [ngClass]="{ 'invalid-input': !validation.mobile }"
+                [disabled]="isLoading" [(ngModel)]="user.mobile">
         </div>
         <div class="col-md-12">
             <label>Password *</label>
             <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [disabled]="isLoading" [(ngModel)]="user.password">
+                [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
+                [(ngModel)]="user.password">
         </div>
         <div class="col-md-12">
             <label>Confirm password *</label>
             <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [disabled]="isLoading" [(ngModel)]="user.confirmPassword">
+                [ngClass]="{ 'invalid-input': !validation.confirmPassword }" [disabled]="isLoading"
+                [(ngModel)]="user.confirmPassword">
         </div>
         <div class="col-md-12">
             <button (click)="onSignUp()">
