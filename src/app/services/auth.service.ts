@@ -71,6 +71,14 @@ export class AuthService {
     });
   }
 
+  public logout(): void {
+    localStorage.removeItem('token');
+    this.isAuthenticated.next(false);
+    this.snackBar.open('See you soon!', 'Dismiss', {
+      duration: 3000
+    })
+  }
+
   public autoAuth() {
     const token = localStorage.getItem('token');
 
