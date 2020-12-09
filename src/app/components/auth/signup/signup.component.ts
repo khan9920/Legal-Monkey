@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from '../login/login.component';
 import * as EmailValidator from 'email-validator';
+import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     firstName: '',
     lastName: '',
     email: '',
-    mobile: '',
+    mobile: null,
     password: '',
     confirmPassword: '',
   }
@@ -33,6 +34,17 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
+
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+
+  changePreferredCountries() {
+    this.preferredCountries = [CountryISO.SriLanka];
+  }
 
   constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -87,10 +99,11 @@ export class SignupComponent implements OnInit, OnDestroy {
       }
     }
 
-    if (this.user.mobile == '') {
+    if (this.user.mobile == null) {
       this.validation.mobile = false;
     } else {
       this.validation.mobile = true;
+      this.user.mobile = this.user.mobile.e164Number;
     }
 
     if (this.user.password == '') {

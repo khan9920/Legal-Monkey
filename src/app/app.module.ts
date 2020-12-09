@@ -26,6 +26,9 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
 import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
+
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto'
@@ -51,6 +54,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     BrowserAnimationsModule,
     SwiperModule,
+    NgxIntlTelInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule

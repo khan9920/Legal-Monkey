@@ -31,7 +31,7 @@ label {
     display: block;
 }
 
-input {
+input, .mobile-input {
     width: 100%;
     border: 2px solid #2f86de;
     border-radius: 5px;
@@ -63,12 +63,6 @@ button {
     cursor: pointer;
 }
 
-body{
-    width: 50%;
-    max-width: 250px;
-    margin: 0 auto;
-}
-
 .invalid-input {
     border: 2px solid red;
 }
@@ -82,4 +76,12 @@ mat-spinner {
 
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
+}
+
+.mobile-input input {
+    width: 100% !important;
+    border: 2px solid #2f86de !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    margin-bottom: 20px !important;
 }
