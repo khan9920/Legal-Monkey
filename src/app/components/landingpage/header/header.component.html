@@ -18,7 +18,7 @@
                     <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
                         <button mat-menu-item>My conversions</button>
                         <button mat-menu-item>Profile</button>
-                        <button mat-menu-item>Log out</button>
+                        <button mat-menu-item (click)="onLogout()">Log out</button>
                     </mat-menu>
                 </li>
             </ul>
