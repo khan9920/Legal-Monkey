@@ -20,3 +20,36 @@ ul li {
 a {
     color: #000;
 }
+
+button {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 5px 40px;
+    color: #fff;
+    border-radius: 50px;
+}
+
+button:hover {
+    background: #fff;
+    border: 2px solid #2e86de;
+    padding: 5px 40px;
+    color: #2e86de;
+    border-radius: 50px;
+}
+
+button.mat-menu-item {
+    background: #fff;
+    border: 2px solid #fff;
+    padding: 0px 20px;
+    color: #000;
+    border-radius: 0px;
+}
+
+.icon-profile {
+    width: 35px;
+}
+
+::ng-deep .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}

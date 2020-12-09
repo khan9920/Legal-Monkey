@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Log in</h2>
+            <span class="btn-close" (click)="onClose()">X</span>
+            <p class="sub-title">Enter your email and password</p>
+        </div>
+        <div class="col-md-12">
+            <label>Email</label>
+            <input type="text" placeholder="john@example.com" [ngClass]="{ 'invalid-input': !validation.email }"
+                [disabled]="isLoading" [(ngModel)]="credentials.email">
+        </div>
+        <div class="col-md-12">
+            <label>Password</label>
+            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
+                [(ngModel)]="credentials.password">
+        </div>
+        <div class="col-md-12">
+            <button (click)="onLogin()">
+                <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                LOG IN
+            </button>
+            <p class="text-reset-password">Forgot your password? <a (click)="onResetPassword()">Reset</a></p>
+            <p class="text-sign-up">You don't have an account? <a (click)="onSignUp()">Sign up!</a></p>
+        </div>
+    </div>
+</div>

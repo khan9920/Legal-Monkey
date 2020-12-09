@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sign up</h2>
+            <span class="btn-close" (click)="onClose()">X</span>
+            <p class="sub-title">Enter the details below to register an accoun</p>
+        </div>
+        <div class="col-md-6">
+            <label>First name *</label>
+            <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': !validation.firstName }"
+                [disabled]="isLoading" [(ngModel)]="user.firstName">
+        </div>
+        <div class="col-md-6">
+            <label>Last name *</label>
+            <input type="text" placeholder="Watson" [ngClass]="{ 'invalid-input': !validation.lastName} "
+                [disabled]="isLoading" [(ngModel)]="user.lastName">
+        </div>
+        <div class=" col-md-12">
+            <label>Email *</label>
+            <input type="email" placeholder="john@example.com" [ngClass]="{ 'invalid-input': !validation.email}"
+                [disabled]="isLoading" [(ngModel)]="user.email">
+        </div>
+        <div class="col-md-12">
+            <label>Mobile *</label>
+
+            <ngx-intl-tel-input [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="false"
+                [enablePlaceholder]="true" [searchCountryFlag]="true"
+                [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
+                [selectedCountryISO]="CountryISO.India" [maxLength]="15" [tooltipField]="TooltipLabel.Name"
+                [phoneValidation]="true" [separateDialCode]="separateDialCode"
+                [numberFormat]="PhoneNumberFormat.National" name="phone" [(ngModel)]="user.mobile">
+            </ngx-intl-tel-input>
+        </div>
+        <div class="col-md-12">
+            <label>Password *</label>
+            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
+                [(ngModel)]="user.password">
+        </div>
+        <div class="col-md-12">
+            <label>Confirm password *</label>
+            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                [ngClass]="{ 'invalid-input': !validation.confirmPassword }" [disabled]="isLoading"
+                [(ngModel)]="user.confirmPassword">
+        </div>
+        <div class="col-md-12">
+            <button (click)="onSignUp()">
+                <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                SIGN UP
+            </button>
+            <p class="text-login">Already have an account? <a (click)="onLogin()">Log in</a></p>
+        </div>
+    </div>
+</div>
