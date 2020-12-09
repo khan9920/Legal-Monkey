@@ -11,19 +11,22 @@ import { AppComponent } from './app.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { HeaderComponent } from './components/landingpage/header/header.component';
 import { TextEditorComponent } from './components/landingpage/text-editor/text-editor.component';
 import { TextProcessedComponent } from './components/landingpage/text-processed/text-processed.component';
 import { HeroComponent } from './components/landingpage/hero/hero.component';
-
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { MatDialogModule } from '@angular/material/dialog';
-import { LoginComponent } from './components/auth/login/login.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
+import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
+import { LoginComponent } from './components/auth/login/login.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -40,7 +43,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HeroComponent,
     LoginComponent,
     SignupComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    VerifyAccountComponent
   ],
   imports: [
     BrowserModule,
@@ -49,9 +53,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     BrowserAnimationsModule,
     SwiperModule,
+    NgxIntlTelInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatMenuModule
   ],
   providers: [{
     provide: SWIPER_CONFIG,
