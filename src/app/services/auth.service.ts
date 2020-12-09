@@ -14,6 +14,7 @@ const apiUrl = environment.apiURL;
 export class AuthService {
 
   private isLoading = new Subject<boolean>();
+  private isAuthenticated = new Subject<boolean>();
 
   constructor(private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -25,11 +26,20 @@ export class AuthService {
     return this.isLoading.asObservable();
   }
 
+  public setAuthenticationStatus(status: boolean) {
+    this.isAuthenticated.next(status);
+  }
+
+  public getAuthenticationStatus() {
+    return this.isAuthenticated.asObservable();
+  }
+
   public signUp(data: any): void {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
       if (result.success) {
         this.saveAuthData(result.data.token);
         this.isLoading.next(false);
+        this.isAuthenticated.next(true);
         this.dialog.closeAll();
         this.dialog.open(VerifyAccountComponent, {
           width: '400px',
@@ -49,6 +59,7 @@ export class AuthService {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
       if (result.success) {
         this.saveAuthData(result.data.token);
+        this.isAuthenticated.next(true);
         this.isLoading.next(false);
         this.dialog.closeAll();
       }
@@ -58,6 +69,14 @@ export class AuthService {
         duration: 3000
       })
     });
+  }
+
+  public autoAuth() {
+    const token = localStorage.getItem('token');
+
+    if (token !== '') {
+      this.isAuthenticated.next(true);
+    }
   }
 
   private saveAuthData(token: string): void {

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
@@ -7,13 +9,23 @@ import { LoginComponent } from '../../auth/login/login.component';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   public isAuthenticated: boolean = false;
+  private isAuthenticatedSub: Subscription;
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    const token = localStorage.getItem('token');
+
+    if (token !== '') {
+      this.isAuthenticated = true;
+    }
+
+    this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
+      this.isAuthenticated = result;
+    })
   }
 
   onLogin(): void {
@@ -21,5 +33,9 @@ export class HeaderComponent implements OnInit {
       width: '400px',
       maxHeight: '90vh'
     });
+  }
+
+  ngOnDestroy() {
+    this.isAuthenticatedSub.unsubscribe();
   }
 }

@@ -12,6 +12,9 @@
                 <li *ngIf="!isAuthenticated">
                     <button (click)="onLogin()">LOG IN</button>
                 </li>
+                <li *ngIf="isAuthenticated">
+                    <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile">
+                </li>
             </ul>
         </div>
     </div>
