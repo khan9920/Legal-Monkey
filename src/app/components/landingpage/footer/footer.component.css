@@ -1,0 +1,19 @@
+footer {
+    padding: 50px 0;
+    background-color: #fbfbfb;
+}
+
+.title {
+    font-weight: 600;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+ul li a {
+    color: #717171;
+    font-weight: 400;
+    font-size: 14px;
+}

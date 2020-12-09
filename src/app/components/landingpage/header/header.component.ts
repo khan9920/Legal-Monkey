@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
 
-    if (token !== '') {
+    if (token !== '' && token !== null) {
       this.isAuthenticated = true;
     }
 
