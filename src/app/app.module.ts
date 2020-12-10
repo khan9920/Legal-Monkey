@@ -28,6 +28,7 @@ import { ResetPasswordComponent } from './components/auth/reset-password/reset-p
 import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/landingpage/footer/footer.component';
+import { ConversionsComponent } from './components/conversions/conversions.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -46,7 +47,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SignupComponent,
     ResetPasswordComponent,
     VerifyAccountComponent,
-    FooterComponent
+    FooterComponent,
+    ConversionsComponent
   ],
   imports: [
     BrowserModule,
