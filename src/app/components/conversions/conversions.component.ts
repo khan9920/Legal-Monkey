@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 import { ConversionsService } from 'src/app/services/conversions.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ConversionsComponent implements OnInit {
   public recentClicked: boolean = true;
   public allClicked: boolean = false;
 
-  constructor(private conversionsService: ConversionsService) { }
+  constructor(private conversionsService: ConversionsService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.conversions = this.conversionsService.getRecentConversions();
@@ -29,5 +30,9 @@ export class ConversionsComponent implements OnInit {
     this.allClicked = true;
 
     this.conversions = this.conversionsService.getAllConversions();
+  }
+
+  onLogout(): void {
+    this.authService.logout();
   }
 }
