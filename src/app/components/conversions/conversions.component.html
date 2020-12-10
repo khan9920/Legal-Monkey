@@ -5,12 +5,8 @@
                 <div class="wrapper-left-panel">
                     <h3 class="title">My conversions</h3>
                     <ul class="list-left-panel-menu">
-                        <a routerLink="/conversions/recent">
-                            <li routerLinkActive="is-active">Recent conversions</li>
-                        </a>
-                        <a routerLink="/conversions/all">
-                            <li routerLinkActive="is-active">All conversions</li>
-                        </a>
+                        <li [ngClass]=" { 'is-active': recentClicked } " (click)="onRecent()">Recent conversions</li>
+                        <li [ngClass]=" { 'is-active': allClicked } " (click)="onAll()">All conversions</li>
                     </ul>
                 </div>
             </div>
@@ -35,41 +31,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
-                        </tr>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
-                        </tr>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
-                        </tr>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
-                        </tr>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
-                        </tr>
-                        <tr>
-                            <td>LM-003</td>
-                            <td class="title-conversion">Ralp Edward Contract</td>
-                            <td>23.03.2020</td>
-                            <td>$ 5.00</td>
+                        <tr *ngFor="let conversion of conversions">
+                            <td>{{ conversion._id }}</td>
+                            <td class="title-conversion">{{ conversion.title }}</td>
+                            <td>{{ conversion.date }}</td>
+                            <td>{{ conversion.cost }}</td>
                         </tr>
                     </tbody>
                 </table>

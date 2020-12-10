@@ -62,18 +62,9 @@ a.mat-menu-item:hover {
     border-right: 1px solid #0000003b;
 }
 
-.list-left-panel-menu a {
-    color: #000;
-}
-
-.list-left-panel-menu a:hover {
-    text-decoration: none;
-}
-
 .list-left-panel-menu li {
     padding: 10px;
     margin: 15px 0;
-    /* width: 200px; */
     padding-left: 30px;
 }
 
@@ -85,12 +76,15 @@ a.mat-menu-item:hover {
     background-color: #ececec;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    cursor: pointer;
+    color: #000;
 }
 
 .is-active {
-    background-color: #cde5fd;
+    background-color: #2F86DE;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
+    color: #fff;
 }
 
 /* Conversion table styles */
