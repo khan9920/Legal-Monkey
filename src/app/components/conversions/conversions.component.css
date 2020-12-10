@@ -1,3 +1,8 @@
+.col-md-9 {
+    height: 100vh;
+    overflow: scroll;
+}
+
 .title {
     display: inline-block;
     padding: 30px;
@@ -56,11 +61,6 @@ a.mat-menu-item:hover {
 }
 
 /* Left panel styles */
-.wrapper-left-panel {
-    position: fixed;
-    height: 100vh;
-}
-
 .list-left-panel-menu {
     padding: 0;
     list-style: none;
