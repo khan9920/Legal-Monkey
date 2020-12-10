@@ -5,7 +5,7 @@ import { LandingpageComponent } from './components/landingpage/landingpage.compo
 
 const routes: Routes = [
   { path: '', component: LandingpageComponent },
-  { path: 'conversions', component: ConversionsComponent }
+  { path: 'conversions/recent', component: ConversionsComponent }
 ];
 
 @NgModule({

@@ -1,8 +1,20 @@
 <div class="section">
-    <div class="container">
-        <div class="row row-header">
-            <div class="col-md-12">
-                <h3 class="title">My conversions</h3>
+    <div class="container-fluid">
+        <div class="row row-body">
+            <div class="col-md-3">
+                <div class="wrapper-left-panel">
+                    <h3 class="title">My conversions</h3>
+                    <ul class="list-left-panel-menu">
+                        <a routerLink="/conversions/recent">
+                            <li routerLinkActive="is-active">Recent conversions</li>
+                        </a>
+                        <a routerLink="/conversions/all">
+                            <li routerLinkActive="is-active">All conversions</li>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
                 <div class="wrapper-profile-info">
                     <p>John Watson</p>
                     <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile"
@@ -13,6 +25,54 @@
                         <a mat-menu-item (click)="onLogout()">Log out</a>
                     </mat-menu>
                 </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Cost ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                        <tr>
+                            <td>LM-003</td>
+                            <td class="title-conversion">Ralp Edward Contract</td>
+                            <td>23.03.2020</td>
+                            <td>$ 5.00</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
