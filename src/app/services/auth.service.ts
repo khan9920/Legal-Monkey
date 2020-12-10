@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
 import { VerifyAccountComponent } from '../components/auth/verify-account/verify-account.component';
+import { Router } from '@angular/router';
 
 const apiUrl = environment.apiURL;
 
@@ -16,7 +17,7 @@ export class AuthService {
   private isLoading = new Subject<boolean>();
   private isAuthenticated = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   public setLoadingStatus(status: boolean) {
     this.isLoading.next(status);
@@ -74,6 +75,7 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('token');
     this.isAuthenticated.next(false);
+    this.router.navigate(['/']);
     this.snackBar.open('See you soon!', 'Dismiss', {
       duration: 3000
     })

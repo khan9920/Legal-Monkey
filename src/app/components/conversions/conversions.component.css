@@ -1,14 +1,12 @@
-.row-header {
-    padding: 30px 0;
-}
-
 .title {
     display: inline-block;
+    padding: 30px;
 }
 
 .wrapper-profile-info {
     float: right;
     width: 150px;
+    padding: 30px 0;
 }
 
 .wrapper-profile-info p {
@@ -50,4 +48,68 @@ a.mat-menu-item:hover {
 ::ng-deep .mat-menu-content {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+}
+
+/* Left panel styles */
+.wrapper-left-panel {
+    position: fixed;
+    height: 100vh;
+}
+
+.list-left-panel-menu {
+    padding: 0;
+    list-style: none;
+    border-right: 1px solid #0000003b;
+}
+
+.list-left-panel-menu li {
+    padding: 10px;
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.list-left-panel-menu li:first-child {
+    margin-top: 0;
+}
+
+.list-left-panel-menu li:hover {
+    background-color: #ececec;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+.is-active {
+    background-color: #2F86DE;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: #fff;
+}
+
+/* Conversion table styles */
+.table thead th, .table tbody th, .table tbody td {
+    border: 0;
+}
+
+.table thead th {
+    border-bottom: 1px solid #0000003b;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+  
+
+tbody tr { 
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+}
+
+tbody tr:hover {
+    cursor: pointer;
+}
+
+.title-conversion {
+    font-weight: 600;
 }
