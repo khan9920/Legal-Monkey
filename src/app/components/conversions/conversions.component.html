@@ -7,16 +7,19 @@
                     <ul class="list-left-panel-menu">
                         <li [ngClass]=" { 'is-active': recentClicked } " (click)="onRecent()">Recent conversions</li>
                         <li [ngClass]=" { 'is-active': allClicked } " (click)="onAll()">All conversions</li>
+                        <li (click)="onBackToHome()">Back to home</li>
                     </ul>
                 </div>
             </div>
             <div class="col-md-9">
+                <h3 class="sub-title" *ngIf="recentClicked">Recent conversions</h3>
+                <h3 class="sub-title" *ngIf="allClicked">All conversions</h3>
                 <div class="wrapper-profile-info">
                     <p>John Watson</p>
                     <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile"
                         mat-button [matMenuTriggerFor]="beforeMenu">
                     <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
-                        <a mat-menu-item routerLink='conversions'>My conversions</a>
+                        <a mat-menu-item routerLink='/conversions'>My conversions</a>
                         <a mat-menu-item>Profile</a>
                         <a mat-menu-item (click)="onLogout()">Log out</a>
                     </mat-menu>
