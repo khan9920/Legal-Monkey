@@ -1,0 +1,45 @@
+<div class="section">
+    <div class="container-fluid">
+        <div class="row row-body">
+            <div class="col-md-3">
+                <div class="wrapper-left-panel">
+                    <h3 class="title">My conversions</h3>
+                    <ul class="list-left-panel-menu">
+                        <li [ngClass]=" { 'is-active': recentClicked } " (click)="onRecent()">Recent conversions</li>
+                        <li [ngClass]=" { 'is-active': allClicked } " (click)="onAll()">All conversions</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="wrapper-profile-info">
+                    <p>John Watson</p>
+                    <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile"
+                        mat-button [matMenuTriggerFor]="beforeMenu">
+                    <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
+                        <a mat-menu-item routerLink='conversions'>My conversions</a>
+                        <a mat-menu-item>Profile</a>
+                        <a mat-menu-item (click)="onLogout()">Log out</a>
+                    </mat-menu>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Date</th>
+                            <th>Cost ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let conversion of conversions">
+                            <td>{{ conversion._id }}</td>
+                            <td class="title-conversion">{{ conversion.title }}</td>
+                            <td>{{ conversion.date }}</td>
+                            <td>{{ conversion.cost }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
