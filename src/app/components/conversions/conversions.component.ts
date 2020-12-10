@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversionsService } from 'src/app/services/conversions.service';
 
@@ -13,7 +14,7 @@ export class ConversionsComponent implements OnInit {
   public recentClicked: boolean = true;
   public allClicked: boolean = false;
 
-  constructor(private conversionsService: ConversionsService, private authService: AuthService) { }
+  constructor(private conversionsService: ConversionsService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.conversions = this.conversionsService.getRecentConversions();
@@ -30,6 +31,10 @@ export class ConversionsComponent implements OnInit {
     this.allClicked = true;
 
     this.conversions = this.conversionsService.getAllConversions();
+  }
+
+  onBackToHome() {
+    this.router.navigate(['/']);
   }
 
   onLogout(): void {
