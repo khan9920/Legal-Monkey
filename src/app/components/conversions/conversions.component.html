@@ -1,0 +1,19 @@
+<div class="section">
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-md-12">
+                <h3 class="title">My conversions</h3>
+                <div class="wrapper-profile-info">
+                    <p>John Watson</p>
+                    <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile"
+                        mat-button [matMenuTriggerFor]="beforeMenu">
+                    <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
+                        <a mat-menu-item routerLink='conversions'>My conversions</a>
+                        <a mat-menu-item>Profile</a>
+                        <a mat-menu-item (click)="onLogout()">Log out</a>
+                    </mat-menu>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

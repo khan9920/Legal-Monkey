@@ -1,40 +1,25 @@
-.row {
+.row-header {
     padding: 30px 0;
 }
 
-h1 {
-    margin: 0;
-}
-
-ul {
-    padding: 0;
-    float: right;
-}
-
-ul li {
+.title {
     display: inline-block;
-    margin: 0 20px;
-    padding: 15px 0;
 }
 
-a {
-    color: #000;
+.wrapper-profile-info {
+    float: right;
+    width: 150px;
 }
 
-button {
-    background: #2e86de;
-    border: 2px solid #2e86de;
-    padding: 5px 40px;
-    color: #fff;
-    border-radius: 50px;
+.wrapper-profile-info p {
+    float: left;
+    position: relative;
+    top: 5px;
+    right: 10px;
 }
 
-button:hover {
-    background: #fff;
-    border: 2px solid #2e86de;
-    padding: 5px 40px;
-    color: #2e86de;
-    border-radius: 50px;
+.wrapper-profile-info img {
+    float: right;
 }
 
 .mat-menu-item {
