@@ -32,6 +32,7 @@ import { FooterComponent } from './components/landingpage/footer/footer.componen
 import { ConversionsComponent } from './components/conversions/conversions.component';
 import { AccountComponent } from './components/account/account.component';
 import { UpdateAccountComponent } from './components/account/update-account/update-account.component';
+import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -53,7 +54,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     FooterComponent,
     ConversionsComponent,
     AccountComponent,
-    UpdateAccountComponent
+    UpdateAccountComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
