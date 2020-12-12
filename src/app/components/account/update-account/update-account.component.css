@@ -1,0 +1,96 @@
+h2 {
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2e86de;
+}
+
+.sub-title {
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+}
+
+input, .mobile-input {
+    width: 100%;
+    border: 2px solid #2f86de;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 50px;
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.text-login {
+    text-align: center;
+}
+
+.text-login a {
+    color: #2e86de;
+    text-decoration: none;
+}
+
+.text-login a:hover {
+    color: #226294;
+    cursor: pointer;
+}
+
+.invalid-input {
+    border: 2px solid red;
+}
+
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
+}
+
+.mobile-input input {
+    width: 100% !important;
+    border: 2px solid #2f86de !important;
+    border-radius: 5px !important;
+    padding: 10px 20px !important;
+    margin-bottom: 20px !important;
+}
+
+.col-icon {
+    text-align: center;
+}
+
+img {
+    width: 150px;
+    margin: 40px 0;
+}

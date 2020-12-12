@@ -13,11 +13,11 @@
                     <button (click)="onLogin()">LOG IN</button>
                 </li>
                 <li *ngIf="isAuthenticated">
-                    <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon" class="icon-profile"
+                    <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon" class="icon-profile"
                         mat-button [matMenuTriggerFor]="beforeMenu">
                     <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
                         <a mat-menu-item routerLink='/conversions'>My conversions</a>
-                        <a mat-menu-item>Profile</a>
+                        <a mat-menu-item routerLink='/account'>Account</a>
                         <a mat-menu-item (click)="onLogout()">Log out</a>
                     </mat-menu>
                 </li>
