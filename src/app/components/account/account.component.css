@@ -137,7 +137,7 @@ button {
     color: #fff;
     border-radius: 50px;
     margin-bottom: 40px;
-    width: 230px;
+    width: 250px;
 }
 
 button:hover {
@@ -147,5 +147,5 @@ button:hover {
     color: #2e86de;
     border-radius: 50px;
     margin-bottom: 40px;
-    width: 230px;
+    width: 250px;
 }
