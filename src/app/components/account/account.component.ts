@@ -10,7 +10,6 @@ export class AccountComponent implements OnInit {
 
   public profileClicked: boolean = true;
   public paymentOptionsClicked: boolean = false;
-  public changePasswordClicked: boolean = false;
 
   constructor(private router: Router) { }
 
@@ -20,19 +19,11 @@ export class AccountComponent implements OnInit {
   onProfile() {
     this.profileClicked = true;
     this.paymentOptionsClicked = false;
-    this.changePasswordClicked = false;
   }
 
   onPaymentOptions() {
     this.profileClicked = false;
     this.paymentOptionsClicked = true;
-    this.changePasswordClicked = false;
-  }
-
-  onChangePassword() {
-    this.profileClicked = false;
-    this.paymentOptionsClicked = false;
-    this.changePasswordClicked = true;
   }
 
   onBackToHome() {
