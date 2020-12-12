@@ -128,3 +128,24 @@ a.mat-menu-item:hover {
 .col-right {
     text-align: right;
 }
+
+/* Buttons styles */
+button {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 50px;
+    margin-bottom: 40px;
+    width: 250px;
+}
+
+button:hover {
+    background: #fff;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #2e86de;
+    border-radius: 50px;
+    margin-bottom: 40px;
+    width: 250px;
+}

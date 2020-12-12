@@ -8,8 +8,6 @@
                         <li [ngClass]=" { 'is-active': profileClicked } " (click)="onProfile()">My profile</li>
                         <li [ngClass]=" { 'is-active': paymentOptionsClicked } " (click)="onPaymentOptions()">Payment
                             options</li>
-                        <li [ngClass]=" { 'is-active': changePasswordClicked } " (click)="onChangePassword()">Change
-                            password</li>
                         <li (click)="onBackToHome()">Back to home</li>
                     </ul>
                 </div>
@@ -33,7 +31,7 @@
                     </div>
                 </div>
 
-                <div class="card">
+                <div class="card" *ngIf="profileClicked">
                     <div class="row">
                         <div class="col-md-12 col-profile-icon">
                             <img class="icon-profile-body" src="/assets/icons/icon-user-profile.svg"
@@ -57,6 +55,12 @@
                             <div class="col-md-6">
                                 <label>Mobile</label>
                                 <p>+94 77 58 67 889</p>
+                            </div>
+                            <div class="col-md-6  col-right">
+                                <button (click)="onUpdateProfile()">UPDATE PROFILE</button>
+                            </div>
+                            <div class="col-md-6">
+                                <button (click)="onChangePassword()">CHANGE PASSWORD</button>
                             </div>
                         </div>
                     </div>
