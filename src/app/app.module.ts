@@ -17,6 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCardModule } from '@angular/material/card';
 
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { HeaderComponent } from './components/landingpage/header/header.component';
@@ -29,6 +30,7 @@ import { VerifyAccountComponent } from './components/auth/verify-account/verify-
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/landingpage/footer/footer.component';
 import { ConversionsComponent } from './components/conversions/conversions.component';
+import { AccountComponent } from './components/account/account.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -48,7 +50,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ResetPasswordComponent,
     VerifyAccountComponent,
     FooterComponent,
-    ConversionsComponent
+    ConversionsComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCardModule
   ],
   providers: [{
     provide: SWIPER_CONFIG,

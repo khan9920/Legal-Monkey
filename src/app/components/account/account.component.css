@@ -1,0 +1,130 @@
+.col-md-9 {
+    height: 100vh;
+    overflow: scroll;
+}
+
+.title {
+    display: inline-block;
+    padding: 30px;
+}
+
+.sub-title {
+    float: left;
+    padding: 30px 30px 30px 0;
+}
+
+.wrapper-profile-info {
+    float: right;
+    width: 150px;
+    padding: 30px 0;
+}
+
+.wrapper-profile-info p {
+    float: left;
+    position: relative;
+    top: 5px;
+    right: 10px;
+}
+
+.wrapper-profile-info img {
+    float: right;
+}
+
+.mat-menu-item {
+    height: auto;
+}
+
+a.mat-menu-item {
+    background: #fff;
+    padding: 0px 20px;
+    color: #000;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+}
+
+a.mat-menu-item:hover {
+    background: rgb(245, 245, 245);
+    padding: 0px 20px;
+    color: #2e86de;
+    font-size: 16px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+}
+
+.icon-profile {
+    width: 35px;
+}
+
+::ng-deep .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+/* Left panel styles */
+.list-left-panel-menu {
+    padding: 0;
+    list-style: none;
+    border-right: 1px solid #0000003b;
+}
+
+.list-left-panel-menu li {
+    padding: 10px;
+    margin: 15px 0;
+    padding-left: 30px;
+}
+
+.list-left-panel-menu li:first-child {
+    margin-top: 0;
+}
+
+.list-left-panel-menu li:hover {
+    background-color: #ececec;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    cursor: pointer;
+    color: #000;
+}
+
+.is-active {
+    background-color: #2F86DE;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: #fff;
+}
+
+/* Profile area */
+.col-profile-icon {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.icon-profile-body {
+    width: 200px;
+}
+
+.card {
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+    width: 100%;
+    padding: 25px;
+}
+
+.card label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.card p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 18px;
+}
+
+.row-profile-info {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.col-right {
+    text-align: right;
+}

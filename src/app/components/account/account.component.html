@@ -1,0 +1,67 @@
+<div class="section">
+    <div class="container-fluid">
+        <div class="row row-body">
+            <div class="col-md-3">
+                <div class="wrapper-left-panel">
+                    <h3 class="title">Account</h3>
+                    <ul class="list-left-panel-menu">
+                        <li [ngClass]=" { 'is-active': profileClicked } " (click)="onProfile()">My profile</li>
+                        <li [ngClass]=" { 'is-active': paymentOptionsClicked } " (click)="onPaymentOptions()">Payment
+                            options</li>
+                        <li [ngClass]=" { 'is-active': changePasswordClicked } " (click)="onChangePassword()">Change
+                            password</li>
+                        <li (click)="onBackToHome()">Back to home</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="sub-title" *ngIf="profileClicked">My profile</h3>
+                        <h3 class="sub-title" *ngIf="paymentOptionsClicked">Payment options</h3>
+                        <h3 class="sub-title" *ngIf="changePasswordClicked">Change password</h3>
+                        <div class="wrapper-profile-info">
+                            <p>John Watson</p>
+                            <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon"
+                                class="icon-profile" mat-button [matMenuTriggerFor]="beforeMenu">
+                            <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
+                                <a mat-menu-item routerLink='/conversions'>My conversions</a>
+                                <a mat-menu-item routerLink='/account'>Account</a>
+                                <a mat-menu-item (click)="onLogout()">Log out</a>
+                            </mat-menu>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-12 col-profile-icon">
+                            <img class="icon-profile-body" src="/assets/icons/icon-user-profile.svg"
+                                alt="Legal Monkey profile icon avatar">
+                        </div>
+                    </div>
+                    <div class="row-profile-info">
+                        <div class="row">
+                            <div class="col-md-6 col-right">
+                                <label>First name</label>
+                                <p>John</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Last name</label>
+                                <p>Watson</p>
+                            </div>
+                            <div class="col-md-6 col-right">
+                                <label>Email</label>
+                                <p>john@gmail.com</p>
+                            </div>
+                            <div class="col-md-6">
+                                <label>Mobile</label>
+                                <p>+94 77 58 67 889</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
