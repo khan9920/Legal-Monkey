@@ -17,10 +17,9 @@
                     <div class="col-md-12">
                         <h3 class="sub-title" *ngIf="profileClicked">My profile</h3>
                         <h3 class="sub-title" *ngIf="paymentOptionsClicked">Payment options</h3>
-                        <h3 class="sub-title" *ngIf="changePasswordClicked">Change password</h3>
                         <div class="wrapper-profile-info">
                             <p>John Watson</p>
-                            <img src="/assets/icons/icon-user-profile.svg" alt="Legal Monkey Profile Icon"
+                            <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon"
                                 class="icon-profile" mat-button [matMenuTriggerFor]="beforeMenu">
                             <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
                                 <a mat-menu-item routerLink='/conversions'>My conversions</a>
@@ -34,7 +33,7 @@
                 <div class="card" *ngIf="profileClicked">
                     <div class="row">
                         <div class="col-md-12 col-profile-icon">
-                            <img class="icon-profile-body" src="/assets/icons/icon-user-profile.svg"
+                            <img class="icon-profile-body" src="/assets/images/badass-monkey.png"
                                 alt="Legal Monkey profile icon avatar">
                         </div>
                     </div>
