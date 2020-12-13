@@ -71,7 +71,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatSnackBarModule,
     MatDialogModule,
     MatMenuModule,
-    MatCardModule
+    MatCardModule,
   ],
   providers: [{
     provide: SWIPER_CONFIG,
