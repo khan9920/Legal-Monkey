@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
+import { AddCardComponent } from './add-card/add-card.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UpdateAccountComponent } from './update-account/update-account.component';
 
@@ -30,6 +31,13 @@ export class AccountComponent implements OnInit {
 
   onChangePassword() {
     this.dialog.open(ChangePasswordComponent, {
+      width: '400px',
+      maxHeight: '90vh'
+    });
+  }
+
+  onAddCard() {
+    this.dialog.open(AddCardComponent, {
       width: '400px',
       maxHeight: '90vh'
     });
