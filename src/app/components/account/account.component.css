@@ -149,3 +149,57 @@ button:hover {
     margin-bottom: 40px;
     width: 250px;
 }
+
+.btn-add-payment {
+    margin: 30px;
+    padding: 5px;
+    width: 170px;
+
+}
+
+.btn-add-payment:hover {
+    margin: 30px;
+    padding: 5px;
+    width: 170px;
+}
+
+/* Payment table styles */
+.table thead th, .table tbody th, .table tbody td {
+    border: 0;
+}
+
+.table thead th {
+    border-bottom: 1px solid #0000003b;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+  
+
+tbody tr { 
+    box-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.2), 0 0px 0px 0 rgba(0, 0, 0, 0.19);
+}
+
+tbody tr:hover {
+    cursor: pointer;
+}
+
+.title-conversion {
+    font-weight: 600;
+}
+
+table tr td img {
+    width: 40px;
+}
+
+.text-card-number {
+    display: inline-flex;
+    margin-left: 15px;
+    margin-bottom: 0;
+}
+
+.text-remove {
+    color: red;
+}

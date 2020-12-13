@@ -21,11 +21,11 @@ export class TextEditorComponent implements OnInit {
   ngOnInit(): void {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
       this.editorEnabled = result;
-    })
+    });
   }
 
-  onSimplify() {
-    if (this.text == '' || this.text == 'Your text...') {
+  onSimplify(text: any) {
+    if (text == '' || text == 'Your text...') {
       this.snackBar.open('Please enter your text and try again!', 'Dismiss', {
         duration: 3000
       });
@@ -35,7 +35,7 @@ export class TextEditorComponent implements OnInit {
     this.isLoading = true;
 
     const data = {
-      text: this.text
+      text: text
     }
 
     this.simplifyService.simplify(data).subscribe(result => {
@@ -43,8 +43,6 @@ export class TextEditorComponent implements OnInit {
         this.isLoading = false;
         this.editorEnabled = false;
         this.simplifiedData = result.data;
-        console.log(result.data);
-
       }
     }, error => {
       this.isLoading = false;

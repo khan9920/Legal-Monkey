@@ -17,3 +17,8 @@ ul li a {
     font-weight: 400;
     font-size: 14px;
 }
+
+.logo {
+    width: 170px;
+    margin-bottom: 20px;
+}

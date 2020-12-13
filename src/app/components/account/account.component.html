@@ -17,6 +17,8 @@
                     <div class="col-md-12">
                         <h3 class="sub-title" *ngIf="profileClicked">My profile</h3>
                         <h3 class="sub-title" *ngIf="paymentOptionsClicked">Payment options</h3>
+                        <button class="btn-add-payment" *ngIf="paymentOptionsClicked" (click)="onAddCard()">ADD
+                            CARD</button>
                         <div class="wrapper-profile-info">
                             <p>John Watson</p>
                             <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon"
@@ -62,6 +64,39 @@
                                 <button (click)="onChangePassword()">CHANGE PASSWORD</button>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="row" *ngIf="paymentOptionsClicked">
+                    <div class="col-md-12">
+                        <table class="table table-payment-options">
+                            <thead>
+                                <tr>
+                                    <th>Card</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <img src="/assets/icons/icon-visa.svg" alt="Legal Monkey VISA icon">
+                                        <p class="text-card-number">&#9679;&#9679;&#9679;&#9679;
+                                            &#9679;&#9679;&#9679;&#9679;
+                                            &#9679;&#9679;&#9679;&#9679; 3344</p>
+                                    </td>
+                                    <td class="text-remove">Remove</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img src="/assets/icons/icon-master.svg" alt="Legal Monkey MASTER icon">
+                                        <p class="text-card-number">&#9679;&#9679;&#9679;&#9679;
+                                            &#9679;&#9679;&#9679;&#9679;
+                                            &#9679;&#9679;&#9679;&#9679; 6677</p>
+                                    </td>
+                                    <td class="text-remove">Remove</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

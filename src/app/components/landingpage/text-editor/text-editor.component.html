@@ -2,10 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h4>Enter your text here</h4>
+                <h4 class="title">Enter your text here</h4>
                 <div class="textarea-container">
-                    <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text">Your text...</textarea>
-                    <button (click)="onSimplify()">
+                    <!-- <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text">Your text...</textarea> -->
+                    <div contenteditable="true" class="custom-textarea" [innerHTML]="text" #textarea></div>
+                    <button (click)="onSimplify(textarea.innerText)">
                         <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                         Simplify
                     </button>

@@ -6,6 +6,17 @@ h1 {
     margin: 0;
 }
 
+.title {
+    display: inline-block;
+    margin-left: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.logo {
+    width: 50px;
+}
+
 ul {
     padding: 0;
     float: right;
