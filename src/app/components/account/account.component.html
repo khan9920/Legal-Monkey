@@ -17,7 +17,8 @@
                     <div class="col-md-12">
                         <h3 class="sub-title" *ngIf="profileClicked">My profile</h3>
                         <h3 class="sub-title" *ngIf="paymentOptionsClicked">Payment options</h3>
-                        <button class="btn-add-payment" *ngIf="paymentOptionsClicked">ADD CARD</button>
+                        <button class="btn-add-payment" *ngIf="paymentOptionsClicked" (click)="onAddCard()">ADD
+                            CARD</button>
                         <div class="wrapper-profile-info">
                             <p>John Watson</p>
                             <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon"
