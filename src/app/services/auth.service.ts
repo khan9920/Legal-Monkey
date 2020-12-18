@@ -14,6 +14,7 @@ const apiUrl = environment.apiURL;
 })
 export class AuthService {
 
+  private token: string;
   private isLoading = new Subject<boolean>();
   private isAuthenticated = new Subject<boolean>();
 
@@ -35,10 +36,15 @@ export class AuthService {
     return this.isAuthenticated.asObservable();
   }
 
+  public getToken() {
+    return this.token;
+  }
+
   public signUp(data: any): void {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
       if (result.success) {
         this.saveAuthData(result.data.token);
+        this.token = result.data.token;
         this.isLoading.next(false);
         this.isAuthenticated.next(true);
         this.dialog.closeAll();
@@ -60,6 +66,7 @@ export class AuthService {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
       if (result.success) {
         this.saveAuthData(result.data.token);
+        this.token = result.data.token;
         this.isAuthenticated.next(true);
         this.isLoading.next(false);
         this.dialog.closeAll();
@@ -74,6 +81,7 @@ export class AuthService {
 
   public logout(): void {
     localStorage.removeItem('token');
+    this.token = null;
     this.isAuthenticated.next(false);
     this.router.navigate(['/']);
     this.snackBar.open('See you soon!', 'Dismiss', {
