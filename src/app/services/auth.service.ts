@@ -93,6 +93,7 @@ export class AuthService {
     const token = localStorage.getItem('token');
 
     if (token !== '') {
+      this.token = token;
       this.isAuthenticated.next(true);
     }
   }

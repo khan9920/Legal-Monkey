@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,6 +35,7 @@ import { UpdateAccountComponent } from './components/account/update-account/upda
 import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 import { AddCardComponent } from './components/account/add-card/add-card.component';
 import { FileUploaderComponent } from './components/landingpage/file-uploader/file-uploader.component';
+import { AuthInterceptor } from './services/auth-interceptor';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -76,6 +77,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatCardModule,
   ],
   providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  },
+  {
     provide: SWIPER_CONFIG,
     useValue: DEFAULT_SWIPER_CONFIG
   }],

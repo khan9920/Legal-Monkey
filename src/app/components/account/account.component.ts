@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { MeService } from 'src/app/services/me.service';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
@@ -17,15 +19,27 @@ export class AccountComponent implements OnInit {
   public profileClicked: boolean = true;
   public paymentOptionsClicked: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) { }
+  public me: any;
+
+  constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.meService.getMe().subscribe(result => {
+      if (result.success) {
+        this.me = result.data;
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   onUpdateProfile() {
     this.dialog.open(UpdateAccountComponent, {
       width: '500px',
-      maxHeight: '90vh'
+      maxHeight: '90vh',
+      data: this.me
     });
   }
 

@@ -43,19 +43,19 @@
                         <div class="row">
                             <div class="col-md-6 col-right">
                                 <label>First name</label>
-                                <p>John</p>
+                                <p>{{ me.firstName }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label>Last name</label>
-                                <p>Watson</p>
+                                <p>{{ me.lastName }}</p>
                             </div>
                             <div class="col-md-6 col-right">
                                 <label>Email</label>
-                                <p>john@gmail.com</p>
+                                <p>{{ me.email }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile</label>
-                                <p>+94 77 58 67 889</p>
+                                <p>+{{ me.mobile }}</p>
                             </div>
                             <div class="col-md-6  col-right">
                                 <button (click)="onUpdateProfile()">UPDATE PROFILE</button>
