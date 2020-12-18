@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoginComponent } from '../../auth/login/login.component';
 import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
 import { AuthService } from 'src/app/services/auth.service';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as EmailValidator from 'email-validator';
 
@@ -15,12 +15,10 @@ import * as EmailValidator from 'email-validator';
 export class UpdateAccountComponent implements OnInit {
 
   public user = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    mobile: null,
-    password: '',
-    confirmPassword: '',
+    firstName: this.data.firstName,
+    lastName: this.data.lastName,
+    email: this.data.email,
+    mobile: this.data.mobile
   }
 
   public validation = {
@@ -28,8 +26,6 @@ export class UpdateAccountComponent implements OnInit {
     lastName: true,
     email: true,
     mobile: true,
-    password: true,
-    confirmPassword: true
   }
 
   public isLoading: boolean = false;
@@ -46,7 +42,7 @@ export class UpdateAccountComponent implements OnInit {
     this.preferredCountries = [CountryISO.SriLanka];
   }
 
-  constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.isLoadingSub = this.authService.getLoadingStatus().subscribe(result => {
@@ -56,7 +52,7 @@ export class UpdateAccountComponent implements OnInit {
 
   onSignUp() {
     this.validator();
-    if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
+    if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile) {
       return;
     }
 
@@ -65,7 +61,6 @@ export class UpdateAccountComponent implements OnInit {
       lastName: this.user.lastName,
       email: this.user.email,
       mobile: this.user.mobile,
-      password: this.user.password
     }
     this.authService.setLoadingStatus(true);
     this.authService.signUp(user);
@@ -104,28 +99,6 @@ export class UpdateAccountComponent implements OnInit {
     } else {
       this.validation.mobile = true;
       this.user.mobile = this.user.mobile.e164Number;
-    }
-
-    if (this.user.password == '') {
-      this.validation.password = false;
-    } else {
-      this.validation.password = true;
-    }
-
-    if (this.user.confirmPassword == '') {
-      this.validation.confirmPassword = false;
-    } else {
-      this.validation.confirmPassword = true;
-    }
-
-    if (this.user.password !== '' && this.user.confirmPassword !== '') {
-      if (this.user.password !== this.user.confirmPassword) {
-        this.validation.password = false;
-        this.validation.confirmPassword = false;
-        this.snackBar.open('Passwords do not match', 'Dismiss', {
-          duration: 3000
-        });
-      }
     }
   }
 

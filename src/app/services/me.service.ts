@@ -14,4 +14,8 @@ export class MeService {
   getMe() {
     return this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users`);
   }
+
+  updateMe(data: any) {
+    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users`, data);
+  }
 }

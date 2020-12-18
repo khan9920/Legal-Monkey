@@ -38,7 +38,8 @@ export class AccountComponent implements OnInit {
   onUpdateProfile() {
     this.dialog.open(UpdateAccountComponent, {
       width: '500px',
-      maxHeight: '90vh'
+      maxHeight: '90vh',
+      data: this.me
     });
   }
 
