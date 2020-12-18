@@ -203,3 +203,8 @@ table tr td img {
 .text-remove {
     color: red;
 }
+
+.text-default {
+    color: #737373;
+    margin-left: 20px;
+}
