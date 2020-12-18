@@ -43,19 +43,19 @@
                         <div class="row">
                             <div class="col-md-6 col-right">
                                 <label>First name</label>
-                                <p>John</p>
+                                <p>{{ me.firstName }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label>Last name</label>
-                                <p>Watson</p>
+                                <p>{{ me.lastName }}</p>
                             </div>
                             <div class="col-md-6 col-right">
                                 <label>Email</label>
-                                <p>john@gmail.com</p>
+                                <p>{{ me.email }}</p>
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile</label>
-                                <p>+94 77 58 67 889</p>
+                                <p>+{{ me.mobile }}</p>
                             </div>
                             <div class="col-md-6  col-right">
                                 <button (click)="onUpdateProfile()">UPDATE PROFILE</button>
@@ -82,7 +82,9 @@
                                         <img src="/assets/icons/icon-visa.svg" alt="Legal Monkey VISA icon">
                                         <p class="text-card-number">&#9679;&#9679;&#9679;&#9679;
                                             &#9679;&#9679;&#9679;&#9679;
-                                            &#9679;&#9679;&#9679;&#9679; 3344</p>
+                                            &#9679;&#9679;&#9679;&#9679; 3344
+                                            <span class="text-default">Default</span>
+                                        </p>
                                     </td>
                                     <td class="text-remove">Remove</td>
                                 </tr>
