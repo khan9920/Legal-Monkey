@@ -23,13 +23,21 @@ export class AccountComponent implements OnInit, OnDestroy {
   public me: any;
   private meSub: Subscription;
 
+  public cards: any = [];
+  private cardsSub: Subscription;
+
   constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.meService.getMe();
     this.meSub = this.meService.getMeUpdated().subscribe(result => {
       this.me = result;
-    })
+    });
+
+    this.meService.getCards();
+    this.cardsSub = this.meService.getCardsUpdated().subscribe(result => {
+      this.cards = result;
+    });
   }
 
   onUpdateProfile() {
@@ -74,5 +82,6 @@ export class AccountComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.meSub.unsubscribe();
+    this.cardsSub.unsubscribe();
   }
 }

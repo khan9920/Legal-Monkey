@@ -77,23 +77,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr *ngFor="let card of cards">
                                     <td>
-                                        <img src="/assets/icons/icon-visa.svg" alt="Legal Monkey VISA icon">
+                                        <img src="/assets/icons/icon-visa.svg" *ngIf="card.scheme == 'VISA' "
+                                            alt="Legal Monkey VISA icon">
+                                        <img src="/assets/icons/icon-master.svg" *ngIf="card.scheme == 'MASTER' "
+                                            alt="Legal Monkey MASTER icon">
                                         <p class="text-card-number">&#9679;&#9679;&#9679;&#9679;
                                             &#9679;&#9679;&#9679;&#9679;
-                                            &#9679;&#9679;&#9679;&#9679; 3344
-                                            <span class="text-default">Default</span>
+                                            &#9679;&#9679;&#9679;&#9679; {{ card.cardLast }}
+                                            <span class="text-default" *ngIf="card.default">Default</span>
                                         </p>
-                                    </td>
-                                    <td class="text-remove">Remove</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <img src="/assets/icons/icon-master.svg" alt="Legal Monkey MASTER icon">
-                                        <p class="text-card-number">&#9679;&#9679;&#9679;&#9679;
-                                            &#9679;&#9679;&#9679;&#9679;
-                                            &#9679;&#9679;&#9679;&#9679; 6677</p>
                                     </td>
                                     <td class="text-remove">Remove</td>
                                 </tr>

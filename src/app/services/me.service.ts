@@ -14,6 +14,7 @@ export class MeService {
 
   private isLoading = new Subject<boolean>();
   private meSub = new Subject();
+  private cards = new Subject<[]>();
 
   constructor(private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -25,6 +26,7 @@ export class MeService {
     return this.isLoading.asObservable();
   }
 
+  // Me 
   getMeUpdated() {
     return this.meSub.asObservable();
   }
@@ -74,6 +76,42 @@ export class MeService {
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
-    })
+    });
+  }
+
+  // Payment options
+  addCard(data: any) {
+    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/cards`, data).subscribe(result => {
+      if (result.success) {
+        this.setLoadingStatus(false);
+        this.dialog.closeAll();
+        this.snackBar.open('Card successfully added', 'Dismiss', {
+          duration: 3000
+        })
+      }
+    }, error => {
+      this.setLoadingStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
+
+  getCardsUpdated() {
+    return this.cards.asObservable();
+  }
+
+  getCards() {
+    this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users/cards`).subscribe(result => {
+      if (result.success) {
+        this.setLoadingStatus(false);
+        this.cards.next(result.data);
+      }
+    }, error => {
+      this.setLoadingStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 }
