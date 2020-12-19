@@ -55,6 +55,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   onSignUp() {
+    this.authService.setLoadingStatus(true);
     this.validator();
     if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
       return;
@@ -67,7 +68,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       mobile: this.user.mobile,
       password: this.user.password
     }
-    this.authService.setLoadingStatus(true);
     this.authService.signUp(user);
   }
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
@@ -14,25 +15,21 @@ import { UpdateAccountComponent } from './update-account/update-account.componen
   templateUrl: './account.component.html',
   styleUrls: ['./account.component.css']
 })
-export class AccountComponent implements OnInit {
+export class AccountComponent implements OnInit, OnDestroy {
 
   public profileClicked: boolean = true;
   public paymentOptionsClicked: boolean = false;
 
   public me: any;
+  private meSub: Subscription;
 
   constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.meService.getMe().subscribe(result => {
-      if (result.success) {
-        this.me = result.data;
-      }
-    }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
+    this.meService.getMe();
+    this.meSub = this.meService.getMeUpdated().subscribe(result => {
+      this.me = result;
+    })
   }
 
   onUpdateProfile() {
@@ -73,5 +70,9 @@ export class AccountComponent implements OnInit {
 
   onLogout() {
     this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.meSub.unsubscribe();
   }
 }

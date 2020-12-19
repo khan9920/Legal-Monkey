@@ -1,5 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subject } from 'rxjs';
 import { environment } from './../../environments/environment';
 
 const apiUrl = environment.apiURL;
@@ -9,13 +12,50 @@ const apiUrl = environment.apiURL;
 })
 export class MeService {
 
-  constructor(private http: HttpClient) { }
+  private isLoading = new Subject<boolean>();
+  private meSub = new Subject();
+
+  constructor(private http: HttpClient, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+
+  public setLoadingStatus(status: boolean) {
+    this.isLoading.next(status);
+  }
+
+  public getLoadingStatus() {
+    return this.isLoading.asObservable();
+  }
+
+  getMeUpdated() {
+    return this.meSub.asObservable();
+  }
 
   getMe() {
-    return this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users`);
+    this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users`).subscribe(result => {
+      if (result.success) {
+        this.meSub.next(result.data);
+        this.isLoading.next(false);
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   updateMe(data: any) {
-    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users`, data);
+    this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
+      if (result.success) {
+        this.meSub.next(result.data);
+        this.isLoading.next(false);
+        this.dialog.closeAll();
+        this.snackBar.open('Profile updated successfully', 'Dismiss', {
+          duration: 3000
+        });
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 }
