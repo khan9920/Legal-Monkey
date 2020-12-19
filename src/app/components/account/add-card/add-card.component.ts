@@ -15,7 +15,10 @@ export class AddCardComponent implements OnInit {
   }
 
   onAddCard() {
-
+    const data = {
+      session: 'SESSION0002409723047L75717837H8'
+    }
+    this.meService.addCard(data);
   }
 
   onClose() {

@@ -85,6 +85,7 @@ export class MeService {
       if (result.success) {
         this.setLoadingStatus(false);
         this.dialog.closeAll();
+        this.cards.next(result.data);
         this.snackBar.open('Card successfully added', 'Dismiss', {
           duration: 3000
         })
