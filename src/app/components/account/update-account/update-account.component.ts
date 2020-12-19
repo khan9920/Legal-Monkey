@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, Inject, OnChanges, OnInit } from '@angular/core';
 import { LoginComponent } from '../../auth/login/login.component';
 import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
-import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as EmailValidator from 'email-validator';
+import { MeService } from 'src/app/services/me.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-update-account',
@@ -13,6 +13,9 @@ import * as EmailValidator from 'email-validator';
   styleUrls: ['./update-account.component.css']
 })
 export class UpdateAccountComponent implements OnInit {
+
+  public isLoading: boolean = false;
+  private isLoadingSub: Subscription;
 
   public user = {
     firstName: this.data.firstName,
@@ -28,9 +31,6 @@ export class UpdateAccountComponent implements OnInit {
     mobile: true,
   }
 
-  public isLoading: boolean = false;
-  public isLoadingSub: Subscription;
-
   separateDialCode = false;
   SearchCountryField = SearchCountryField;
   TooltipLabel = TooltipLabel;
@@ -42,28 +42,22 @@ export class UpdateAccountComponent implements OnInit {
     this.preferredCountries = [CountryISO.SriLanka];
   }
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private meService: MeService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.isLoadingSub = this.authService.getLoadingStatus().subscribe(result => {
+    this.isLoadingSub = this.meService.getLoadingStatus().subscribe(result => {
       this.isLoading = result;
     });
   }
 
-  onSignUp() {
+  onUpdate() {
+    this.meService.setLoadingStatus(true);
     this.validator();
     if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile) {
       return;
     }
 
-    const user = {
-      firstName: this.user.firstName,
-      lastName: this.user.lastName,
-      email: this.user.email,
-      mobile: this.user.mobile,
-    }
-    this.authService.setLoadingStatus(true);
-    this.authService.signUp(user);
+    this.meService.updateMe(this.user);
   }
 
   private validator() {
@@ -113,9 +107,4 @@ export class UpdateAccountComponent implements OnInit {
   onClose() {
     this.dialog.closeAll();
   }
-
-  ngOnDestroy() {
-    this.isLoadingSub.unsubscribe();
-  }
-
 }
