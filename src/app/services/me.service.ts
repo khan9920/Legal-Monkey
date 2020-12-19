@@ -53,9 +53,27 @@ export class MeService {
         });
       }
     }, error => {
+      this.setLoadingStatus(false);
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
     });
+  }
+
+  changePassword(data: any) {
+    this.http.patch<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data).subscribe(result => {
+      if (result.success) {
+        this.setLoadingStatus(false);
+        this.dialog.closeAll();
+        this.snackBar.open('Password changes successfully', 'Dismiss', {
+          duration: 3000
+        })
+      }
+    }, error => {
+      this.setLoadingStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    })
   }
 }
