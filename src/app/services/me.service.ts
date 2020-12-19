@@ -131,4 +131,21 @@ export class MeService {
       });
     });
   }
+
+  removeCard(data: any) {
+    this.http.request<{ success: boolean, data: any }>('delete', `${apiUrl}/users/cards/`, { body: data }).subscribe(result => {
+      if (result.success) {
+        this.setLoadingStatus(false);
+        this.cards.next(result.data);
+        this.snackBar.open('Card removed successfully', 'Dismiss', {
+          duration: 3000
+        })
+      }
+    }, error => {
+      this.setLoadingStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
 }

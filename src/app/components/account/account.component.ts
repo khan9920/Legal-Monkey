@@ -62,14 +62,22 @@ export class AccountComponent implements OnInit, OnDestroy {
     });
   }
 
-  onMakeDefaultCard(card: string) {
-
+  onMakeDefaultCard(cardID: string) {
     const data = {
-      card: card
+      card: cardID
     }
 
     this.meService.setLoadingStatus(true);
     this.meService.updateCard(data);
+  }
+
+  onRemoveCard(cardID: string) {
+    const data = {
+      card: cardID
+    }
+
+    this.meService.setLoadingStatus(true);
+    this.meService.removeCard(data);
   }
 
   onProfile() {
