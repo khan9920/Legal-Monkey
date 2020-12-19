@@ -201,6 +201,18 @@ table tr td img {
 }
 
 .text-remove {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+.text-remove:hover,
+.text-set-as-default:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.text-remove {
     color: red;
 }
 
