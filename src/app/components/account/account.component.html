@@ -87,9 +87,13 @@
                                             &#9679;&#9679;&#9679;&#9679;
                                             &#9679;&#9679;&#9679;&#9679; {{ card.cardLast }}
                                             <span class="text-default" *ngIf="card.default">Default</span>
+                                            <span class="text-default text-set-as-default" *ngIf="!card.default"
+                                                (click)="onMakeDefaultCard(card.card)">Set as default</span>
                                         </p>
                                     </td>
-                                    <td class="text-remove">Remove</td>
+                                    <td>
+                                        <p class="text-remove">Remove</p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

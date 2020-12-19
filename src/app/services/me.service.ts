@@ -114,4 +114,21 @@ export class MeService {
       });
     });
   }
+
+  updateCard(data: any) {
+    this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/cards`, data).subscribe(result => {
+      if (result.success) {
+        this.setLoadingStatus(false);
+        this.cards.next(result.data);
+        this.snackBar.open('Default card changed successfully', 'Dismiss', {
+          duration: 3000
+        })
+      }
+    }, error => {
+      this.setLoadingStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
 }
