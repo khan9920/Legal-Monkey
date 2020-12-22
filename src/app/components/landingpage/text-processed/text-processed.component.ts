@@ -8,7 +8,7 @@ import { SimplifyService } from 'src/app/services/simplify.service';
 })
 export class TextProcessedComponent implements OnInit {
 
-  @Input() simplifiedData: [];
+  @Input() conversions: [];
 
   constructor(private simplifyService: SimplifyService) { }
 

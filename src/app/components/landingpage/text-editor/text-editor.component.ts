@@ -15,7 +15,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   public text = 'Your text...';
   public isLoading: boolean = false;
-  public simplifiedData = [];
+  public conversions = [];
 
   public isEnterTextClicked: boolean = true;
   public isUploadDocumentClicked: boolean = false;
@@ -64,7 +64,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       });
       return;
     } else {
-      return;
       if (text == '' || text == 'Your text...') {
         this.snackBar.open('Please enter your text and try again!', 'Dismiss', {
           duration: 3000
@@ -82,7 +81,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         if (result.success) {
           this.isLoading = false;
           this.editorEnabled = false;
-          this.simplifiedData = result.data;
+          this.conversions = result.data.conversions;
         }
       }, error => {
         this.isLoading = false;
