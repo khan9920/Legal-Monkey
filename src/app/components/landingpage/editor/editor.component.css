@@ -1,0 +1,22 @@
+.codex-editor__redactor {
+    padding-bottom: 30px !important;
+}
+
+.btn-simplify {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 50px;
+    float: right;
+    position: relative;
+    top: -55px;
+    right: 20px;
+}
+
+#editor-js {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 24px 24px -18px rgba(69,104,129,.33), 0 9px 45px 0 rgba(114,119,160,.12);
+    padding: 70px 50px;
+}

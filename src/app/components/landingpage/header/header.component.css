@@ -17,6 +17,10 @@ h1 {
     width: 50px;
 }
 
+.logo:hover {
+    cursor: pointer;
+}
+
 ul {
     padding: 0;
     float: right;

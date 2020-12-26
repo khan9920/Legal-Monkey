@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from '../../auth/login/login.component';
@@ -14,7 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isAuthenticated: boolean = false;
   private isAuthenticatedSub: Subscription;
 
-  constructor(private authService: AuthService, private dialog: MatDialog) { }
+  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -37,6 +38,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onLogout(): void {
     this.authService.logout();
+  }
+
+  onHome() {
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy() {
