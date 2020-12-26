@@ -17,10 +17,22 @@
                 <h4 class="title">Upload your documents</h4>
                 <p class="sub-title">Or click <a (click)="onEnterTextClick()">here to enter your texts</a></p>
                 <div class="wrapper-upload-files">
-                    <button class="button-upload-image" type="button" (click)="filesButton.click()"
-                        (change)="onUploadDocument($event)">Select
-                        files</button>
-                    <input hidden type="file" name="files" #filesButton>
+
+                    <div class="wrapper-file" *ngIf="fileName !== '' ">
+                        <img src="/assets/icons/icon-word.svg" *ngIf="fileType == 'doc' ">
+                        <img src="/assets/icons/icon-pdf.svg" *ngIf="fileType == 'pdf' ">
+                        <p class="name">{{ fileName }}</p>
+                    </div>
+
+                    <button class="button-upload-image" type="button" *ngIf="fileName == '' "
+                        (click)="filesButton.click()">Select
+                        file</button>
+                    <input hidden type="file" name="files" (change)="onSelectFiles($event)" #filesButton>
+
+                    <button class="button-upload-image" type="button" *ngIf="fileName !== '' " (click)="onUpload()">
+                        <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                        Upload
+                    </button>
                 </div>
             </div>
         </div>

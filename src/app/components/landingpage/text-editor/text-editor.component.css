@@ -78,3 +78,12 @@ mat-spinner {
     padding: 40px;
     text-align: center;
 }
+
+.wrapper-file img {
+    width: 40px;
+}
+
+.wrapper-file .name {
+    display: inline-block;
+    margin-left: 20px;
+}
