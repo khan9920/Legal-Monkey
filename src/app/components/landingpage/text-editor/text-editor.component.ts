@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Subject, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
@@ -15,7 +16,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   public text = 'Your text...';
   public isLoading: boolean = false;
-  public simplifiedData = [];
+  public conversions = [];
 
   public isEnterTextClicked: boolean = true;
   public isUploadDocumentClicked: boolean = false;
@@ -25,9 +26,12 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   public isAuthenticated: boolean = false;
   private isAuthenticatedStatusSub: Subscription;
 
-  public files: File[];
+  public selectedFile: File;
+  public fileName: string = '';
+  public fileType: string = '';
 
-  constructor(private simplifyService: SimplifyService, private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+
+  constructor(private simplifyService: SimplifyService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
@@ -49,10 +53,34 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     this.isUploadDocumentClicked = true;
   }
 
-  onUploadDocument(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    console.log(file);
+  onSelectFiles(event: Event) {
+    this.selectedFile = (event.target as HTMLInputElement).files[0];
+    this.fileName = this.selectedFile.name;
 
+    if (this.selectedFile.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+      this.fileType = 'doc';
+    } else if (this.selectedFile.type == 'application/pdf') {
+      this.fileType = 'pdf'
+    }
+  }
+
+  onUpload() {
+    this.isLoading = true;
+    const data = new FormData();
+
+    data.append('document', this.selectedFile);
+
+    this.simplifyService.uploadDocuments(data).subscribe(result => {
+      if (result.success) {
+        this.isLoading = false;
+        localStorage.setItem('converted-doc', result.data);
+        this.router.navigate(['/editor']);
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   onSimplify(text: any) {
@@ -64,7 +92,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       });
       return;
     } else {
-      return;
       if (text == '' || text == 'Your text...') {
         this.snackBar.open('Please enter your text and try again!', 'Dismiss', {
           duration: 3000
@@ -82,7 +109,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         if (result.success) {
           this.isLoading = false;
           this.editorEnabled = false;
-          this.simplifiedData = result.data;
+          this.conversions = result.data.conversions;
         }
       }, error => {
         this.isLoading = false;

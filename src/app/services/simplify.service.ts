@@ -18,6 +18,10 @@ export class SimplifyService {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/simplify`, data);
   }
 
+  uploadDocuments(data) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents`, data);
+  }
+
   setEditorStatus(data: boolean) {
     this.editorStatus.next(data);
   }

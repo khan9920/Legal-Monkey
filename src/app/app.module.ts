@@ -12,6 +12,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
 import { SWIPER_CONFIG } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
+import { EditorComponent } from './components/landingpage/editor/editor.component';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -34,8 +35,8 @@ import { AccountComponent } from './components/account/account.component';
 import { UpdateAccountComponent } from './components/account/update-account/update-account.component';
 import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 import { AddCardComponent } from './components/account/add-card/add-card.component';
-import { FileUploaderComponent } from './components/landingpage/file-uploader/file-uploader.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -60,7 +61,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     UpdateAccountComponent,
     ChangePasswordComponent,
     AddCardComponent,
-    FileUploaderComponent,
+    EditorComponent,
   ],
   imports: [
     BrowserModule,
