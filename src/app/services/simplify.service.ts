@@ -11,6 +11,7 @@ const apiURL = environment.apiURL;
 export class SimplifyService {
 
   editorStatus = new Subject<any>();
+  simplifiedDocumentSub = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -20,6 +21,10 @@ export class SimplifyService {
 
   uploadDocuments(data) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents`, data);
+  }
+
+  simplifyDocument(data) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/simplify/documents`, data);
   }
 
   setEditorStatus(data: boolean) {
