@@ -1,6 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+@import url('https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css');
+@import url('https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/themes/default.css');
+
 *, body {
     font-size: 16px;
     font-family: 'Lato', sans-serif;
