@@ -13,10 +13,12 @@ declare let rangy: any;
 export class EditorComponent implements OnInit {
   @ViewChild("editor") editor: ElementRef;
 
-  private extraction: {
+  public extraction: {
     _id: string,
     text: string
   };
+
+  public isLoading: boolean = false;
 
   constructor(private simplifyService: SimplifyService, private snackBar: MatSnackBar) { }
 
@@ -63,15 +65,20 @@ export class EditorComponent implements OnInit {
   }
 
   onSimplify() {
-    // console.log(this.editor.nativeElement.innerHTML);
+    this.isLoading = true;
+    const data = {
+      _id: this.extraction._id,
+      text: this.editor.nativeElement.innerHTML
+    }
 
     this.save(this.extraction._id, this.editor.nativeElement.innerHTML);
-    this.simplifyService.simplifyDocument(this.editor.nativeElement.innerHTML).subscribe(result => {
+    this.simplifyService.simplifyDocument(data).subscribe(result => {
       if (result.success) {
+        this.isLoading = false;
         this.save(result.data._id, result.data.text);
-        window.location.reload();
       }
     }, error => {
+      this.isLoading = false;
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       })
