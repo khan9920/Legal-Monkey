@@ -73,7 +73,11 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     this.simplifyService.uploadDocuments(data).subscribe(result => {
       if (result.success) {
         this.isLoading = false;
-        localStorage.setItem('converted-doc', result.data);
+        const data = {
+          _id: result.data._id,
+          text: result.data.text,
+        }
+        localStorage.setItem('extraction', JSON.stringify(data));
         this.router.navigate(['/editor']);
       }
     }, error => {

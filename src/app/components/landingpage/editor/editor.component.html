@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="wrapper-editor">
-                <div id="editor-js"></div>
+                <div class="editor" #editor [innerHTML]="extraction.text"></div>
                 <button class="btn-simplify" type="button" (click)="onSimplify()">Simplify</button>
             </div>
         </div>
