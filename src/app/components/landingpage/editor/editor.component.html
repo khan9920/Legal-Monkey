@@ -6,7 +6,10 @@
         <div class="col-md-12">
             <div class="wrapper-editor">
                 <div class="editor" #editor [innerHTML]="extraction.text"></div>
-                <button class="btn-simplify" type="button" (click)="onSimplify()">Simplify</button>
+                <button class="btn-simplify" type="button" (click)="onSimplify()">
+                    <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                    Simplify
+                </button>
             </div>
         </div>
     </div>
