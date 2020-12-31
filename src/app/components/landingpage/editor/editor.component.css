@@ -1,5 +1,14 @@
-.codex-editor__redactor {
-    padding-bottom: 30px !important;
+.editor {
+    width: 100%;
+    height: auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 24px 24px -18px rgba(69,104,129,.33), 0 9px 45px 0 rgba(114,119,160,.12);
+    padding: 70px 50px;
+}
+
+.editor:focus {
+    outline: 0;
 }
 
 .btn-simplify {
@@ -12,11 +21,4 @@
     position: relative;
     top: -55px;
     right: 20px;
-}
-
-#editor-js {
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 24px 24px -18px rgba(69,104,129,.33), 0 9px 45px 0 rgba(114,119,160,.12);
-    padding: 70px 50px;
 }
