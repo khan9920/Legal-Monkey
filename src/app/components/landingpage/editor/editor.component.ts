@@ -75,6 +75,7 @@ export class EditorComponent implements OnInit {
     this.simplifyService.simplifyDocument(data).subscribe(result => {
       if (result.success) {
         this.isLoading = false;
+        this.extraction = result.data;
         this.save(result.data._id, result.data.text);
       }
     }, error => {
