@@ -79,6 +79,14 @@ export class AuthService {
     });
   }
 
+  public verifyAccount(data: any) {
+    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, data);
+  }
+
+  public resendVerificationCode() {
+    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, {});
+  }
+
   public logout(): void {
     localStorage.removeItem('token');
     this.token = null;

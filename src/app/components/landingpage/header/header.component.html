@@ -1,8 +1,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <img src="/assets/images/badass-monkey.png" class="logo" alt="Legal Monkey Logo" (click)="onHome()">
-            <h3 class="title">LEGAL MONKEY</h3>
+            <img src="/assets/images/logo.png" class="logo" alt="Legal Monkey Logo" (click)="onHome()">
+            <h3 class="title">LEGAL HAMSTER</h3>
         </div>
         <div class="col-md-8">
             <ul>
@@ -14,8 +14,8 @@
                     <button (click)="onLogin()">LOG IN</button>
                 </li>
                 <li *ngIf="isAuthenticated">
-                    <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon" class="icon-profile"
-                        mat-button [matMenuTriggerFor]="beforeMenu">
+                    <img src="/assets/images/logo.png" alt="Legal Monkey Profile Icon" class="icon-profile" mat-button
+                        [matMenuTriggerFor]="beforeMenu">
                     <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
                         <a mat-menu-item routerLink='/conversions'>My conversions</a>
                         <a mat-menu-item routerLink='/account'>Account</a>

@@ -46,7 +46,7 @@ button {
     color: #fff;
     border-radius: 50px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 button:hover {
@@ -56,5 +56,30 @@ button:hover {
     color: #2e86de;
     border-radius: 50px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
+}
+
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
+}
+
+.link-resend-verification {
+    text-align: center;
+    width: 100%;
+    display: block;
+    color: #000;
+}
+
+.link-resend-verification:hover {
+    text-decoration: none;
+    color: #000;
+    cursor: pointer;
+    color: #2e86de;
 }
