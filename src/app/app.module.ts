@@ -36,6 +36,7 @@ import { UpdateAccountComponent } from './components/account/update-account/upda
 import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 import { AddCardComponent } from './components/account/add-card/add-card.component';
 import { AuthInterceptor } from './services/auth-interceptor';
+import { UpdatePasswordComponent } from './components/auth/update-password/update-password.component';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -62,6 +63,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ChangePasswordComponent,
     AddCardComponent,
     EditorComponent,
+    UpdatePasswordComponent,
   ],
   imports: [
     BrowserModule,

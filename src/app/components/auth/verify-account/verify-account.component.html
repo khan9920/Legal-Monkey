@@ -7,10 +7,14 @@
         </div>
         <div class="col-md-12">
             <label>Verification code</label>
-            <input type="text" placeholder="123456">
+            <input type="text" placeholder="123456" [disabled]="isLoading" [(ngModel)]="verificationCode">
         </div>
         <div class="col-md-12">
-            <button>VERIFY</button>
+            <button (click)="onVerify()">
+                <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                VERIFY
+            </button>
+            <a class="link-resend-verification" (click)="onResendVerificationCode()">Resend Verification Code</a>
         </div>
     </div>
 </div>
