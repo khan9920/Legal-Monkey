@@ -87,6 +87,14 @@ export class AuthService {
     return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, {});
   }
 
+  public forgotPassword(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
+  }
+
+  public resetPassword(data: any) {
+    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
+  }
+
   public logout(): void {
     localStorage.removeItem('token');
     this.token = null;
