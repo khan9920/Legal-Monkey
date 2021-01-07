@@ -19,6 +19,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { HeaderComponent } from './components/landingpage/header/header.component';
@@ -78,6 +79,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatDialogModule,
     MatMenuModule,
     MatCardModule,
+    MatIconModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

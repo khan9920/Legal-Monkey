@@ -95,6 +95,14 @@ export class UpdatePasswordComponent implements OnInit {
     }
   }
 
+  onLogin(): void {
+    this.dialog.closeAll();
+    this.dialog.open(LoginComponent, {
+      width: '400px',
+      maxHeight: '90vh'
+    });
+  }
+
   onClose() {
     this.dialog.closeAll();
   }

@@ -1,3 +1,7 @@
+.wrapper-editor {
+    margin-bottom: 30px;
+}
+
 .editor {
     width: 100%;
     height: auto;
@@ -18,9 +22,26 @@
     color: #fff;
     border-radius: 50px;
     float: right;
-    position: relative;
-    top: -55px;
-    right: 20px;
+    position: fixed;
+    bottom: 10px;
+    transform: translate(811%, -66%);
+}
+
+.btn-simplify-is-loading {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 50px;
+    float: right;
+    position: fixed;
+    bottom: 10px;
+    transform: translate(666%, -66%);
+}
+
+.editor-loading {
+    background-color: #f3f3f3;
+    color: #8e8e8e;
 }
 
 mat-spinner {
@@ -32,4 +53,8 @@ mat-spinner {
 
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
+}
+
+.icon-simplify {
+    width: 20px;
 }

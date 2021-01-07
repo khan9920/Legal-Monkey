@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
+  public passwordType: string = 'password';
 
   separateDialCode = false;
   SearchCountryField = SearchCountryField;
@@ -58,6 +59,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.authService.setLoadingStatus(true);
     this.validator();
     if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
+      this.isLoading = false;
       return;
     }
 
@@ -111,22 +113,6 @@ export class SignupComponent implements OnInit, OnDestroy {
     } else {
       this.validation.password = true;
     }
-
-    if (this.user.confirmPassword == '') {
-      this.validation.confirmPassword = false;
-    } else {
-      this.validation.confirmPassword = true;
-    }
-
-    if (this.user.password !== '' && this.user.confirmPassword !== '') {
-      if (this.user.password !== this.user.confirmPassword) {
-        this.validation.password = false;
-        this.validation.confirmPassword = false;
-        this.snackBar.open('Passwords do not match', 'Dismiss', {
-          duration: 3000
-        });
-      }
-    }
   }
 
   onLogin(): void {
@@ -135,6 +121,14 @@ export class SignupComponent implements OnInit, OnDestroy {
       width: '400px',
       maxHeight: '90vh'
     });
+  }
+
+  onViewHidePassword() {
+    if (this.passwordType == 'password') {
+      this.passwordType = 'text';
+    } else {
+      this.passwordType = 'password';
+    }
   }
 
   onClose() {

@@ -32,16 +32,15 @@
             </ngx-intl-tel-input>
         </div>
         <div class="col-md-12">
-            <label>Password *</label>
-            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
-                [(ngModel)]="user.password">
-        </div>
-        <div class="col-md-12">
-            <label>Confirm password *</label>
-            <input type="password" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
-                [ngClass]="{ 'invalid-input': !validation.confirmPassword }" [disabled]="isLoading"
-                [(ngModel)]="user.confirmPassword">
+            <div class="wrapper-password">
+                <label>Password *</label>
+                <input [type]="passwordType" placeholder="Enter password"
+                    [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
+                    [(ngModel)]="user.password">
+                <img *ngIf="passwordType == 'password' " src="/assets/icons/icon-show.svg"
+                    (click)="onViewHidePassword()">
+                <img *ngIf="passwordType == 'text' " src="/assets/icons/icon-hide.svg" (click)="onViewHidePassword()">
+            </div>
         </div>
         <div class="col-md-12">
             <button (click)="onSignUp()">

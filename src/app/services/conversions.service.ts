@@ -1,95 +1,21 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from './../../environments/environment';
+
+const apiURL = environment.apiURL;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ConversionsService {
 
-  private recentConversions = [
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    }
-  ]
-
-  private allConversions = [
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-    {
-      _id: 'LM-003',
-      title: 'Ralph Warden Contract',
-      date: '23-03-2020',
-      cost: '$ 5.00'
-    },
-  ]
-
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   getRecentConversions() {
-    return this.recentConversions;
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/conversions/recent`);
   }
 
   getAllConversions() {
-    return this.recentConversions.concat(this.allConversions);
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/examples`);
   }
 }

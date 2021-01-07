@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { LoginComponent } from '../../auth/login/login.component';
@@ -81,6 +81,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         this.router.navigate(['/editor']);
       }
     }, error => {
+      this.isLoading = false;
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
@@ -88,7 +89,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   }
 
   onSimplify(text: any) {
-
     if (this.isAuthenticated == false) {
       this.dialog.open(LoginComponent, {
         width: '400px',
