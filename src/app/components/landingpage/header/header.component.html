@@ -6,10 +6,10 @@
         </div>
         <div class="col-md-8">
             <ul>
-                <li><a href="#">HOME</a></li>
+                <!-- <li><a href="#">HOME</a></li>
                 <li><a href="#">ACCOUNT</a></li>
                 <li><a href="#">PRICING</a></li>
-                <li><a href="#">ABOUT US</a></li>
+                <li><a href="#">ABOUT US</a></li> -->
                 <li *ngIf="!isAuthenticated">
                     <button (click)="onLogin()">LOG IN</button>
                 </li>
