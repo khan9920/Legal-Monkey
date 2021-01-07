@@ -5,14 +5,20 @@
     <div class="row">
         <div class="col-md-12">
             <div class="wrapper-editor">
-                <div class="editor" #editor [innerHTML]="extraction.text"></div>
-                <button class="btn-simplify" type="button" (click)="onSimplify()">
+                <div class="editor" #editor [innerHTML]="extraction.text" [ngClass]="{ 'editor-loading': isLoading}">
+                </div>
+                <button class="btn-simplify" type="button" (click)="onSimplify()" *ngIf="!isLoading">
+                    Simplify
+                </button>
+
+                <button class="btn-simplify-is-loading" type="button" (click)="onSimplify()" *ngIf="isLoading">
                     <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                     Simplify
                 </button>
+
             </div>
         </div>
     </div>
 </div>
 
-<app-footer></app-footer>
+<!-- <app-footer></app-footer> -->
