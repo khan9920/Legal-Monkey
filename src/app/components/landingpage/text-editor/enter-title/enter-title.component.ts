@@ -30,7 +30,7 @@ export class EnterTitleComponent implements OnInit {
     } else {
       const data = new FormData();
 
-      data.append('document', this.data.selectedFile);
+      data.append('document', this.data.file);
       data.append('title', this.title);
 
       this.simplifyService.uploadDocuments(data).subscribe(result => {
