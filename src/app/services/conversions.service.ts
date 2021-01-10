@@ -11,11 +11,19 @@ export class ConversionsService {
 
   constructor(private http: HttpClient) { }
 
-  getRecentConversions() {
-    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/conversions/recent`);
+  getDocuments() {
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/documents`);
   }
 
-  getAllConversions() {
-    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/examples`);
+  getDocument(ID: string) {
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/documents/id?_id=${ID}`);
+  }
+
+  getConversions() {
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/conversions`);
+  }
+
+  getConversion(ID: string) {
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/conversions/id?_id=${ID}`);
   }
 }
