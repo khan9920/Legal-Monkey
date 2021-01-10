@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { LoginComponent } from '../../auth/login/login.component';
+import { EnterTitleComponent } from './enter-title/enter-title.component';
 
 @Component({
   selector: 'app-text-editor',
@@ -65,27 +66,13 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   }
 
   onUpload() {
-    this.isLoading = true;
-    const data = new FormData();
-
-    data.append('document', this.selectedFile);
-
-    this.simplifyService.uploadDocuments(data).subscribe(result => {
-      if (result.success) {
-        this.isLoading = false;
-        const data = {
-          _id: result.data._id,
-          text: result.data.text,
-        }
-        localStorage.setItem('extraction', JSON.stringify(data));
-        this.router.navigate(['/editor']);
+    this.dialog.open(EnterTitleComponent, {
+      width: '400px',
+      maxHeight: '90vh',
+      data: {
+        file: this.selectedFile
       }
-    }, error => {
-      this.isLoading = false;
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
+    })
   }
 
   onSimplify(text: any) {
