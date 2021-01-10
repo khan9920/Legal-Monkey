@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { ConversionsService } from 'src/app/services/conversions.service';
 import * as Moment from 'moment';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewConversionComponent } from './view-conversion/view-conversion.component';
 
 @Component({
   selector: 'app-conversions',
@@ -18,7 +20,7 @@ export class ConversionsComponent implements OnInit {
   public documentsClicked: boolean = false;
   public moment = Moment;
 
-  constructor(private conversionsService: ConversionsService, private authService: AuthService, private router: Router, private snackBar: MatSnackBar) { }
+  constructor(private conversionsService: ConversionsService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.conversionsService.getConversions().subscribe(result => {
@@ -44,6 +46,14 @@ export class ConversionsComponent implements OnInit {
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
+    });
+  }
+
+  onViewConversion(ID: string) {
+    this.dialog.open(ViewConversionComponent, {
+      width: '600px',
+      maxHeight: '90vh',
+      data: ID
     });
   }
 

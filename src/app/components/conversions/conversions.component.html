@@ -39,7 +39,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let conversion of conversions">
+                                <tr *ngFor="let conversion of conversions" (click)="onViewConversion(conversion._id)">
                                     <td class="title-conversion">{{ conversion.title }}</td>
                                     <td>{{ moment.unix(conversion.createdDate).format('DD-MM-YYYY') }}</td>
                                     <td>{{ conversion.cost }}</td>
