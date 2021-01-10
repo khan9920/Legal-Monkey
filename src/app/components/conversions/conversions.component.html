@@ -56,7 +56,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let document of documents">
+                                <tr *ngFor="let document of documents" (click)="onViewDocument(document._id)">
                                     <td class="title-conversion">{{ document.title }}</td>
                                     <td>{{ moment.unix(document.updatedDate).format('DD-MM-YYYY') }}</td>
                                     <td>{{ document.cost }}</td>

@@ -72,6 +72,24 @@ export class ConversionsComponent implements OnInit {
     });
   }
 
+  onViewDocument(ID: string) {
+    this.conversionsService.getDocument(ID).subscribe(result => {
+      if (result.success) {
+        const data = {
+          _id: result.data._id,
+          text: result.data.text,
+        }
+        localStorage.setItem('extraction', JSON.stringify(data));
+        this.router.navigate(['/editor']);
+
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
+
   onBackToHome() {
     this.router.navigate(['/']);
   }
