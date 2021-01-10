@@ -27,6 +27,7 @@
     "google-libphonenumber": "^3.2.15",
     "intl-tel-input": "^17.0.3",
     "medium-editor": "^5.23.3",
+    "moment": "^2.29.1",
     "ngx-bootstrap": "^6.2.0",
     "ngx-intl-tel-input": "^3.0.5",
     "ngx-swiper-wrapper": "^10.0.0",
