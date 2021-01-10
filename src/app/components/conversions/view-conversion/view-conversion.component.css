@@ -1,0 +1,51 @@
+h4 {
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2e86de;
+}
+
+.title {
+    margin-bottom: 0;
+}
+
+.input {
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.output {
+    color: #226294;
+    margin: 10px 0;
+}
+
+.date, .cost {
+    display: inline-block;
+}
+
+.date span, .cost span {
+    font-weight: 600;
+}
+
+.cost {
+    float: right;
+}
