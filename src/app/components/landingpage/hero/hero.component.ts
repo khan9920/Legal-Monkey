@@ -15,17 +15,7 @@ export class HeroComponent implements OnInit {
 
   public disabled: boolean = false;
 
-  public config: SwiperOptions = {
-    a11y: { enabled: true },
-    slidesPerView: 1,
-    keyboard: false,
-    mousewheel: false,
-    scrollbar: false,
-    navigation: true,
-    pagination: false,
-    autoplay: false,
-    spaceBetween: 30,
-  };
+  public config: SwiperOptions;
 
   constructor(private examplesService: ExamplesService, private snackBar: MatSnackBar) { }
 
@@ -33,6 +23,17 @@ export class HeroComponent implements OnInit {
     this.examplesService.getExamples().subscribe(result => {
       if (result.success) {
         this.slides = result.data;
+        this.config = {
+          a11y: { enabled: true },
+          slidesPerView: 1,
+          keyboard: false,
+          mousewheel: false,
+          scrollbar: false,
+          navigation: true,
+          pagination: false,
+          autoplay: true,
+          spaceBetween: 3,
+        };
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
