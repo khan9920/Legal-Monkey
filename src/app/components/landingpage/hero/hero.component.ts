@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ExamplesService } from 'src/app/services/examples.service';
-import { Autoplay, SwiperOptions } from 'swiper';
-import { ScrollbarOptions } from 'swiper/types/components/scrollbar';
+import { SwiperOptions } from 'swiper';
 
 @Component({
   selector: 'app-hero',
@@ -32,7 +31,7 @@ export class HeroComponent implements OnInit {
           navigation: true,
           pagination: false,
           autoplay: true,
-          spaceBetween: 3,
+          spaceBetween: 3
         };
       }
     }, error => {
