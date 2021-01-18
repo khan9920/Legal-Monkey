@@ -20,9 +20,9 @@
                         <button class="btn-add-payment" *ngIf="paymentOptionsClicked" (click)="onAddCard()">ADD
                             CARD</button>
                         <div class="wrapper-profile-info">
-                            <p>John Watson</p>
-                            <img src="/assets/images/badass-monkey.png" alt="Legal Monkey Profile Icon"
-                                class="icon-profile" mat-button [matMenuTriggerFor]="beforeMenu">
+                            <p>{{ me.firstName }} {{ me.lastName }}</p>
+                            <img src="/assets/images/logo.png" alt="Legal Hamster Profile Icon" class="icon-profile"
+                                mat-button [matMenuTriggerFor]="beforeMenu">
                             <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
                                 <a mat-menu-item routerLink='/conversions'>My conversions</a>
                                 <a mat-menu-item routerLink='/account'>Account</a>
@@ -35,8 +35,8 @@
                 <div class="card" *ngIf="profileClicked">
                     <div class="row">
                         <div class="col-md-12 col-profile-icon">
-                            <img class="icon-profile-body" src="/assets/images/badass-monkey.png"
-                                alt="Legal Monkey profile icon avatar">
+                            <img class="icon-profile-body" src="/assets/images/logo.png"
+                                alt="Legal Hamster profile icon avatar">
                         </div>
                     </div>
                     <div class="row-profile-info">
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label>Mobile</label>
-                                <p>+{{ me.mobile }}</p>
+                                <p>{{ me.mobile }}</p>
                             </div>
                             <div class="col-md-6  col-right">
                                 <button (click)="onUpdateProfile()">UPDATE PROFILE</button>
