@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Cost & Payment</h2>
+            <span class="btn-close" (click)="onClose()">X</span>
+        </div>
+        <div class="col-md-12">
+            <p>This conversion will cost you <span class="text-price">${{ price }}</span>. Do you want to continue?</p>
+        </div>
+
+        <div class="col-md-12">
+            <button (click)="onContiney()">CONTINUE</button>
+        </div>
+    </div>
+</div>
+
+<!-- <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner> -->

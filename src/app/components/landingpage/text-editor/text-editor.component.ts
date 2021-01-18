@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { LoginComponent } from '../../auth/login/login.component';
+import { ShowPriceComponent } from '../show-price/show-price.component';
 import { EnterTitleComponent } from './enter-title/enter-title.component';
 
 @Component({
@@ -24,7 +25,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   public editorEnabled: boolean = true;
   public editorStatusSub: Subscription;
-  public isAuthenticated: boolean = false;
   private isAuthenticatedStatusSub: Subscription;
 
   public selectedFile: File;
@@ -38,10 +38,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
       this.editorEnabled = result;
     });
-
-    this.isAuthenticatedStatusSub = this.authService.getAuthenticationStatus().subscribe(result => {
-      this.isAuthenticated = result;
-    })
   }
 
   onEnterTextClick() {
@@ -72,11 +68,12 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       data: {
         file: this.selectedFile
       }
-    })
+    });
   }
 
   onSimplify(text: any) {
-    if (this.isAuthenticated == false) {
+    const token = localStorage.getItem('token');
+    if (token == '' || token == null) {
       this.dialog.open(LoginComponent, {
         width: '400px',
         maxHeight: '90vh'
@@ -90,24 +87,32 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         return;
       }
 
-      this.isLoading = true;
-
-      const data = {
-        text: text
-      }
-
-      this.simplifyService.simplify(data).subscribe(result => {
-        if (result.success) {
-          this.isLoading = false;
-          this.editorEnabled = false;
-          this.conversions = result.data.conversions;
+      this.dialog.open(ShowPriceComponent, {
+        width: '400px',
+        maxHeight: '90vh',
+        data: {
+          text: text
         }
-      }, error => {
-        this.isLoading = false;
-        this.snackBar.open(error.error.data, 'Dismiss', {
-          duration: 3000
-        });
       });
+
+      // this.isLoading = true;
+
+      // const data = {
+      //   text: text
+      // }
+
+      // this.simplifyService.simplify(data).subscribe(result => {
+      //   if (result.success) {
+      //     this.isLoading = false;
+      //     this.editorEnabled = false;
+      //     this.conversions = result.data.conversions;
+      //   }
+      // }, error => {
+      //   this.isLoading = false;
+      //   this.snackBar.open(error.error.data, 'Dismiss', {
+      //     duration: 3000
+      //   });
+      // });
     }
   }
 
