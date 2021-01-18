@@ -18,8 +18,6 @@ export class ShowPriceComponent implements OnInit {
     this.consersionsService.calculatePrice(this.data).subscribe(result => {
       if (result.success) {
         this.price = result.data
-        console.log(this.price);
-
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
