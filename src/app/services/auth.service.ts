@@ -111,6 +111,7 @@ export class AuthService {
     if (token !== '') {
       this.token = token;
       this.isAuthenticated.next(true);
+      this.setAuthenticationStatus(true);
     }
   }
 

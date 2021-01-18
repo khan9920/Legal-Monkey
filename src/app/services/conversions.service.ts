@@ -26,4 +26,8 @@ export class ConversionsService {
   getConversion(ID: string) {
     return this.http.get<{ success: boolean, data: any }>(`${apiURL}/conversions/id?_id=${ID}`);
   }
+
+  calculatePrice(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/price`, data);
+  }
 }
