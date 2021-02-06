@@ -17,6 +17,7 @@ import { EnterTitleComponent } from './enter-title/enter-title.component';
 export class TextEditorComponent implements OnInit, OnDestroy {
 
   public text = 'Your text...';
+  private textToConvert: string = '';
   public isLoading: boolean = false;
   public conversions = [];
 
@@ -87,6 +88,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         return;
       }
 
+      this.textToConvert = text;
+
       this.dialog.open(ShowPriceComponent, {
         width: '400px',
         maxHeight: '90vh',
@@ -94,29 +97,31 @@ export class TextEditorComponent implements OnInit, OnDestroy {
           text: text
         }
       });
-
-      // this.isLoading = true;
-
-      // const data = {
-      //   text: text
-      // }
-
-      // this.simplifyService.simplify(data).subscribe(result => {
-      //   if (result.success) {
-      //     this.isLoading = false;
-      //     this.editorEnabled = false;
-      //     this.conversions = result.data.conversions;
-      //   }
-      // }, error => {
-      //   this.isLoading = false;
-      //   this.snackBar.open(error.error.data, 'Dismiss', {
-      //     duration: 3000
-      //   });
-      // });
     }
   }
 
+  private simplify() {
+    this.isLoading = true;
+
+    const data = {
+      text: this.textToConvert
+    }
+
+    this.simplifyService.simplify(data).subscribe(result => {
+      if (result.success) {
+        this.isLoading = false;
+        this.editorEnabled = false;
+        this.conversions = result.data.conversions;
+      }
+    }, error => {
+      this.isLoading = false;
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
+
   ngOnDestroy() {
-    this.isAuthenticatedStatusSub.unsubscribe();
+    // this.isAuthenticatedStatusSub.unsubscribe();
   }
 }
