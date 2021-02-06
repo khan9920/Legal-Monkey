@@ -16,7 +16,7 @@ export class SimplifyService {
   constructor(private http: HttpClient) { }
 
   simplify(data) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/simplify`, data);
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/simplify`, data);
   }
 
   uploadDocuments(data) {
@@ -24,7 +24,7 @@ export class SimplifyService {
   }
 
   simplifyDocument(data) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/simplify/documents`, data);
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/simplify`, data);
   }
 
   setEditorStatus(data: boolean) {

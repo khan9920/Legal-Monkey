@@ -28,6 +28,6 @@ export class ConversionsService {
   }
 
   calculatePrice(data: any) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/price`, data);
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/price`, data);
   }
 }
