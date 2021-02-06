@@ -5,11 +5,12 @@
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
         <div class="col-md-12">
-            <p>This conversion will cost you <span class="text-price">${{ price }}</span>. Do you want to continue?</p>
+            <p>There are {{ wordCount }} words and this conversion will cost you <span class="text-price">$ {{ price
+                    }}</span>. Do you want to continue?</p>
         </div>
 
         <div class="col-md-12">
-            <button (click)="onContiney()">CONTINUE</button>
+            <button (click)="onContinue()">CONTINUE</button>
         </div>
     </div>
 </div>
