@@ -18,8 +18,10 @@ export class TextEditorComponent implements OnInit, OnDestroy {
 
   public text = 'Your text...';
   private textToConvert: string = '';
+
   public isLoading: boolean = false;
   public conversions = [];
+  public conversionsSub: Subscription;
 
   public isEnterTextClicked: boolean = true;
   public isUploadDocumentClicked: boolean = false;
@@ -38,6 +40,10 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
       this.editorEnabled = result;
+    });
+
+    this.conversionsSub = this.simplifyService.getSimplifiedData().subscribe(result => {
+      this.conversions = result;
     });
   }
 
@@ -100,28 +106,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  private simplify() {
-    this.isLoading = true;
-
-    const data = {
-      text: this.textToConvert
-    }
-
-    this.simplifyService.simplify(data).subscribe(result => {
-      if (result.success) {
-        this.isLoading = false;
-        this.editorEnabled = false;
-        this.conversions = result.data.conversions;
-      }
-    }, error => {
-      this.isLoading = false;
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
-  }
-
   ngOnDestroy() {
-    // this.isAuthenticatedStatusSub.unsubscribe();
+    this.conversionsSub.unsubscribe();
+    this.editorStatusSub.unsubscribe();
   }
 }
