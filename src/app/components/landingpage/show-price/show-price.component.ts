@@ -33,14 +33,11 @@ export class ShowPriceComponent implements OnInit {
   }
 
   onContinue(): void {
-
-    console.log(this.data);
-
     this.simplifyService.simplify(this.data).subscribe(result => {
       if (result.success) {
+        localStorage.setItem('convertedText', JSON.stringify(result.data));
+        this.simplifyService.setEditorStatus(false);
         this.dialog.closeAll();
-        console.log(result.data);
-
       }
     });
   }

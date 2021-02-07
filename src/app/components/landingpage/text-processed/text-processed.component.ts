@@ -8,15 +8,15 @@ import { SimplifyService } from 'src/app/services/simplify.service';
 })
 export class TextProcessedComponent implements OnInit {
 
-  @Input() conversions: [];
+  conversions: [];
 
   constructor(private simplifyService: SimplifyService) { }
 
   ngOnInit() {
+    this.conversions = JSON.parse(localStorage.getItem('convertedText'));
   }
 
   onSimplify() {
     this.simplifyService.setEditorStatus(true);
   }
-
 }
