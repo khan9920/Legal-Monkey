@@ -3,9 +3,9 @@
         <div class="row row-body">
             <div class="col-md-3">
                 <div class="wrapper-left-panel">
-                    <h3 class="title">My conversions</h3>
+                    <h3 class="title">My extracts</h3>
                     <ul class="list-left-panel-menu">
-                        <li [ngClass]=" { 'is-active': conversionsClicked } " (click)="onConversions()">Conversions</li>
+                        <li [ngClass]=" { 'is-active': conversionsClicked } " (click)="onConversions()">Extracts</li>
                         <li [ngClass]=" { 'is-active': documentsClicked } " (click)="onDocuments()">Documents</li>
                         <li (click)="onBackToHome()">Back to home</li>
                     </ul>
@@ -14,14 +14,14 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="sub-title" *ngIf="conversionsClicked">Conversions</h3>
+                        <h3 class="sub-title" *ngIf="conversionsClicked">Extracts</h3>
                         <h3 class="sub-title" *ngIf="documentsClicked">Documents</h3>
                         <div class="wrapper-profile-info">
                             <p>John Watson</p>
                             <img src="/assets/images/logo.png" alt="Legal Hamster Profile Icon" class="icon-profile"
                                 mat-button [matMenuTriggerFor]="beforeMenu">
                             <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
-                                <a mat-menu-item routerLink='/conversions'>My conversions</a>
+                                <a mat-menu-item routerLink='/extracts'>My extracts</a>
                                 <a mat-menu-item routerLink='/account'>Account</a>
                                 <a mat-menu-item (click)="onLogout()">Log out</a>
                             </mat-menu>
@@ -33,16 +33,14 @@
                         <table class="table" *ngIf="conversionsClicked">
                             <thead>
                                 <tr>
-                                    <th>Conversion</th>
+                                    <th>Extracts</th>
                                     <th>Date converted</th>
-                                    <th>Cost ($)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let conversion of conversions" (click)="onViewConversion(conversion._id)">
                                     <td class="title-conversion">{{ conversion.title }}</td>
                                     <td>{{ moment.unix(conversion.createdDate).format('DD-MM-YYYY') }}</td>
-                                    <td>{{ conversion.cost }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -52,14 +50,12 @@
                                 <tr>
                                     <th>Conversion</th>
                                     <th>Date updated</th>
-                                    <th>Cost ($)</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let document of documents" (click)="onViewDocument(document._id)">
                                     <td class="title-conversion">{{ document.title }}</td>
                                     <td>{{ moment.unix(document.updatedDate).format('DD-MM-YYYY') }}</td>
-                                    <td>{{ document.cost }}</td>
                                 </tr>
                             </tbody>
                         </table>
