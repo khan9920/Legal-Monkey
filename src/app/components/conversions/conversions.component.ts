@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { ConversionsService } from 'src/app/services/conversions.service';
 import * as Moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewConversionComponent } from './view-conversion/view-conversion.component';
+import { ExtractsService } from 'src/app/services/extracts.service';
 
 @Component({
   selector: 'app-conversions',
@@ -14,18 +14,21 @@ import { ViewConversionComponent } from './view-conversion/view-conversion.compo
 })
 export class ConversionsComponent implements OnInit {
 
-  public conversions = [];
+  public extracts = [];
   public documents = [];
-  public conversionsClicked: boolean = true;
+
+  public extractsClicked: boolean = true;
   public documentsClicked: boolean = false;
+
   public moment = Moment;
 
-  constructor(private conversionsService: ConversionsService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private extractsService: ExtractsService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.conversionsService.getConversions().subscribe(result => {
+    this.extractsService.getExtracts().subscribe(result => {
       if (result.success) {
-        this.conversions = result.data;
+        this.extracts = result.data;
+        console.log(this.extracts);
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
@@ -34,13 +37,13 @@ export class ConversionsComponent implements OnInit {
     });
   }
 
-  onConversions() {
-    this.conversionsClicked = true;
+  onExtracts() {
+    this.extractsClicked = true;
     this.documentsClicked = false;
 
-    this.conversionsService.getConversions().subscribe(result => {
+    this.extractsService.getExtracts().subscribe(result => {
       if (result.success) {
-        this.conversions = result.data;
+        this.extracts = result.data;
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
@@ -49,7 +52,7 @@ export class ConversionsComponent implements OnInit {
     });
   }
 
-  onViewConversion(ID: string) {
+  onViewExtract(ID: string) {
     this.dialog.open(ViewConversionComponent, {
       width: '600px',
       maxHeight: '90vh',
@@ -58,36 +61,36 @@ export class ConversionsComponent implements OnInit {
   }
 
   onDocuments() {
-    this.conversionsClicked = false;
+    this.extractsClicked = false;
     this.documentsClicked = true;
 
-    this.conversionsService.getDocuments().subscribe(result => {
-      if (result.success) {
-        this.documents = result.data;
-      }
-    }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
+    // this.conversionsService.getDocuments().subscribe(result => {
+    //   if (result.success) {
+    //     this.documents = result.data;
+    //   }
+    // }, error => {
+    //   this.snackBar.open(error.error.data, 'Dismiss', {
+    //     duration: 3000
+    //   });
+    // });
   }
 
   onViewDocument(ID: string) {
-    this.conversionsService.getDocument(ID).subscribe(result => {
-      if (result.success) {
-        const data = {
-          _id: result.data._id,
-          text: result.data.text,
-        }
-        localStorage.setItem('extraction', JSON.stringify(data));
-        this.router.navigate(['/editor']);
+    // this.conversionsService.getDocument(ID).subscribe(result => {
+    //   if (result.success) {
+    //     const data = {
+    //       _id: result.data._id,
+    //       text: result.data.text,
+    //     }
+    //     localStorage.setItem('extraction', JSON.stringify(data));
+    //     this.router.navigate(['/editor']);
 
-      }
-    }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
+    //   }
+    // }, error => {
+    //   this.snackBar.open(error.error.data, 'Dismiss', {
+    //     duration: 3000
+    //   });
+    // });
   }
 
   onBackToHome() {

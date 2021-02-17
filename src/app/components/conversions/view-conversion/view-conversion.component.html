@@ -4,7 +4,7 @@
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
         <div class="col-md-12">
-            <div class="wrapper-conversion" *ngFor="let conversion of conversion.conversions">
+            <div class="wrapper-conversion" *ngFor="let conversion of extract.conversions">
                 <!-- <p class="title">What's written:</p> -->
                 <p class="input">"{{ conversion.input }}"</p>
 
@@ -16,7 +16,7 @@
             </div>
             <div class="wrapper-details">
                 <p class="date">Converted on: <span>23-05-2020</span></p>
-                <p class="cost">Const: <span>$5.00</span></p>
+                <!-- <p class="cost">Const: <span>$5.00</span></p> -->
             </div>
         </div>
     </div>

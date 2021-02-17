@@ -5,7 +5,7 @@
                 <div class="wrapper-left-panel">
                     <h3 class="title">My extracts</h3>
                     <ul class="list-left-panel-menu">
-                        <li [ngClass]=" { 'is-active': conversionsClicked } " (click)="onConversions()">Extracts</li>
+                        <li [ngClass]=" { 'is-active': conversionsClicked } " (click)="onExtracts()">Extracts</li>
                         <li [ngClass]=" { 'is-active': documentsClicked } " (click)="onDocuments()">Documents</li>
                         <li (click)="onBackToHome()">Back to home</li>
                     </ul>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table" *ngIf="conversionsClicked">
+                        <table class="table" *ngIf="extractsClicked">
                             <thead>
                                 <tr>
                                     <th>Extracts</th>
@@ -38,9 +38,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let conversion of conversions" (click)="onViewConversion(conversion._id)">
-                                    <td class="title-conversion">{{ conversion.title }}</td>
-                                    <td>{{ moment.unix(conversion.createdDate).format('DD-MM-YYYY') }}</td>
+                                <tr *ngFor="let extract of extracts" (click)="onViewExtract(extract._id)">
+                                    <td class="title-conversion">
+                                        <p>{{ extract.text }}</p>
+                                    </td>
+                                    <td>{{ moment.unix(extract.createdDate).format('DD-MM-YYYY') }}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -118,3 +118,12 @@ tbody tr:hover {
 .title-conversion {
     font-weight: 600;
 }
+
+.title-conversion p {
+    width: 450px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
+    display: inline-block;
+}
