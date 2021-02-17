@@ -6,6 +6,7 @@ import * as Moment from 'moment';
 import { MatDialog } from '@angular/material/dialog';
 import { ViewConversionComponent } from './view-conversion/view-conversion.component';
 import { ExtractsService } from 'src/app/services/extracts.service';
+import { DocumentsService } from 'src/app/services/documents.service';
 
 @Component({
   selector: 'app-conversions',
@@ -22,13 +23,12 @@ export class ConversionsComponent implements OnInit {
 
   public moment = Moment;
 
-  constructor(private extractsService: ExtractsService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private extractsService: ExtractsService, private documentsService: DocumentsService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.extractsService.getExtracts().subscribe(result => {
       if (result.success) {
         this.extracts = result.data;
-        console.log(this.extracts);
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
@@ -64,33 +64,32 @@ export class ConversionsComponent implements OnInit {
     this.extractsClicked = false;
     this.documentsClicked = true;
 
-    // this.conversionsService.getDocuments().subscribe(result => {
-    //   if (result.success) {
-    //     this.documents = result.data;
-    //   }
-    // }, error => {
-    //   this.snackBar.open(error.error.data, 'Dismiss', {
-    //     duration: 3000
-    //   });
-    // });
+    this.documentsService.getDocuments().subscribe(result => {
+      if (result.success) {
+        this.documents = result.data;
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   onViewDocument(ID: string) {
-    // this.conversionsService.getDocument(ID).subscribe(result => {
-    //   if (result.success) {
-    //     const data = {
-    //       _id: result.data._id,
-    //       text: result.data.text,
-    //     }
-    //     localStorage.setItem('extraction', JSON.stringify(data));
-    //     this.router.navigate(['/editor']);
-
-    //   }
-    // }, error => {
-    //   this.snackBar.open(error.error.data, 'Dismiss', {
-    //     duration: 3000
-    //   });
-    // });
+    this.documentsService.getDocument(ID).subscribe(result => {
+      if (result.success) {
+        const data = {
+          _id: result.data._id,
+          text: result.data.text,
+        }
+        localStorage.setItem('extraction', JSON.stringify(data));
+        this.router.navigate(['/editor']);
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   onBackToHome() {
