@@ -58,7 +58,7 @@ export class AuthService {
       this.isLoading.next(false);
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
-      })
+      });
     });
   }
 
@@ -75,7 +75,7 @@ export class AuthService {
       this.isLoading.next(false);
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
-      })
+      });
     });
   }
 

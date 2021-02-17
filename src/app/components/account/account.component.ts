@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
-import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { AddCardComponent } from './add-card/add-card.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { UpdateAccountComponent } from './update-account/update-account.component';
@@ -20,15 +19,19 @@ export class AccountComponent implements OnInit, OnDestroy {
   public profileClicked: boolean = true;
   public paymentOptionsClicked: boolean = false;
 
-  public me: any;
+  public me: any = '';
   private meSub: Subscription;
 
   public cards: any = [];
   private cardsSub: Subscription;
 
+  public isLoading: boolean = false;
+  public isLoadingSub: Subscription;
+
   constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.meService.setLoadingStatus(true);
     this.meService.getMe();
     this.meSub = this.meService.getMeUpdated().subscribe(result => {
       this.me = result;
@@ -37,6 +40,10 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.meService.getCards();
     this.cardsSub = this.meService.getCardsUpdated().subscribe(result => {
       this.cards = result;
+    });
+
+    this.isLoadingSub = this.meService.getLoadingStatus().subscribe(result => {
+      this.isLoading = result;
     });
   }
 

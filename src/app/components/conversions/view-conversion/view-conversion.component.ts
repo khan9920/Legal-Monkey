@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ConversionsService } from 'src/app/services/conversions.service';
+import { ExtractsService } from 'src/app/services/extracts.service';
 
 @Component({
   selector: 'app-view-conversion',
@@ -10,14 +10,14 @@ import { ConversionsService } from 'src/app/services/conversions.service';
 })
 export class ViewConversionComponent implements OnInit {
 
-  public conversion: any = '';
+  public extract: any = '';
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private conversionsService: ConversionsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private extractsService: ExtractsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.conversionsService.getConversion(this.data).subscribe(result => {
+    this.extractsService.getExtract(this.data).subscribe(result => {
       if (result.success) {
-        this.conversion = result.data
+        this.extract = result.data
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {

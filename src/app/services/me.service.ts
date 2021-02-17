@@ -32,6 +32,7 @@ export class MeService {
   }
 
   getMe() {
+    this.isLoading.next(true);
     this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users`).subscribe(result => {
       if (result.success) {
         this.meSub.next(result.data);
