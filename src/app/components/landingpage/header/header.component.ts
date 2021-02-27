@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { MeService } from 'src/app/services/me.service';
 import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
@@ -15,7 +16,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public isAuthenticated: boolean = false;
   private isAuthenticatedSub: Subscription;
 
-  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) { }
+  public me: any = '';
+  private meSub: Subscription;
+
+  constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     const token = localStorage.getItem('token');
@@ -24,9 +28,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.isAuthenticated = true;
     }
 
+    this.meService.setLoadingStatus(true);
+    this.meService.getMe();
+    this.meSub = this.meService.getMeUpdated().subscribe(result => {
+      this.me = result;
+    });
+
     this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
       this.isAuthenticated = result;
-    })
+    });
   }
 
   onLogin(): void {
@@ -46,5 +56,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.isAuthenticatedSub.unsubscribe();
+    this.meSub.unsubscribe();
   }
 }

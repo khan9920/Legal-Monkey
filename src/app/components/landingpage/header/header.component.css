@@ -74,10 +74,21 @@ a.mat-menu-item:hover {
 }
 
 .icon-profile {
-    width: 35px;
+    width: 25px;
 }
 
 ::ng-deep .mat-menu-content {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+}
+
+::ng-deep .mat-menu-panel {
+    position: relative;
+    top: 5px;
+    right: 20px;
+}
+
+.txt-me {
+    display: inline-block;
+    margin-right: 10px;
 }
