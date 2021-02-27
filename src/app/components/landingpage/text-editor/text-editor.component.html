@@ -5,9 +5,9 @@
                 <h4 class="title">Enter your text here</h4>
                 <p class="sub-title">Or click <a (click)="onUploadDocumentClick()">here to upload documents</a></p>
                 <div class="textarea-container">
-                    <!-- <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text">Your text...</textarea> -->
-                    <div contenteditable="true" class="custom-textarea" [innerHTML]="text" #textarea></div>
-                    <button (click)="onSimplify(textarea.innerText)">
+                    <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text"
+                        placeholder="Your text..."></textarea>
+                    <button (click)="onSimplify()">
                         <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                         Simplify
                     </button>
