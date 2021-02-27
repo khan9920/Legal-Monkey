@@ -13,12 +13,15 @@ export class ShowPriceComponent implements OnInit {
 
   public price: number;
   public wordCount: number;
+  public isLoading: Boolean = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private consersionsService: ConversionsService, private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.isLoading = true;
     this.consersionsService.calculatePrice(this.data).subscribe(result => {
       if (result.success) {
+        this.isLoading = false;
         if (result.data.price === 0) {
           this.onContinue();
         }
@@ -26,6 +29,7 @@ export class ShowPriceComponent implements OnInit {
         this.wordCount = result.data.words;
       }
     }, error => {
+      this.isLoading = false;
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
@@ -33,12 +37,19 @@ export class ShowPriceComponent implements OnInit {
   }
 
   onContinue(): void {
+    this.isLoading = true;
     this.simplifyService.simplify(this.data).subscribe(result => {
       if (result.success) {
+        this.isLoading = false;
         localStorage.setItem('convertedText', JSON.stringify(result.data));
         this.simplifyService.setEditorStatus(false);
         this.dialog.closeAll();
       }
+    }, error => {
+      this.isLoading = false;
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
     });
   }
 
