@@ -62,8 +62,6 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   onSelectFiles(event: Event) {
     this.selectedFile = (event.target as HTMLInputElement).files[0];
     this.fileName = this.selectedFile.name;
-    console.log(this.selectedFile);
-
 
     if (this.selectedFile.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
       this.fileType = 'doc';
