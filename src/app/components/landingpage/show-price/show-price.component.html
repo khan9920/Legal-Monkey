@@ -15,7 +15,8 @@
         </div>
 
         <div class="col-md-12">
-            <button (click)="onContinue()">CONTINUE</button>
+            <button (click)="onContinue('text')" *ngIf="data.type == 'text' ">CONTINUE</button>
+            <button (click)="onContinue('document')" *ngIf="data.type == 'document' ">CONTINUE</button>
         </div>
     </div>
 </div>

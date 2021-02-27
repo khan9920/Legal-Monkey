@@ -102,7 +102,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         width: '400px',
         maxHeight: '90vh',
         data: {
-          text: this.text
+          text: this.text,
+          type: 'text'
         }
       });
     }
