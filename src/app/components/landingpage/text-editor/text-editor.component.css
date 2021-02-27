@@ -87,3 +87,16 @@ mat-spinner {
     display: inline-block;
     margin-left: 20px;
 }
+
+.link-close {
+    margin-left: 20px;
+    position: relative;
+    top: 1px;
+    font-weight: 600;
+    color: #2e86de;
+}
+
+.link-close:hover {
+    cursor: pointer;
+    text-decoration: none;
+}

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,6 +15,8 @@ import { EnterTitleComponent } from './enter-title/enter-title.component';
   styleUrls: ['./text-editor.component.css']
 })
 export class TextEditorComponent implements OnInit, OnDestroy {
+  @ViewChild('filesButton')
+  filesButton: ElementRef;
 
   public text = '';
   private textToConvert: string = '';
@@ -60,6 +62,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   onSelectFiles(event: Event) {
     this.selectedFile = (event.target as HTMLInputElement).files[0];
     this.fileName = this.selectedFile.name;
+    console.log(this.selectedFile);
+
 
     if (this.selectedFile.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
       this.fileType = 'doc';
@@ -104,6 +108,11 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  onRemoveFile() {
+    this.fileName = '';
+    this.filesButton.nativeElement.value = "";
   }
 
   ngOnDestroy() {
