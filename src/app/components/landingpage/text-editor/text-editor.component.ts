@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,8 +15,10 @@ import { EnterTitleComponent } from './enter-title/enter-title.component';
   styleUrls: ['./text-editor.component.css']
 })
 export class TextEditorComponent implements OnInit, OnDestroy {
+  @ViewChild('filesButton')
+  filesButton: ElementRef;
 
-  public text = 'Your text...';
+  public text = '';
   private textToConvert: string = '';
 
   public isLoading: boolean = false;
@@ -35,7 +37,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   public fileType: string = '';
 
 
-  constructor(private simplifyService: SimplifyService, private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private simplifyService: SimplifyService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
@@ -78,7 +80,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
     });
   }
 
-  onSimplify(text: any) {
+  onSimplify() {
     const token = localStorage.getItem('token');
     if (token == '' || token == null) {
       this.dialog.open(LoginComponent, {
@@ -87,23 +89,29 @@ export class TextEditorComponent implements OnInit, OnDestroy {
       });
       return;
     } else {
-      if (text == '' || text == 'Your text...') {
+      if (this.text == '') {
         this.snackBar.open('Please enter your text and try again!', 'Dismiss', {
           duration: 3000
         });
         return;
       }
 
-      this.textToConvert = text;
+      this.textToConvert = this.text;
 
       this.dialog.open(ShowPriceComponent, {
         width: '400px',
         maxHeight: '90vh',
         data: {
-          text: text
+          text: this.text,
+          type: 'text'
         }
       });
     }
+  }
+
+  onRemoveFile() {
+    this.fileName = '';
+    this.filesButton.nativeElement.value = "";
   }
 
   ngOnDestroy() {

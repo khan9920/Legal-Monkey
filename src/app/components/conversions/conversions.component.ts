@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -7,13 +7,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { ViewConversionComponent } from './view-conversion/view-conversion.component';
 import { ExtractsService } from 'src/app/services/extracts.service';
 import { DocumentsService } from 'src/app/services/documents.service';
+import { Subscription } from 'rxjs';
+import { MeService } from 'src/app/services/me.service';
 
 @Component({
   selector: 'app-conversions',
   templateUrl: './conversions.component.html',
   styleUrls: ['./conversions.component.css']
 })
-export class ConversionsComponent implements OnInit {
+export class ConversionsComponent implements OnInit, OnDestroy {
 
   public extracts = [];
   public documents = [];
@@ -23,7 +25,10 @@ export class ConversionsComponent implements OnInit {
 
   public moment = Moment;
 
-  constructor(private authService: AuthService, private extractsService: ExtractsService, private documentsService: DocumentsService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  public me: any = '';
+  private meSub: Subscription;
+
+  constructor(private authService: AuthService, private extractsService: ExtractsService, private documentsService: DocumentsService, private meService: MeService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.extractsService.getExtracts().subscribe(result => {
@@ -34,6 +39,12 @@ export class ConversionsComponent implements OnInit {
       this.snackBar.open(error.error.data, 'Dismiss', {
         duration: 3000
       });
+    });
+
+    this.meService.setLoadingStatus(true);
+    this.meService.getMe();
+    this.meSub = this.meService.getMeUpdated().subscribe(result => {
+      this.me = result;
     });
   }
 
@@ -98,5 +109,9 @@ export class ConversionsComponent implements OnInit {
 
   onLogout(): void {
     this.authService.logout();
+  }
+
+  ngOnDestroy() {
+    this.meSub.unsubscribe();
   }
 }

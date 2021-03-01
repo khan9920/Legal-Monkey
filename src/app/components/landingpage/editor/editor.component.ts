@@ -1,7 +1,10 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import MediumEditor from "medium-editor";
+import { Subscription } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ShowPriceComponent } from '../show-price/show-price.component';
 
 declare let rangy: any;
 
@@ -10,7 +13,7 @@ declare let rangy: any;
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
-export class EditorComponent implements OnInit {
+export class EditorComponent implements OnInit, OnDestroy {
   @ViewChild("editor") editor: ElementRef;
 
   public extraction: {
@@ -18,12 +21,23 @@ export class EditorComponent implements OnInit {
     text: string
   };
 
-  public isLoading: boolean = false;
+  public extractionSub: Subscription;
 
-  constructor(private simplifyService: SimplifyService, private snackBar: MatSnackBar) { }
+  public isLoading: boolean = false;
+  public isLoadingSub: Subscription;
+
+  constructor(private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.extraction = JSON.parse(localStorage.getItem('extraction'));
+
+    this.extractionSub = this.simplifyService.getDocumentUpdated().subscribe(result => {
+      this.extraction = result;
+    });
+
+    this.isLoadingSub = this.simplifyService.getEditorStatus().subscribe(result => {
+      this.isLoading = result;
+    });
   }
 
   ngAfterViewInit() {
@@ -66,32 +80,19 @@ export class EditorComponent implements OnInit {
 
   onSimplify() {
     this.isLoading = true;
-    const data = {
-      _id: this.extraction._id,
-      text: this.editor.nativeElement.innerHTML
-    }
 
-    this.save(this.extraction._id, this.editor.nativeElement.innerHTML);
-    this.simplifyService.simplifyDocument(data).subscribe(result => {
-      if (result.success) {
-        this.isLoading = false;
-        this.extraction = result.data;
-        this.save(result.data._id, result.data.text);
+    this.dialog.open(ShowPriceComponent, {
+      width: '400px',
+      maxHeight: '90vh',
+      data: {
+        _id: this.extraction._id,
+        text: this.editor.nativeElement.innerHTML,
+        type: 'document'
       }
-    }, error => {
-      this.isLoading = false;
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      })
-    })
+    });
   }
 
-  private save(ID: string, Text: string) {
-    const data = {
-      _id: ID,
-      text: Text,
-    }
-
-    localStorage.setItem('extraction', JSON.stringify(data));
+  ngOnDestroy() {
+    this.extractionSub.unsubscribe();
   }
 }
