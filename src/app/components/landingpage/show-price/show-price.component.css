@@ -60,6 +60,12 @@ mat-spinner {
     top: 4px;
 }
 
+.spinner-loader {
+    position: inherit !important;
+    left: auto !important;
+    top: auto !important;
+}
+
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
 }

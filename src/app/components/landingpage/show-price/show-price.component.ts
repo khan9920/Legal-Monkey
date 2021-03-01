@@ -18,6 +18,7 @@ export class ShowPriceComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private consersionsService: ConversionsService, private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    return;
     this.isLoading = true;
 
     if (this.data.type == 'text') {
