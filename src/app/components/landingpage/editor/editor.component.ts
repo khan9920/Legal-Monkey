@@ -79,8 +79,6 @@ export class EditorComponent implements OnInit, OnDestroy {
   }
 
   onSimplify() {
-    this.isLoading = true;
-
     this.dialog.open(ShowPriceComponent, {
       width: '400px',
       maxHeight: '90vh',
