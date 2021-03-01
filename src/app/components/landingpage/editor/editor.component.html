@@ -6,6 +6,7 @@
         <div class="col-md-12">
             <p>Hightlight the content you want to simplify using pop up tool and click on the Simplify button to see the
                 results.</p>
+
             <div class="wrapper-editor">
                 <div class="editor" #editor [innerHTML]="extraction.text" [ngClass]="{ 'editor-loading': isLoading}">
                 </div>
@@ -17,10 +18,7 @@
                     <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                     Simplify
                 </button>
-
             </div>
         </div>
     </div>
 </div>
-
-<!-- <app-footer></app-footer> -->

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subject } from 'rxjs';
 
 import { environment } from './../../environments/environment';
@@ -10,12 +11,13 @@ const apiURL = environment.apiURL;
 })
 export class SimplifyService {
 
-  editorStatus = new Subject<any>();
-  simplifiedDocumentSub = new Subject<any>();
+  private editorStatus = new Subject<any>();
+  private simplifiedDocumentSub = new Subject<any>();
 
-  simplifiedTextSub = new Subject<any>();
+  private simplifiedTextSub = new Subject<any>();
+  private documentsUpdated = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
   simplify(data) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/simplify`, data);
@@ -33,15 +35,43 @@ export class SimplifyService {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents`, data);
   }
 
-  simplifyDocument(data) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/simplify`, data);
-  }
-
   setEditorStatus(data: boolean) {
     this.editorStatus.next(data);
   }
 
   getEditorStatus() {
     return this.editorStatus.asObservable();
+  }
+
+  simplifyDocument(data) {
+    this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/simplify`, data).subscribe(result => {
+      if (result.success) {
+        this.setEditorStatus(false);
+        this.documentsUpdated.next(result.data);
+        this.save(result.data._id, result.data.text);
+      }
+    }, error => {
+      this.setEditorStatus(false);
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      })
+    });
+  }
+
+  getDocumentUpdated() {
+    return this.documentsUpdated.asObservable();
+  }
+
+  calculatePrice(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/price`, data);
+  }
+
+  public save(ID: string, Text: string) {
+    const data = {
+      _id: ID,
+      text: Text,
+    }
+
+    localStorage.setItem('extraction', JSON.stringify(data));
   }
 }

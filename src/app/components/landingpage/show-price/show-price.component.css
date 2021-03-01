@@ -63,3 +63,12 @@ mat-spinner {
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
 }
+
+::ng-deep .spinner-loader circle, .spinner-loader circle {
+    stroke: #2e86de;
+}
+
+.col-loader {
+    text-align: center;
+    padding: 30px 0;
+}

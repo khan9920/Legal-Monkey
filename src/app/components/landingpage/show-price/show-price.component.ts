@@ -13,33 +13,94 @@ export class ShowPriceComponent implements OnInit {
 
   public price: number;
   public wordCount: number;
+  public isLoading: Boolean = true;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private consersionsService: ConversionsService, private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this.consersionsService.calculatePrice(this.data).subscribe(result => {
-      if (result.success) {
-        if (result.data.price === 0) {
-          this.onContinue();
-        }
-        this.price = result.data.price;
-        this.wordCount = result.data.words;
+    this.isLoading = true;
+
+    if (this.data.type == 'text') {
+      const data = {
+        text: this.data.text
       }
-    }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
+
+      this.consersionsService.calculatePrice(data).subscribe(result => {
+        console.log(result);
+        if (result.success) {
+          this.isLoading = false;
+          if (result.data.price === 0) {
+            this.onContinue('text');
+          }
+          this.price = result.data.price;
+          this.wordCount = result.data.words;
+        }
+      }, error => {
+        this.isLoading = false;
+        this.snackBar.open(error.error.data, 'Dismiss', {
+          duration: 3000
+        });
       });
-    });
+    } else if (this.data.type == 'document') {
+
+      const data = {
+        id: this.data._id,
+        text: this.data.text
+      }
+
+      this.simplifyService.calculatePrice(data).subscribe(result => {
+        console.log(result);
+
+        if (result.success) {
+          this.isLoading = false;
+          if (result.data.price === 0) {
+            this.onContinue('document');
+          }
+          this.price = result.data.price;
+          this.wordCount = result.data.words;
+        }
+      }, error => {
+        this.isLoading = false;
+        this.snackBar.open(error.error.data, 'Dismiss', {
+          duration: 3000
+        });
+      });
+    }
   }
 
-  onContinue(): void {
-    this.simplifyService.simplify(this.data).subscribe(result => {
-      if (result.success) {
-        localStorage.setItem('convertedText', JSON.stringify(result.data));
-        this.simplifyService.setEditorStatus(false);
-        this.dialog.closeAll();
+  onContinue(type: string): void {
+    if (type == 'text') {
+      this.isLoading = true;
+
+      const data = {
+        text: this.data.text
       }
-    });
+
+      this.simplifyService.simplify(data).subscribe(result => {
+        if (result.success) {
+          this.isLoading = false;
+          localStorage.setItem('convertedText', JSON.stringify(result.data));
+          this.simplifyService.setEditorStatus(false);
+          this.dialog.closeAll();
+        }
+      }, error => {
+        this.isLoading = false;
+        this.snackBar.open(error.error.data, 'Dismiss', {
+          duration: 3000
+        });
+      });
+    } else if (type == 'document') {
+      this.simplifyService.setEditorStatus(true);
+      const data = {
+        _id: this.data._id,
+        text: this.data.text
+      }
+
+      this.simplifyService.save(this.data._id, this.data.text);
+      this.simplifyService.simplifyDocument(data);
+
+      this.dialog.closeAll();
+    }
   }
 
   onClose(): void {

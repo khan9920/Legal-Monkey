@@ -1,5 +1,10 @@
 <div class="container">
-    <div class="row">
+    <div class="row" *ngIf="isLoading">
+        <div class="col-md-12 col-loader">
+            <mat-spinner class="spinner-loader" *ngIf="isLoading" [diameter]="100"></mat-spinner>
+        </div>
+    </div>
+    <div class="row" *ngIf="!isLoading">
         <div class="col-md-12">
             <h2>Cost & Payment</h2>
             <span class="btn-close" (click)="onClose()">X</span>
@@ -10,7 +15,8 @@
         </div>
 
         <div class="col-md-12">
-            <button (click)="onContinue()">CONTINUE</button>
+            <button (click)="onContinue('text')" *ngIf="data.type == 'text' ">CONTINUE</button>
+            <button (click)="onContinue('document')" *ngIf="data.type == 'document' ">CONTINUE</button>
         </div>
     </div>
 </div>
