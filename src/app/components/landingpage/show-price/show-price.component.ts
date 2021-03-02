@@ -26,7 +26,6 @@ export class ShowPriceComponent implements OnInit {
       }
 
       this.consersionsService.calculatePrice(data).subscribe(result => {
-        console.log(result);
         if (result.success) {
           this.isLoading = false;
           if (result.data.price === 0) {
@@ -44,13 +43,11 @@ export class ShowPriceComponent implements OnInit {
     } else if (this.data.type == 'document') {
 
       const data = {
-        id: this.data._id,
+        _id: this.data._id,
         text: this.data.text
       }
 
       this.simplifyService.calculatePrice(data).subscribe(result => {
-        console.log(result);
-
         if (result.success) {
           this.isLoading = false;
           if (result.data.price === 0) {
