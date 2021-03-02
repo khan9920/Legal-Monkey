@@ -41,7 +41,7 @@ import { UpdatePasswordComponent } from './components/auth/update-password/updat
 import { EnterTitleComponent } from './components/landingpage/text-editor/enter-title/enter-title.component';
 import { ViewConversionComponent } from './components/conversions/view-conversion/view-conversion.component';
 import { ShowPriceComponent } from './components/landingpage/show-price/show-price.component';
-
+import { ReviewComponent } from './components/landingpage/review/review.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -71,6 +71,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     EnterTitleComponent,
     ViewConversionComponent,
     ShowPriceComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,3 @@
-import { Overlay } from '@angular/cdk/overlay';
-import { ThisReceiver } from '@angular/compiler';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
