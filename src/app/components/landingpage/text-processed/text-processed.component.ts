@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { SimplifyService } from 'src/app/services/simplify.service';
+import { ReviewComponent } from '../review/review.component';
 
 @Component({
   selector: 'app-text-processed',
@@ -10,7 +12,7 @@ export class TextProcessedComponent implements OnInit {
 
   conversions: [];
 
-  constructor(private simplifyService: SimplifyService) { }
+  constructor(private simplifyService: SimplifyService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.conversions = JSON.parse(localStorage.getItem('convertedText'));
@@ -18,5 +20,13 @@ export class TextProcessedComponent implements OnInit {
 
   onSimplify() {
     this.simplifyService.setEditorStatus(true);
+  }
+
+  onReview() {
+    this.dialog.open(ReviewComponent, {
+      width: '500px',
+      maxHeight: '90vh',
+      data: 'Extract'
+    });
   }
 }

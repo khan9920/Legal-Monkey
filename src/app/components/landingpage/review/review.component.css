@@ -1,0 +1,130 @@
+h2 {
+    font-weight: 600;
+    display: inline-block;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2e86de;
+}
+
+.sub-title {
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    border: 2px solid #2f86de;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.text-price {
+    font-weight: 600;
+    color: #2e86de;
+}
+
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+.spinner-loader {
+    position: inherit !important;
+    left: auto !important;
+    top: auto !important;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
+}
+
+::ng-deep .spinner-loader circle, .spinner-loader circle {
+    stroke: #2e86de;
+}
+
+.col-loader {
+    text-align: center;
+    padding: 30px 0;
+}
+
+ul {
+    padding: 0;
+    text-align: center;
+    margin: 15px 0;
+}
+
+ul li {
+    list-style: none;
+    display: inline-block;
+    margin: 0 10px;
+    width: 60px;
+    text-align: center;
+}
+
+ul li img {
+    width: 40px;
+}
+
+ul li p {
+    margin-top: 5px;
+    color: #929292;
+}
+
+ul li:hover {
+    cursor: pointer;
+}
+
+ul li:hover p {
+    color: #2e86de;
+    font-weight: 600;
+}
+
+.txt-selected {
+    color: #2e86de !important;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    border: 2px solid #2f86de;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+
+.invalid-input {
+    border: 2px solid red;
+}
