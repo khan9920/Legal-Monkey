@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
+import { AddCardComponent } from '../../account/add-card/add-card.component';
 
 @Component({
   selector: 'app-verify-account',
@@ -32,6 +33,10 @@ export class VerifyAccountComponent implements OnInit {
       this.authService.verifyAccount(data).subscribe(result => {
         this.isLoading = false;
         if (result.success) {
+          this.dialog.open(AddCardComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          });
           this.snackBar.open('Account successfully verified', 'Dismiss', {
             duration: 3000
           });
@@ -66,5 +71,9 @@ export class VerifyAccountComponent implements OnInit {
 
   onClose() {
     this.dialog.closeAll();
+    this.dialog.open(AddCardComponent, {
+      width: '400px',
+      maxHeight: '90vh'
+    });
   }
 }
