@@ -58,3 +58,15 @@ mat-spinner {
 .icon-simplify {
     width: 20px;
 }
+
+.btn-feedback {
+    background: #2e86de;
+    border: 2px solid #2e86de;
+    padding: 10px 30px;
+    color: #fff;
+    border-radius: 50px;
+    float: right;
+    position: fixed;
+    bottom: 10px;
+    transform: translate(635%, -66%);
+}

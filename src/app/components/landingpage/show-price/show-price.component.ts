@@ -3,6 +3,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConversionsService } from 'src/app/services/conversions.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
+import { AddCardComponent } from '../../account/add-card/add-card.component';
 
 @Component({
   selector: 'app-show-price',
@@ -82,9 +83,19 @@ export class ShowPriceComponent implements OnInit {
         }
       }, error => {
         this.isLoading = false;
-        this.snackBar.open(error.error.data, 'Dismiss', {
-          duration: 3000
-        });
+        if (error.error.cards == false) {
+          this.dialog.open(AddCardComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          })
+          this.snackBar.open('Please enter a payment method', 'Dismiss', {
+            duration: 3000
+          });
+        } else {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        }
       });
     } else if (type == 'document') {
       this.simplifyService.setEditorStatus(true);
