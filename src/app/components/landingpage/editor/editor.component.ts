@@ -5,6 +5,8 @@ import MediumEditor from "medium-editor";
 import { Subscription } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ShowPriceComponent } from '../show-price/show-price.component';
+import { ReviewComponent } from '../review/review.component';
+import { ReviewsService } from 'src/app/services/reviews.service';
 
 declare let rangy: any;
 
@@ -26,10 +28,17 @@ export class EditorComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
 
-  constructor(private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  public feedbackButtonVisible: boolean = true;
+  private feedbackButtonVisibleSub: Subscription;
+
+  constructor(private simplifyService: SimplifyService, private reviewsService: ReviewsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.extraction = JSON.parse(localStorage.getItem('extraction'));
+
+    this.feedbackButtonVisibleSub = this.reviewsService.getFeedbackButtonVisibility().subscribe(result => {
+      this.feedbackButtonVisible = result;
+    });
 
     this.extractionSub = this.simplifyService.getDocumentUpdated().subscribe(result => {
       this.extraction = result;
@@ -90,7 +99,16 @@ export class EditorComponent implements OnInit, OnDestroy {
     });
   }
 
+  onReview() {
+    this.dialog.open(ReviewComponent, {
+      width: '500px',
+      maxHeight: '90vh',
+      data: 'Document'
+    });
+  }
+
   ngOnDestroy() {
     this.extractionSub.unsubscribe();
+    this.feedbackButtonVisibleSub.unsubscribe();
   }
 }

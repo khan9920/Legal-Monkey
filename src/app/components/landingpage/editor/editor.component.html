@@ -14,6 +14,9 @@
                     Simplify
                 </button>
 
+
+                <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">Feedback</button>
+
                 <button class="btn-simplify-is-loading" type="button" (click)="onSimplify()" *ngIf="isLoading">
                     <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                     Simplify
