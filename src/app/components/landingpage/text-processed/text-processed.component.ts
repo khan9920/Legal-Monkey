@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
+import { ReviewsService } from 'src/app/services/reviews.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { ReviewComponent } from '../review/review.component';
 
@@ -8,14 +10,22 @@ import { ReviewComponent } from '../review/review.component';
   templateUrl: './text-processed.component.html',
   styleUrls: ['./text-processed.component.css']
 })
-export class TextProcessedComponent implements OnInit {
+export class TextProcessedComponent implements OnInit, OnDestroy {
 
-  conversions: [];
+  public conversions: [];
 
-  constructor(private simplifyService: SimplifyService, private dialog: MatDialog) { }
+  public feedbackButtonVisible: boolean = true;
+  private feedbackButtonVisibleSub: Subscription;
+
+  constructor(private simplifyService: SimplifyService, private reviewsService: ReviewsService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.conversions = JSON.parse(localStorage.getItem('convertedText'));
+    this.feedbackButtonVisibleSub = this.reviewsService.getFeedbackButtonVisibility().subscribe(result => {
+      this.feedbackButtonVisible = result;
+    });
+
+    const convertedText = JSON.parse(localStorage.getItem('convertedText'));
+    this.conversions = convertedText.conversions;
   }
 
   onSimplify() {
@@ -28,5 +38,9 @@ export class TextProcessedComponent implements OnInit {
       maxHeight: '90vh',
       data: 'Extract'
     });
+  }
+
+  ngOnDestroy() {
+    this.feedbackButtonVisibleSub.unsubscribe();
   }
 }
