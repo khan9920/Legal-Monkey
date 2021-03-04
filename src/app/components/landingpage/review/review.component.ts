@@ -89,10 +89,18 @@ export class ReviewComponent implements OnInit {
       return;
     }
 
-    const convertedText = JSON.parse(localStorage.getItem('convertedText'));
+    let reference = '';
+
+    if (this.type = 'Extract') {
+      const convertedText = JSON.parse(localStorage.getItem('convertedText'));
+      reference = convertedText._id;
+    } else if (this.type = 'Document') {
+      const convertedText = JSON.parse(localStorage.getItem('extraction'));
+      reference = convertedText._id;
+    }
 
     const data = {
-      reference: convertedText._id,
+      reference: reference,
       rating: this.rating,
       review: this.review,
       type: this.type
