@@ -1,10 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
-import { LoginComponent } from '../../auth/login/login.component';
+
+import { SignupComponent } from '../../auth/signup/signup.component';
+
+import { MatDialog } from '@angular/material/dialog'
 
 @Component({
   selector: 'app-header',
@@ -39,9 +42,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
   }
 
-  onLogin(): void {
-    this.dialog.open(LoginComponent, {
-      width: '400px',
+  onSignup(): void {
+    this.dialog.open(SignupComponent, {
+      width: '500px',
       maxHeight: '90vh'
     });
   }

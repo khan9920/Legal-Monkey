@@ -11,7 +11,7 @@
                 <li><a href="#">PRICING</a></li>
                 <li><a href="#">ABOUT US</a></li> -->
                 <li *ngIf="!isAuthenticated">
-                    <button (click)="onLogin()">LOG IN</button>
+                    <button (click)="onSignup()">SIGN UP</button>
                 </li>
                 <li *ngIf="isAuthenticated">
                     <p *ngIf="me != '' " class="txt-me">{{ me.firstName }} {{ me.lastName }}</p>
