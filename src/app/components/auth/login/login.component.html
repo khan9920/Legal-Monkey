@@ -16,7 +16,7 @@
                 [disabled]="isLoading" [(ngModel)]="credentials.password">
         </div>
         <div class="col-md-12">
-            <button (click)="onLogin()">
+            <button (click)="onLogin()" (keydown.enter)="onLogin()" type="submit">
                 <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                 LOG IN
             </button>
