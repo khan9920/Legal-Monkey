@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConversionsService } from 'src/app/services/conversions.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { AddCardComponent } from '../../account/add-card/add-card.component';
+import { VerifyAccountComponent } from '../../auth/verify-account/verify-account.component';
 
 @Component({
   selector: 'app-show-price',
@@ -37,9 +38,21 @@ export class ShowPriceComponent implements OnInit {
         }
       }, error => {
         this.isLoading = false;
-        this.snackBar.open(error.error.data, 'Dismiss', {
-          duration: 3000
-        });
+        this.dialog.closeAll();
+        if (error.error.verified == false) {
+          this.dialog.open(VerifyAccountComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          });
+
+          this.snackBar.open('Please verify your email address', 'Dismiss', {
+            duration: 3000
+          });
+        } else {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        }
       });
     } else if (this.data.type == 'document') {
 
@@ -59,9 +72,21 @@ export class ShowPriceComponent implements OnInit {
         }
       }, error => {
         this.isLoading = false;
-        this.snackBar.open(error.error.data, 'Dismiss', {
-          duration: 3000
-        });
+        this.dialog.closeAll();
+        if (error.error.verified == false) {
+          this.dialog.open(VerifyAccountComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          });
+
+          this.snackBar.open('Please verify your email address', 'Dismiss', {
+            duration: 3000
+          });
+        } else {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        }
       });
     }
   }
@@ -83,12 +108,23 @@ export class ShowPriceComponent implements OnInit {
         }
       }, error => {
         this.isLoading = false;
+
         if (error.error.cards == false) {
           this.dialog.open(AddCardComponent, {
             width: '400px',
             maxHeight: '90vh'
-          })
+          });
+
           this.snackBar.open('Please enter a payment method', 'Dismiss', {
+            duration: 3000
+          });
+        } else if (error.error.verified == false) {
+          this.dialog.open(VerifyAccountComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          });
+
+          this.snackBar.open('Please verify your email address', 'Dismiss', {
             duration: 3000
           });
         } else {
