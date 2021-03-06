@@ -5,15 +5,10 @@
             <span class="btn-close" (click)="onClose()">X</span>
             <p class="sub-title">Enter the details below to register an accoun</p>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <label>First name *</label>
             <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': !validation.firstName }"
                 [disabled]="isLoading" [(ngModel)]="user.firstName">
-        </div>
-        <div class="col-md-6">
-            <label>Last name *</label>
-            <input type="text" placeholder="Watson" [ngClass]="{ 'invalid-input': !validation.lastName} "
-                [disabled]="isLoading" [(ngModel)]="user.lastName">
         </div>
         <div class=" col-md-12">
             <label>Email *</label>

@@ -1,11 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginComponent } from '../login/login.component';
+
 import * as EmailValidator from 'email-validator';
 import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-signup',
@@ -16,7 +19,6 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public user = {
     firstName: '',
-    lastName: '',
     email: '',
     mobile: null,
     password: '',
@@ -25,7 +27,6 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public validation = {
     firstName: true,
-    lastName: true,
     email: true,
     mobile: true,
     password: true,
@@ -58,14 +59,13 @@ export class SignupComponent implements OnInit, OnDestroy {
   onSignUp() {
     this.authService.setLoadingStatus(true);
     this.validator();
-    if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
+    if (!this.validation.firstName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
       this.isLoading = false;
       return;
     }
 
     const user = {
       firstName: this.user.firstName,
-      lastName: this.user.lastName,
       email: this.user.email,
       mobile: this.user.mobile,
       password: this.user.password
@@ -78,12 +78,6 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.validation.firstName = false;
     } else {
       this.validation.firstName = true;
-    }
-
-    if (this.user.lastName == '') {
-      this.validation.lastName = false;
-    } else {
-      this.validation.lastName = true;
     }
 
     if (this.user.email == '') {
