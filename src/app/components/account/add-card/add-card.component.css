@@ -77,3 +77,11 @@ mat-spinner {
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
 }
+
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group input {
+    height: 100%;
+}
