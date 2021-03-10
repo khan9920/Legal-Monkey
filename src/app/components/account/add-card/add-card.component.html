@@ -5,23 +5,33 @@
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
         <div class="col-md-12">
-            <label>Name</label>
-            <input type="text" placeholder="John Watson">
-        </div>
-        <div class="col-md-12">
-            <label>Card number</label>
-            <input type="text" placeholder="1234 5678 1112 1314">
-        </div>
-        <div class="col-md-6">
-            <label>Expiry month</label>
-            <input type="text" placeholder="MM">
-        </div>
-        <div class="col-md-6">
-            <label>Expiry year</label>
-            <input type="text" placeholder="YY">
-        </div>
-        <div class="col-md-12">
-            <button (click)="onAddCard()">ADD CARD</button>
+            <div class="form-group">
+                <input type="text" id="cardholder-name" class="form-control" placeholder="Card Holder Name"
+                    title="card-holder name" readonly />
+                <span class="text-danger card-holder-error err"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="card-number" class="form-control" title="card number" placeholder="Card Number"
+                    maxlength="16" size="16" readonly />
+                <span class="text-danger card-number-error err"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="expiry-month" class="form-control" title="expiry month"
+                    placeholder="Expiry Month (MM)" maxlength="2" readonly />
+                <span class="text-danger exp-month-error err"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="expiry-year" class="form-control" title="expiry year"
+                    placeholder="Expiry Year (YY)" maxlength="4" readonly />
+                <span class="text-danger exp-year-error err"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" id="security-code" class="form-control" title="security code"
+                    placeholder="Security Code" readonly />
+                <span class="text-danger cvv-error err"></span>
+            </div>
+            <div class="general-error text-danger"></div>
+            <button mat-button class="button-continue" id="save-card-button">Save Payment Method</button>
         </div>
     </div>
 </div>
