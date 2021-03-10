@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { LoginComponent } from '../../auth/login/login.component';
 import { ShowPriceComponent } from '../show-price/show-price.component';
@@ -37,7 +38,7 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   public fileType: string = '';
 
 
-  constructor(private authService: AuthService, private simplifyService: SimplifyService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private mixpanelService: MixpanelServiceService, private simplifyService: SimplifyService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.editorStatusSub = this.simplifyService.getEditorStatus().subscribe(result => {
@@ -107,6 +108,10 @@ export class TextEditorComponent implements OnInit, OnDestroy {
         }
       });
     }
+    this.mixpanelService.init();
+    this.mixpanelService.track('Extracts Simplify Button', {
+      simplifyButtonClicked: true
+    });
   }
 
   onRemoveFile() {

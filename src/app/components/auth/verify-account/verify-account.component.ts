@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/services/auth.service';
 import { AddCardComponent } from '../../account/add-card/add-card.component';
 
+import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
+
 @Component({
   selector: 'app-verify-account',
   templateUrl: './verify-account.component.html',
@@ -13,7 +15,7 @@ export class VerifyAccountComponent implements OnInit {
   public isLoading: boolean = false;
   public verificationCode = '';
 
-  constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private mixpanelService: MixpanelServiceService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -36,6 +38,10 @@ export class VerifyAccountComponent implements OnInit {
           this.dialog.open(AddCardComponent, {
             width: '400px',
             maxHeight: '90vh'
+          });
+          this.mixpanelService.init();
+          this.mixpanelService.track('Account verification', {
+            verified: true
           });
           this.snackBar.open('Account successfully verified', 'Dismiss', {
             duration: 3000
