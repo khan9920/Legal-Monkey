@@ -31,7 +31,10 @@
               "./node_modules/intl-tel-input/build/css/intlTelInput.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "src/assets/js/webxpay.hostedsession.js"
+            ]
           },
           "configurations": {
             "production": {
