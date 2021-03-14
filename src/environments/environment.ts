@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL: 'https://www.api.legalhamster.com'
+  apiURL: 'http://localhost:3001'
 };
 
 /*
