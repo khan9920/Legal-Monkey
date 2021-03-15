@@ -22,7 +22,7 @@ export class AddCardComponent implements OnInit {
     const scope = this;
     // webxpay codes
     // init webxpay
-    get("https://cbcmpgs.gateway.mastercard.com/form/version/52/merchant/WEBXPATOKLKR/session.js", () => {
+    get("https://cbcmpgs.gateway.mastercard.com/form/version/52/merchant/TESTWEBXPATOKLKR/session.js", () => {
       WebxpayTokenizeInit({
         card: {
           number: "#card-number",
@@ -121,5 +121,9 @@ export class AddCardComponent implements OnInit {
         }
       }
     });
+  }
+
+  onClose() {
+    this.dialog.closeAll();
   }
 }
