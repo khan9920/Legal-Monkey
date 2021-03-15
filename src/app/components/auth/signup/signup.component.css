@@ -86,6 +86,10 @@ mat-spinner {
     margin-bottom: 20px !important;
 }
 
+.col-pw {
+    height: 100px;
+}
+
 .wrapper-password img {
     width: 30px;
     position: relative;
@@ -95,5 +99,21 @@ mat-spinner {
 }
 
 .wrapper-password img:hover {
+    cursor: pointer;
+}
+
+.wrapper-tnc p {
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    margin-left: 10px;
+}
+
+.wrapper-tnc p span {
+    color: #2e86de;
+    font-weight: 600;
+}
+
+.wrapper-tnc p span:hover {
     cursor: pointer;
 }

@@ -1,0 +1,30 @@
+.section {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.title {
+    text-align: center;
+    font-size: 35px;
+    font-weight: 700;
+    color: #2f86de;
+}
+
+.col-body {
+    text-align: left;
+}
+
+a {
+    color: #2f86de;
+}
+
+b {
+    color: #2f86de;
+}
+
+.sub-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #2f86de;
+    margin-bottom: 0;
+}

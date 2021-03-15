@@ -122,4 +122,8 @@ export class AddCardComponent implements OnInit {
       }
     });
   }
+
+  onClose() {
+    this.dialog.closeAll();
+  }
 }
