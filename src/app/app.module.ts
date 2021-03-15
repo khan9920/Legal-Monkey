@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { HeaderComponent } from './components/landingpage/header/header.component';
@@ -42,6 +43,7 @@ import { EnterTitleComponent } from './components/landingpage/text-editor/enter-
 import { ViewConversionComponent } from './components/conversions/view-conversion/view-conversion.component';
 import { ShowPriceComponent } from './components/landingpage/show-price/show-price.component';
 import { ReviewComponent } from './components/landingpage/review/review.component';
+import { TncComponent } from './components/tnc/tnc.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -72,6 +74,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ViewConversionComponent,
     ShowPriceComponent,
     ReviewComponent,
+    TncComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,7 +89,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MatDialogModule,
     MatMenuModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

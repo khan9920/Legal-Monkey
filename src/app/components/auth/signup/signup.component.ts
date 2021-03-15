@@ -9,6 +9,7 @@ import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 
 
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -19,6 +20,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public user = {
     firstName: '',
+    lastName: '',
     email: '',
     mobile: null,
     password: '',
@@ -27,6 +29,7 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   public validation = {
     firstName: true,
+    lastName: true,
     email: true,
     mobile: true,
     password: true,
@@ -36,6 +39,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
   public passwordType: string = 'password';
+  public checked = false;
 
   separateDialCode = false;
   SearchCountryField = SearchCountryField;
@@ -48,7 +52,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.preferredCountries = [CountryISO.SriLanka];
   }
 
-  constructor(private authService: AuthService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.isLoadingSub = this.authService.getLoadingStatus().subscribe(result => {
@@ -59,13 +63,22 @@ export class SignupComponent implements OnInit, OnDestroy {
   onSignUp() {
     this.authService.setLoadingStatus(true);
     this.validator();
-    if (!this.validation.firstName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
+    if (!this.validation.firstName || !this.validation.lastName || !this.validation.email || !this.validation.mobile || !this.validation.password || !this.validation.confirmPassword) {
       this.isLoading = false;
+      return;
+    }
+
+    if (!this.checked) {
+      this.isLoading = false;
+      this.snackBar.open('Please agree to our terms and conditions', 'Dismiss', {
+        duration: 3000
+      });
       return;
     }
 
     const user = {
       firstName: this.user.firstName,
+      lastName: this.user.lastName,
       email: this.user.email,
       mobile: this.user.mobile,
       password: this.user.password
@@ -78,6 +91,12 @@ export class SignupComponent implements OnInit, OnDestroy {
       this.validation.firstName = false;
     } else {
       this.validation.firstName = true;
+    }
+
+    if (this.user.lastName == '') {
+      this.validation.lastName = false;
+    } else {
+      this.validation.lastName = true;
     }
 
     if (this.user.email == '') {
@@ -131,5 +150,10 @@ export class SignupComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.isLoadingSub.unsubscribe();
+  }
+
+  onTnc() {
+    this.dialog.closeAll();
+    this.router.navigate(['/terms-conditions']);
   }
 }
