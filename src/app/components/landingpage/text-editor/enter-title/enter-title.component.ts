@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class EnterTitleComponent implements OnInit {
   public isTitleValid: boolean = true;
 
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private simplifyService: SimplifyService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private simplifyService: SimplifyService, private mixpanelService: MixpanelServiceService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -42,6 +43,10 @@ export class EnterTitleComponent implements OnInit {
           }
           this.dialog.closeAll();
           localStorage.setItem('extraction', JSON.stringify(data));
+          this.mixpanelService.init();
+          this.mixpanelService.track('Account converted', {
+            verified: true
+          });
           this.router.navigate(['/editor']);
         }
       }, error => {
