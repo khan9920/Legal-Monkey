@@ -4,6 +4,7 @@ import { AccountComponent } from './components/account/account.component';
 import { ConversionsComponent } from './components/conversions/conversions.component';
 import { EditorComponent } from './components/landingpage/editor/editor.component';
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { TncComponent } from './components/tnc/tnc.component';
 
 const routes: Routes = [
@@ -11,7 +12,8 @@ const routes: Routes = [
   { path: 'extracts', component: ConversionsComponent },
   { path: 'account', component: AccountComponent },
   { path: 'editor', component: EditorComponent },
-  { path: 'terms-conditions', component: TncComponent }
+  { path: 'terms-conditions', component: TncComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent }
 ];
 
 @NgModule({

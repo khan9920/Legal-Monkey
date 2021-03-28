@@ -8,7 +8,7 @@
                 </div>
                 <div class="wrapper-swiper">
                     <swiper [config]="config" [disabled]="disabled">
-                        <div *ngFor="let slide of slides" class="swiper-slide">
+                        <div *ngFor="let slide of slides" class="swiper-slide" data-swiper-autoplay="10000">
                             <div fxLayout="column" fxLayoutAlign="center center" fxFlexFill class="slider">
                                 <div class="wrapper-slider-text">
                                     <p class="title">What's written:</p>
