@@ -20,7 +20,7 @@ h2 {
     right: -15px;
     font-weight: 600;
     cursor: pointer;
-    color: #2e86de;
+    color: #2129fa;
 }
 
 .sub-title {
@@ -33,15 +33,15 @@ label {
 
 input {
     width: 100%;
-    border: 2px solid #2f86de;
+    border: 2px solid #2129fa;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
 }
 
 button {
-    background: #2e86de;
-    border: 2px solid #2e86de;
+    background: #2129fa;
+    border: 2px solid #2129fa;
     padding: 10px 40px;
     color: #fff;
     border-radius: 50px;
@@ -54,7 +54,7 @@ button {
 }
 
 .text-reset-password a, .text-sign-up a {
-    color: #2e86de;
+    color: #2129fa;
     text-decoration: none;
 }
 

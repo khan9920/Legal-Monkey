@@ -1,5 +1,5 @@
 footer {
-    padding: 50px 0;
+    padding: 15px 0;
     background-color: #fbfbfb;
 }
 
@@ -10,6 +10,12 @@ footer {
 ul {
     padding: 0;
     list-style: none;
+    margin: 0;
+}
+
+ul li {
+    display: inline-block;
+    margin-right: 20px;
 }
 
 ul li a {
@@ -21,4 +27,24 @@ ul li a {
 .logo {
     width: 170px;
     margin-bottom: 20px;
+}
+
+.copy {
+    margin: 0;
+    font-size: 13px;
+    color: #717171;
+    display: inline-block;
+}
+
+.contact {
+    float: right;
+}
+
+.contact ul li {
+    font-size: 13px;
+    color: #717171;
+}
+
+.contact ul li b {
+    font-size: 13px;
 }
