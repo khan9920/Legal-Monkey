@@ -30,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     if (token == '' || token == null) {
       this.isAuthenticated = false;
     } else {
+      this.isAuthenticated = true;
       this.meService.setLoadingStatus(true);
       this.meService.getMe();
       this.meSub = this.meService.getMeUpdated().subscribe(result => {

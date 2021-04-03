@@ -1,6 +1,7 @@
 h2 {
     font-weight: 600;
     display: inline-block;
+    margin-bottom: 25px;
 }
 
 .btn-close {
@@ -46,7 +47,7 @@ button {
     color: #fff;
     border-radius: 50px;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
 }
 
 .text-reset-password, .text-sign-up {
