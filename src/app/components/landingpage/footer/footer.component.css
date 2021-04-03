@@ -1,6 +1,7 @@
 footer {
     padding: 15px 0;
-    background-color: #fbfbfb;
+    /* background-color: #fbfbfb; */
+    background-color: #2129fa;
 }
 
 .title {
@@ -19,7 +20,8 @@ ul li {
 }
 
 ul li a {
-    color: #717171;
+    /* color: #717171; */
+    color: #fff;
     font-weight: 400;
     font-size: 14px;
 }
@@ -32,7 +34,8 @@ ul li a {
 .copy {
     margin: 0;
     font-size: 13px;
-    color: #717171;
+    /* color: #717171; */
+    color: #fff;
     display: inline-block;
 }
 
@@ -42,7 +45,8 @@ ul li a {
 
 .contact ul li {
     font-size: 13px;
-    color: #717171;
+    /* color: #717171; */
+    color: #fff;
 }
 
 .contact ul li b {
