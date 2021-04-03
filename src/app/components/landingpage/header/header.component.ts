@@ -27,19 +27,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     const token = localStorage.getItem('token');
 
-    if (token !== '' && token !== null) {
-      this.isAuthenticated = true;
+    if (token == '' || token == null) {
+      this.isAuthenticated = false;
+    } else {
+      this.meService.setLoadingStatus(true);
+      this.meService.getMe();
+      this.meSub = this.meService.getMeUpdated().subscribe(result => {
+        this.me = result;
+      });
+
+      this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
+        this.isAuthenticated = result;
+      });
     }
-
-    this.meService.setLoadingStatus(true);
-    this.meService.getMe();
-    this.meSub = this.meService.getMeUpdated().subscribe(result => {
-      this.me = result;
-    });
-
-    this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
-      this.isAuthenticated = result;
-    });
   }
 
   onSignup(): void {
