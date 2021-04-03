@@ -106,7 +106,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meSub.unsubscribe();
+    // this.meSub.unsubscribe();
     this.cardsSub.unsubscribe();
   }
 }

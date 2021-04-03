@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-12" *ngIf="isEnterTextClicked">
                 <h4 class="title">Enter your text here</h4>
-                <p class="sub-title">Or click <a (click)="onUploadDocumentClick()">here to upload a document or a
+                <p class="sub-title">Or click <a (click)="onUploadDocumentClick()">here to upload your document or
                         picture</a></p>
                 <div class="textarea-container">
                     <textarea name="foo" rows="15" [disabled]="isLoading" [(ngModel)]="text"
@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="col-md-12" *ngIf="isUploadDocumentClicked">
-                <h4 class="title">Upload your document or a picture</h4>
+                <h4 class="title">UPLOAD YOUR DOCUMENT OR PICTURE</h4>
                 <p class="sub-title">Or click <a (click)="onEnterTextClick()">here to enter your text</a></p>
                 <div class="wrapper-upload-files">
 
