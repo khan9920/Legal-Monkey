@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MeService } from 'src/app/services/me.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-card',
@@ -14,9 +15,16 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddCardComponent implements OnInit {
 
-  constructor(private meService: MeService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  public title: string = '';
+
+  constructor(private meService: MeService, private route: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    if (this.route.url === '/account') {
+      this.title = 'Add new card'
+    } else {
+      this.title = 'Free trial is over!'
+    }
 
     // const cardServices = CardService;
     const scope = this;
