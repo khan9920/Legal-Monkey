@@ -1,6 +1,8 @@
 h2 {
     font-weight: 600;
     display: inline-block;
+    width: 95%;
+    margin-bottom: 35px;
 }
 
 .btn-close {
