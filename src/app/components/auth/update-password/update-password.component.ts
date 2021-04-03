@@ -51,7 +51,7 @@ export class UpdatePasswordComponent implements OnInit {
         this.isLoading = false;
         this.dialog.closeAll();
         this.dialog.open(LoginComponent, {
-          width: '400px',
+          width: '450px',
           maxHeight: '90vh'
         });
         this.snackBar.open('Password succefully reset, please login with new credentials', 'Dismiss', {
@@ -98,7 +98,7 @@ export class UpdatePasswordComponent implements OnInit {
   onLogin(): void {
     this.dialog.closeAll();
     this.dialog.open(LoginComponent, {
-      width: '400px',
+      width: '450px',
       maxHeight: '90vh'
     });
   }

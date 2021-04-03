@@ -59,7 +59,7 @@ export class ResetPasswordComponent implements OnInit {
   onLogin(): void {
     this.dialog.closeAll();
     this.dialog.open(LoginComponent, {
-      width: '400px',
+      width: '450px',
       maxHeight: '90vh'
     });
   }
