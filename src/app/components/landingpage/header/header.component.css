@@ -96,3 +96,18 @@ a.mat-menu-item:hover {
     display: inline-block;
     margin-right: 10px;
 }
+
+@media only screen and (max-device-width: 480px) {
+    .logo {
+        width: 100%;
+    }
+
+    ul {
+        margin: 0 !important;
+        margin-top: 5px !important;
+    }
+
+    li {
+        margin: 0 !important;
+    }
+}
