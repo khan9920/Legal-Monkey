@@ -44,7 +44,7 @@ export class EnterTitleComponent implements OnInit {
           this.dialog.closeAll();
           localStorage.setItem('extraction', JSON.stringify(data));
           this.mixpanelService.init();
-          this.mixpanelService.track('Account converted', {
+          this.mixpanelService.track('Document Converted', {
             verified: true
           });
           this.router.navigate(['/editor']);

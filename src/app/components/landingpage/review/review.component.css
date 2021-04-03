@@ -20,7 +20,7 @@ h2 {
     right: -15px;
     font-weight: 600;
     cursor: pointer;
-    color: #2e86de;
+    color: #2129fa;
 }
 
 .sub-title {
@@ -40,8 +40,8 @@ input {
 }
 
 button {
-    background: #2e86de;
-    border: 2px solid #2e86de;
+    background: #2129fa;
+    border: 2px solid #2129fa;
     padding: 10px 40px;
     color: #fff;
     border-radius: 50px;
@@ -50,7 +50,7 @@ button {
 
 .text-price {
     font-weight: 600;
-    color: #2e86de;
+    color: #2129fa;
 }
 
 mat-spinner {
@@ -71,7 +71,7 @@ mat-spinner {
 }
 
 ::ng-deep .spinner-loader circle, .spinner-loader circle {
-    stroke: #2e86de;
+    stroke: #2129fa;
 }
 
 .col-loader {
@@ -107,12 +107,12 @@ ul li:hover {
 }
 
 ul li:hover p {
-    color: #2e86de;
+    color: #2129fa;
     font-weight: 600;
 }
 
 .txt-selected {
-    color: #2e86de !important;
+    color: #2129fa !important;
     font-weight: 600;
 }
 

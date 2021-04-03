@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
+
+import { MatDialog } from '@angular/material/dialog';
+
 import { ResetPasswordComponent } from '../reset-password/reset-password.component';
 import { SignupComponent } from '../signup/signup.component';
 

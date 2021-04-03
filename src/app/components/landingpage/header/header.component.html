@@ -1,29 +1,31 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <img src="/assets/images/logo.png" class="logo" alt="Legal Hamsster Logo" (click)="onHome()">
-            <h3 class="title">LEGAL HAMSTER</h3>
-        </div>
-        <div class="col-md-8">
-            <ul>
-                <!-- <li><a href="#">HOME</a></li>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-4">
+                <img src="/assets/images/logo.png" class="logo" alt="Legal Hamsster Logo" (click)="onHome()">
+                <!-- <h3 class="title">LEGAL HAMSTER</h3> -->
+            </div>
+            <div class="col-6 col-md-8">
+                <ul>
+                    <!-- <li><a href="#">HOME</a></li>
                 <li><a href="#">ACCOUNT</a></li>
                 <li><a href="#">PRICING</a></li>
                 <li><a href="#">ABOUT US</a></li> -->
-                <li *ngIf="!isAuthenticated">
-                    <button (click)="onSignup()">SIGN UP</button>
-                </li>
-                <li *ngIf="isAuthenticated">
-                    <p *ngIf="me != '' " class="txt-me">{{ me.firstName }} {{ me.lastName }}</p>
-                    <img src="/assets/icons/icon-menu.svg" alt="Menu Icon" class="icon-profile" mat-button
-                        [matMenuTriggerFor]="beforeMenu">
-                    <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
-                        <a mat-menu-item routerLink='/extracts'>My Extracts</a>
-                        <a mat-menu-item routerLink='/account'>Account</a>
-                        <a mat-menu-item (click)="onLogout()">Log out</a>
-                    </mat-menu>
-                </li>
-            </ul>
+                    <li *ngIf="!isAuthenticated">
+                        <button (click)="onSignup()">SIGN UP</button>
+                    </li>
+                    <li *ngIf="isAuthenticated">
+                        <p *ngIf="me != '' " class="txt-me">{{ me.firstName }} {{ me.lastName }}</p>
+                        <img src="/assets/icons/icon-menu-white.svg" alt="Menu Icon" class="icon-profile" mat-button
+                            [matMenuTriggerFor]="beforeMenu">
+                        <mat-menu #beforeMenu="matMenu" xPosition="before" class="menu">
+                            <a mat-menu-item routerLink='/extracts'>My Extracts</a>
+                            <a mat-menu-item routerLink='/account'>Account</a>
+                            <a mat-menu-item (click)="onLogout()">Log out</a>
+                        </mat-menu>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

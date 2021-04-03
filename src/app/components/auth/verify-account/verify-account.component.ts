@@ -35,10 +35,6 @@ export class VerifyAccountComponent implements OnInit {
       this.authService.verifyAccount(data).subscribe(result => {
         this.isLoading = false;
         if (result.success) {
-          this.dialog.open(AddCardComponent, {
-            width: '400px',
-            maxHeight: '90vh'
-          });
           this.mixpanelService.init();
           this.mixpanelService.track('Account verification', {
             verified: true

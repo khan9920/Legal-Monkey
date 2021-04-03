@@ -13,7 +13,7 @@
 }
 
 .sub-title a {
-    color:#2e86de;
+    color:#2129fa;
     font-weight: 600;
     text-decoration: underline;
 }
@@ -53,8 +53,8 @@ textarea:focus {
 }
 
 button {
-    background: #2e86de;
-    border: 2px solid #2e86de;
+    background: #2129fa;
+    border: 2px solid #2129fa;
     padding: 10px 30px;
     color: #fff;
     border-radius: 50px;
@@ -72,7 +72,7 @@ mat-spinner {
 }
 
 .wrapper-upload-files {
-    border: 2px solid #2e86de;
+    border: 2px solid #2129fa;
     border-style: dashed;
     border-radius: 5px;
     padding: 40px;
@@ -93,7 +93,7 @@ mat-spinner {
     position: relative;
     top: 1px;
     font-weight: 600;
-    color: #2e86de;
+    color: #2129fa;
 }
 
 .link-close:hover {

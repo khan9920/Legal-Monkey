@@ -1,12 +1,15 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
-import { LoginComponent } from '../../auth/login/login.component';
+
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { SignupComponent } from '../../auth/signup/signup.component';
 import { ShowPriceComponent } from '../show-price/show-price.component';
 import { EnterTitleComponent } from './enter-title/enter-title.component';
 
@@ -84,8 +87,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   onSimplify() {
     const token = localStorage.getItem('token');
     if (token == '' || token == null) {
-      this.dialog.open(LoginComponent, {
-        width: '400px',
+      this.dialog.open(SignupComponent, {
+        width: '500px',
         maxHeight: '90vh'
       });
       return;

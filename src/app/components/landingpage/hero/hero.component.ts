@@ -31,7 +31,7 @@ export class HeroComponent implements OnInit {
           navigation: true,
           pagination: false,
           autoplay: true,
-          spaceBetween: 3
+          spaceBetween: 10,
         };
       }
     }, error => {
