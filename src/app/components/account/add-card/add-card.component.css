@@ -86,3 +86,7 @@ mat-spinner {
 .form-group input {
     height: 100%;
 }
+
+.txt-condition {
+    font-style: italic;
+}
