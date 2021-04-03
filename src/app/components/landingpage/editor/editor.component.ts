@@ -28,7 +28,7 @@ export class EditorComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
 
-  public feedbackButtonVisible: boolean = true;
+  public feedbackButtonVisible: boolean = false;
   private feedbackButtonVisibleSub: Subscription;
 
   constructor(private simplifyService: SimplifyService, private reviewsService: ReviewsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }

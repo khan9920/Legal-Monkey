@@ -74,3 +74,7 @@ mat-spinner {
     bottom: 10px;
     transform: translate(635%, -66%);
 }
+
+h4 {
+    margin-bottom: 30px;
+}
