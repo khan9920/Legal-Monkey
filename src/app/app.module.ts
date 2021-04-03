@@ -44,6 +44,7 @@ import { ViewConversionComponent } from './components/conversions/view-conversio
 import { ShowPriceComponent } from './components/landingpage/show-price/show-price.component';
 import { ReviewComponent } from './components/landingpage/review/review.component';
 import { TncComponent } from './components/tnc/tnc.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -75,6 +76,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ShowPriceComponent,
     ReviewComponent,
     TncComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule,

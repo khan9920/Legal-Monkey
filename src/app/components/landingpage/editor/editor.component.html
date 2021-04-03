@@ -1,26 +1,30 @@
 <app-header></app-header>
 
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <p>Hightlight the content you want to simplify using pop up tool and click on the Simplify button to see the
-                results.</p>
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p>Hightlight the content you want to simplify using pop up tool and click on the Simplify button to see
+                    the
+                    results.</p>
 
-            <div class="wrapper-editor">
-                <div class="editor" #editor [innerHTML]="extraction.text" [ngClass]="{ 'editor-loading': isLoading}">
+                <div class="wrapper-editor">
+                    <div class="editor" #editor [innerHTML]="extraction.text"
+                        [ngClass]="{ 'editor-loading': isLoading}">
+                    </div>
+                    <button class="btn-simplify" type="button" (click)="onSimplify()" *ngIf="!isLoading">
+                        Simplify
+                    </button>
+
+
+                    <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">Feedback</button>
+
+                    <button class="btn-simplify-is-loading" type="button" (click)="onSimplify()" *ngIf="isLoading">
+                        <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                        Simplify
+                    </button>
                 </div>
-                <button class="btn-simplify" type="button" (click)="onSimplify()" *ngIf="!isLoading">
-                    Simplify
-                </button>
-
-
-                <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">Feedback</button>
-
-                <button class="btn-simplify-is-loading" type="button" (click)="onSimplify()" *ngIf="isLoading">
-                    <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
-                    Simplify
-                </button>
             </div>
         </div>
     </div>

@@ -34,8 +34,6 @@ export class ConversionsComponent implements OnInit, OnDestroy {
     this.extractsService.getExtracts().subscribe(result => {
       if (result.success) {
         this.extracts = result.data;
-        console.log(this.extracts);
-
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
