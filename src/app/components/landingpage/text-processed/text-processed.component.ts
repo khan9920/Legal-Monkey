@@ -26,6 +26,8 @@ export class TextProcessedComponent implements OnInit, OnDestroy {
 
     const convertedText = JSON.parse(localStorage.getItem('convertedText'));
     this.conversions = convertedText.conversions;
+    console.log(this.conversions);
+
 
     if (convertedText.review == true) {
       this.feedbackButtonVisible = false;

@@ -30,6 +30,9 @@ export class ShowPriceComponent implements OnInit {
       this.consersionsService.calculatePrice(data).subscribe(result => {
         if (result.success) {
           this.isLoading = false;
+
+          // this.dialog.closeAll();
+
           if (result.data.price === 0) {
             this.onContinue('text');
           }

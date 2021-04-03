@@ -6,12 +6,12 @@
     </div>
     <div class="row" *ngIf="!isLoading">
         <div class="col-md-12">
-            <h2>Review & Feedback</h2>
+            <h2>How was your experience?</h2>
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
-        <div class="col-md-12">
+        <!-- <div class="col-md-12">
             <p>How was your experience?</p>
-        </div>
+        </div> -->
 
         <div class="col-md-12">
             <ul>
@@ -39,7 +39,7 @@
         </div>
 
         <div class="col-md-12">
-            <textarea name="review" id="" cols="30" rows="5" placeholder="Please enter type your feedback here"
+            <textarea name="review" id="" cols="30" rows="5" placeholder="This product was amazing!"
                 [ngClass]="{ 'invalid-input': !validation.review }" [(ngModel)]="review"></textarea>
         </div>
 
