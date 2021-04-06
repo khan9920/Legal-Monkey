@@ -5,8 +5,16 @@
                 <h4>Your simplified clause</h4>
                 <div class="textarea-container">
                     <div class="wrapper-simiplified" *ngFor="let conversion of conversions">
+                        <p class="sub-title">What's written: </p>
                         <p class="input">{{ conversion.input }}</p>
-                        <p class="output" *ngFor="let output of conversion.outputs" [innerHTML]="output"></p>
+
+                        <p class="sub-title">What it means: </p>
+                        <div class="output" *ngFor="let output of conversion.outputs">
+                            <div class="wrapper">
+                                <p class="txt-suggestion">Suggestion : </p>
+                                <p class="output" [innerHTML]="output"></p>
+                            </div>
+                        </div>
                     </div>
                     <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">Feedback</button>
                     <button (click)="onSimplify()">Simplify</button>
