@@ -73,9 +73,9 @@ export class VerifyAccountComponent implements OnInit {
 
   onClose() {
     this.dialog.closeAll();
-    this.dialog.open(AddCardComponent, {
-      width: '400px',
-      maxHeight: '90vh'
-    });
+    // this.dialog.open(AddCardComponent, {
+    //   width: '400px',
+    //   maxHeight: '90vh'
+    // });
   }
 }

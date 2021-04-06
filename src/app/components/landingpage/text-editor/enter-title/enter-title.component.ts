@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { VerifyAccountComponent } from 'src/app/components/auth/verify-account/verify-account.component';
 import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 
@@ -51,9 +52,19 @@ export class EnterTitleComponent implements OnInit {
         }
       }, error => {
         this.isLoading = false;
-        this.snackBar.open(error.error.data, 'Dismiss', {
-          duration: 3000
-        });
+        if (error.error.verified == false) {
+          this.dialog.open(VerifyAccountComponent, {
+            width: '400px',
+            maxHeight: '90vh'
+          });
+          this.snackBar.open('Please verify your account', 'Dismiss', {
+            duration: 3000
+          });
+        } else {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        }
       });
     }
   }
