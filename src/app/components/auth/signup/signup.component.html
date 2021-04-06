@@ -23,10 +23,10 @@
         <div class="col-md-12">
             <label>Mobile</label>
 
-            <ngx-intl-tel-input [preferredCountries]="['gb']" [enableAutoCountrySelect]="true"
+            <ngx-intl-tel-input [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="true"
                 [enablePlaceholder]="true" [searchCountryFlag]="true"
                 [searchCountryField]="[SearchCountryField.Iso2, SearchCountryField.Name]" [selectFirstCountry]="false"
-                [selectedCountryISO]="CountryISO.India" [maxLength]="15" [tooltipField]="TooltipLabel.Name"
+                [selectedCountryISO]="CountryISO.UnitedStates" [maxLength]="15" [tooltipField]="TooltipLabel.Name"
                 [phoneValidation]="true" [separateDialCode]="separateDialCode"
                 [numberFormat]="PhoneNumberFormat.National" name="phone" [(ngModel)]="user.mobile">
             </ngx-intl-tel-input>
