@@ -143,7 +143,7 @@ export class ShowPriceComponent implements OnInit {
         text: this.data.text
       }
 
-      this.simplifyService.save(this.data._id, this.data.text);
+      this.simplifyService.save(this.data._id, this.data.text, this.data.review);
       this.simplifyService.simplifyDocument(data);
 
       this.dialog.closeAll();
