@@ -48,7 +48,7 @@ export class SimplifyService {
       if (result.success) {
         this.setEditorStatus(false);
         this.documentsUpdated.next(result.data);
-        this.save(result.data._id, result.data.text, result.data.review);
+        this.save(result.data._id, result.data.text);
       }
     }, error => {
       this.setEditorStatus(false);
@@ -66,11 +66,10 @@ export class SimplifyService {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/price`, data);
   }
 
-  public save(ID: string, Text: string, Review: string) {
+  public save(ID: string, Text: string) {
     const data = {
       _id: ID,
-      text: Text,
-      review: Review
+      text: Text
     }
 
     localStorage.setItem('extraction', JSON.stringify(data));
