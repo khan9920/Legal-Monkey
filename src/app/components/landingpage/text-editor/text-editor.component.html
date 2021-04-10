@@ -10,7 +10,7 @@
                         placeholder="Your text..."></textarea>
                     <button (click)="onSimplify()">
                         <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
-                        Simplify
+                        SIMPLY
                     </button>
                 </div>
             </div>
@@ -27,13 +27,12 @@
                     </div>
 
                     <button class="button-upload-image" type="button" *ngIf="fileName == '' "
-                        (click)="filesButton.click()">Select
-                        file</button>
+                        (click)="filesButton.click()">SELECT FILE</button>
                     <input hidden type="file" name="files" (change)="onSelectFiles($event)" #filesButton>
 
                     <button class="button-upload-image" type="button" *ngIf="fileName !== '' " (click)="onUpload()">
                         <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
-                        Upload
+                        UPLOAD
                     </button>
                 </div>
             </div>
