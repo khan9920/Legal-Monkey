@@ -4,26 +4,23 @@
             <h2>Update profile</h2>
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
-        <div class="col-md-12 col-icon">
-            <img src="/assets/images/logo.png" alt="Legal Monkey profile icon">
-        </div>
         <div class="col-md-6">
-            <label>First name *</label>
+            <label>First name</label>
             <input type="text" placeholder="John" [ngClass]="{ 'invalid-input': !validation.firstName }"
                 [disabled]="isLoading" [(ngModel)]="user.firstName">
         </div>
         <div class="col-md-6">
-            <label>Last name *</label>
+            <label>Last name</label>
             <input type="text" placeholder="Watson" [ngClass]="{ 'invalid-input': !validation.lastName} "
                 [disabled]="isLoading" [(ngModel)]="user.lastName">
         </div>
         <div class=" col-md-12">
-            <label>Email *</label>
+            <label>Email</label>
             <input type="email" placeholder="john@example.com" [ngClass]="{ 'invalid-input': !validation.email}"
                 [disabled]="isLoading" [(ngModel)]="user.email">
         </div>
         <div class="col-md-12">
-            <label>Mobile *</label>
+            <label>Mobile</label>
 
             <ngx-intl-tel-input [preferredCountries]="preferredCountries" [enableAutoCountrySelect]="false"
                 [enablePlaceholder]="true" [searchCountryFlag]="true"

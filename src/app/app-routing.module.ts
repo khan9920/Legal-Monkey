@@ -8,6 +8,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { TncComponent } from './components/tnc/tnc.component';
 
 const routes: Routes = [
+  { path: '', component: LandingpageComponent },
   { path: 'home', component: LandingpageComponent },
   { path: 'extracts', component: ConversionsComponent },
   { path: 'account', component: AccountComponent },

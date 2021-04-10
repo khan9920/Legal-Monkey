@@ -99,7 +99,7 @@ export class AuthService {
     localStorage.removeItem('token');
     this.token = null;
     this.isAuthenticated.next(false);
-    this.router.navigate(['/']);
+    this.router.navigate(['/home']);
     this.snackBar.open('See you soon!', 'Dismiss', {
       duration: 3000
     })
