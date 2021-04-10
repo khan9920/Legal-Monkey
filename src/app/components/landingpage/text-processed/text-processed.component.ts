@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Subscription } from 'rxjs';
 
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { ReviewComponent } from '../review/review.component';
@@ -9,11 +10,12 @@ import { ReviewComponent } from '../review/review.component';
   templateUrl: './text-processed.component.html',
   styleUrls: ['./text-processed.component.css']
 })
-export class TextProcessedComponent implements OnInit {
+export class TextProcessedComponent implements OnInit, OnDestroy {
 
   public conversions: [];
 
   public feedbackButtonVisible: boolean = true;
+  private feedbackButtnSub: Subscription;
 
   constructor(private simplifyService: SimplifyService, private dialog: MatDialog) { }
 
@@ -23,12 +25,12 @@ export class TextProcessedComponent implements OnInit {
 
     this.feedbackButtonVisible = convertedText.review;
 
-    if (convertedText.review == true) {
-      this.feedbackButtonVisible = false;
-    }
+    this.feedbackButtnSub = this.simplifyService.getFeedbackButtonVisibility().subscribe(result => {
+      this.feedbackButtonVisible = result;
+    });
   }
 
-  onSimplify() {
+  onGoBack() {
     this.simplifyService.setEditorStatus(true);
   }
 
@@ -38,5 +40,9 @@ export class TextProcessedComponent implements OnInit {
       maxHeight: '90vh',
       data: 'Extract'
     });
+  }
+
+  ngOnDestroy() {
+    this.feedbackButtnSub.unsubscribe();
   }
 }

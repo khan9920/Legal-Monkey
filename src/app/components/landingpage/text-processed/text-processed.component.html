@@ -16,8 +16,9 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">FEEDBACK</button>
-                    <button (click)="onSimplify()">SIMPLIFY</button>
+                    <button class="btn-feedback" (click)="onReview()"
+                        *ngIf="feedbackButtonVisible == true">FEEDBACK</button>
+                    <button (click)="onGoBack()">GO BACK</button>
                 </div>
             </div>
         </div>
