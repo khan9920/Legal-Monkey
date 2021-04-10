@@ -69,7 +69,8 @@
 
                 <div class="row" *ngIf="paymentOptionsClicked">
                     <div class="col-md-12">
-                        <table class="table table-payment-options">
+                        <p *ngIf="cards.length == 0">You have not added any cards</p>
+                        <table class="table table-payment-options" *ngIf="cards.length != 0">
                             <thead>
                                 <tr>
                                     <th>Card</th>
