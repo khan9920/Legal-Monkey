@@ -79,3 +79,8 @@ mat-spinner {
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
 }
+
+.btn-auth-google {
+    background-color: #fff;
+    text-align: justify;
+}

@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
 
-import { SignupComponent } from '../../auth/signup/signup.component';
-
 import { MatDialog } from '@angular/material/dialog'
+
+import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -43,8 +43,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSignup(): void {
-    this.dialog.open(SignupComponent, {
+  onSignin(): void {
+    this.dialog.open(LoginComponent, {
       width: '500px',
       maxHeight: '90vh'
     });

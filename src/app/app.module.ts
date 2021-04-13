@@ -14,6 +14,10 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { EditorComponent } from './components/landingpage/editor/editor.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -85,6 +89,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     BrowserAnimationsModule,
     SwiperModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'legalhamster-dev'),
+    AngularFireAuthModule,
     NgxIntlTelInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,

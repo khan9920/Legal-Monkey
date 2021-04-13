@@ -83,4 +83,20 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.isLaodingSub.unsubscribe();
   }
+
+  onGoogle() {
+    this.authService.GoogleAuth();
+  }
+
+  onFacebook() {
+    this.authService.FacebookAuth();
+  }
+
+  onApple() {
+    this.authService.AppleAuth();
+  }
+
+  onOutlook() {
+    this.authService.OutlookAuth();
+  }
 }

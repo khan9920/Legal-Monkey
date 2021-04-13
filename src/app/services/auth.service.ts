@@ -7,6 +7,9 @@ import { Subject } from 'rxjs';
 import { VerifyAccountComponent } from '../components/auth/verify-account/verify-account.component';
 import { Router } from '@angular/router';
 
+import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
+
 const apiUrl = environment.apiURL;
 
 @Injectable({
@@ -18,7 +21,39 @@ export class AuthService {
   private isLoading = new Subject<boolean>();
   private isAuthenticated = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(public afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+
+  GoogleAuth() {
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
+  }
+
+  FacebookAuth() {
+    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
+  }
+
+  AppleAuth() {
+    return this.AuthLogin(new firebase.auth.OAuthProvider('apple.com'));
+  }
+
+  OutlookAuth() {
+    return this.AuthLogin(new firebase.auth.OAuthProvider('microsoft.com'));
+  }
+
+  // Auth logic to run auth providers
+  AuthLogin(provider) {
+    return this.afAuth.signInWithPopup(provider)
+      .then((result) => {
+        const data = {
+          _id: result.user.uid,
+          name: result.user.displayName,
+          email: result.user.email
+        }
+      }).catch((error) => {
+        this.snackBar.open(error, 'Dismiss', {
+          duration: 3000
+        });
+      });
+  }
 
   public setLoadingStatus(status: boolean) {
     this.isLoading.next(status);
