@@ -6,12 +6,13 @@ export const environment = {
   production: false,
   apiURL: 'https://www.api.legalhamster.com',
   firebaseConfig: {
-    apiKey: "AIzaSyDCBXWIV-qjUMTEHgYwfomIvAx1xFdImFQ",
-    authDomain: "legalhamster-dev.firebaseapp.com",
-    projectId: "legalhamster-dev",
-    storageBucket: "legalhamster-dev.appspot.com",
-    messagingSenderId: "625568000488",
-    appId: "1:625568000488:web:96c2f788894c722d541c5d"
+    apiKey: "AIzaSyATdQfZQZxMWjcBvrxsF7pMekRLKnBvl1Y",
+    authDomain: "legal-hamster.firebaseapp.com",
+    projectId: "legal-hamster",
+    storageBucket: "legal-hamster.appspot.com",
+    messagingSenderId: "440985341792",
+    appId: "1:440985341792:web:229692e5b8c4641e555805",
+    measurementId: "G-T0121TB3P4"
   }
 };
 

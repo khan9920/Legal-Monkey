@@ -45,7 +45,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   onSignin(): void {
     this.dialog.open(LoginComponent, {
-      width: '500px',
+      width: '450px',
       maxHeight: '90vh'
     });
   }

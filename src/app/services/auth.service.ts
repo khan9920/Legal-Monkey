@@ -49,7 +49,7 @@ export class AuthService {
           email: result.user.email
         }
       }).catch((error) => {
-        this.snackBar.open(error, 'Dismiss', {
+        this.snackBar.open(error.message, 'Dismiss', {
           duration: 3000
         });
       });
