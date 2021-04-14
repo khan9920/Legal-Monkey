@@ -25,21 +25,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.getIsAuthenticated();
+
+    this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
+      this.isAuthenticated = result;
+    });
+
+    this.meService.getMe();
+    this.meSub = this.meService.getMeUpdated().subscribe(result => {
+      this.me = result;
+    });
+
     const token = localStorage.getItem('token');
 
     if (token == '' || token == null) {
       this.isAuthenticated = false;
     } else {
       this.isAuthenticated = true;
-      this.meService.setLoadingStatus(true);
-      this.meService.getMe();
-      this.meSub = this.meService.getMeUpdated().subscribe(result => {
-        this.me = result;
-      });
-
-      this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
-        this.isAuthenticated = result;
-      });
     }
   }
 
@@ -59,7 +61,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // this.isAuthenticatedSub.unsubscribe();
+    this.isAuthenticatedSub.unsubscribe();
     // this.meSub.unsubscribe();
   }
 }

@@ -19,7 +19,8 @@ export class AuthService {
 
   private token: string;
   private isLoading = new Subject<boolean>();
-  private isAuthenticated = new Subject<boolean>();
+  private isAuthenticated: boolean = false;
+  private isAuthenticatedUpdated = new Subject<boolean>();
 
   constructor(public afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -44,16 +45,89 @@ export class AuthService {
     return this.afAuth.signInWithPopup(provider)
       .then((result) => {
         const data = {
-          _id: result.user.uid,
+          uid: result.user.uid,
           name: result.user.displayName,
           email: result.user.email
         }
+
+        this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
+          if (result.success) {
+            const user = {
+              firstName: result.data.firstName,
+              lastName: result.data.lastName,
+              email: result.data.email,
+              userType: result.data.userType,
+              createdDate: result.data.createdDate,
+              cards: result.data.cards
+            }
+
+            this.saveAuthData(result.data.token, user);
+            this.token = result.data.token;
+            this.isLoading.next(false);
+            this.isAuthenticatedUpdated.next(true);
+            this.dialog.closeAll();
+
+            this.snackBar.open('Welcome to Legal Hamster!', 'Dismiss', {
+              duration: 3000
+            })
+          }
+        }, error => {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        })
       }).catch((error) => {
         this.snackBar.open(error.message, 'Dismiss', {
           duration: 3000
         });
       });
   }
+
+  public setAuthenticationStatus(status: boolean) {
+    this.isAuthenticatedUpdated.next(status);
+  }
+
+  public getIsAuthenticated() {
+    return this.isAuthenticated;
+  }
+
+  public getAuthenticationStatus() {
+    return this.isAuthenticatedUpdated.asObservable();
+  }
+
+  public getToken() {
+    return this.token;
+  }
+
+  public logout(): void {
+    localStorage.removeItem('token');
+    this.token = null;
+    this.isAuthenticatedUpdated.next(false);
+    this.router.navigate(['/']);
+    this.snackBar.open('See you soon!', 'Dismiss', {
+      duration: 3000
+    });
+  }
+
+  public autoAuth() {
+    const token = localStorage.getItem('token');
+
+    if (token !== '') {
+      this.token = token;
+      this.isAuthenticatedUpdated.next(true);
+      // this.setAuthenticationStatus(true);
+    }
+  }
+
+  private saveAuthData(token: string, user: any): void {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', user);
+  }
+
+
+
+
+
 
   public setLoadingStatus(status: boolean) {
     this.isLoading.next(status);
@@ -63,25 +137,13 @@ export class AuthService {
     return this.isLoading.asObservable();
   }
 
-  public setAuthenticationStatus(status: boolean) {
-    this.isAuthenticated.next(status);
-  }
-
-  public getAuthenticationStatus() {
-    return this.isAuthenticated.asObservable();
-  }
-
-  public getToken() {
-    return this.token;
-  }
-
   public signUp(data: any): void {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
       if (result.success) {
-        this.saveAuthData(result.data.token);
+        this.saveAuthData(result.data.token, result.data.user);
         this.token = result.data.token;
         this.isLoading.next(false);
-        this.isAuthenticated.next(true);
+        this.isAuthenticatedUpdated.next(true);
         this.dialog.closeAll();
         this.dialog.open(VerifyAccountComponent, {
           width: '400px',
@@ -100,9 +162,9 @@ export class AuthService {
   public login(data: any): void {
     this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
       if (result.success) {
-        this.saveAuthData(result.data.token);
+        this.saveAuthData(result.data.token, result.data.user);
         this.token = result.data.token;
-        this.isAuthenticated.next(true);
+        this.isAuthenticatedUpdated.next(true);
         this.isLoading.next(false);
         this.dialog.closeAll();
       }
@@ -128,29 +190,5 @@ export class AuthService {
 
   public resetPassword(data: any) {
     return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
-  }
-
-  public logout(): void {
-    localStorage.removeItem('token');
-    this.token = null;
-    this.isAuthenticated.next(false);
-    this.router.navigate(['/']);
-    this.snackBar.open('See you soon!', 'Dismiss', {
-      duration: 3000
-    })
-  }
-
-  public autoAuth() {
-    const token = localStorage.getItem('token');
-
-    if (token !== '') {
-      this.token = token;
-      this.isAuthenticated.next(true);
-      this.setAuthenticationStatus(true);
-    }
-  }
-
-  private saveAuthData(token: string): void {
-    localStorage.setItem('token', token);
   }
 }
