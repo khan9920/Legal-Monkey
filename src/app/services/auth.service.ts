@@ -4,7 +4,6 @@ import { environment } from './../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { VerifyAccountComponent } from '../components/auth/verify-account/verify-account.component';
 import { Router } from '@angular/router';
 
 import firebase from 'firebase/app';
@@ -60,6 +59,10 @@ export class AuthService {
               createdDate: result.data.createdDate,
               cards: result.data.cards
             }
+            console.log(result);
+            console.log(user);
+
+
 
             this.saveAuthData(result.data.token, user);
             this.token = result.data.token;
@@ -121,13 +124,8 @@ export class AuthService {
 
   private saveAuthData(token: string, user: any): void {
     localStorage.setItem('token', token);
-    localStorage.setItem('user', user);
+    localStorage.setItem('user', JSON.stringify(user));
   }
-
-
-
-
-
 
   public setLoadingStatus(status: boolean) {
     this.isLoading.next(status);
@@ -135,60 +133,5 @@ export class AuthService {
 
   public getLoadingStatus() {
     return this.isLoading.asObservable();
-  }
-
-  public signUp(data: any): void {
-    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
-      if (result.success) {
-        this.saveAuthData(result.data.token, result.data.user);
-        this.token = result.data.token;
-        this.isLoading.next(false);
-        this.isAuthenticatedUpdated.next(true);
-        this.dialog.closeAll();
-        this.dialog.open(VerifyAccountComponent, {
-          width: '400px',
-          maxHeight: '90vh',
-          disableClose: true
-        })
-      }
-    }, error => {
-      this.isLoading.next(false);
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
-  }
-
-  public login(data: any): void {
-    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
-      if (result.success) {
-        this.saveAuthData(result.data.token, result.data.user);
-        this.token = result.data.token;
-        this.isAuthenticatedUpdated.next(true);
-        this.isLoading.next(false);
-        this.dialog.closeAll();
-      }
-    }, error => {
-      this.isLoading.next(false);
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
-  }
-
-  public verifyAccount(data: any) {
-    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, data);
-  }
-
-  public resendVerificationCode() {
-    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, {});
-  }
-
-  public forgotPassword(data: any) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
-  }
-
-  public resetPassword(data: any) {
-    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
   }
 }
