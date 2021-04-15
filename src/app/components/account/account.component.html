@@ -5,9 +5,7 @@
                 <div class="wrapper-left-panel">
                     <h3 class="title">Account</h3>
                     <ul class="list-left-panel-menu">
-                        <li [ngClass]=" { 'is-active': profileClicked } " (click)="onProfile()">My profile</li>
-                        <li [ngClass]=" { 'is-active': paymentOptionsClicked } " (click)="onPaymentOptions()">Payment
-                            options</li>
+                        <li class="is-active">Payment options</li>
                         <li (click)="onBackToHome()">Back to home</li>
                     </ul>
                 </div>
@@ -15,9 +13,8 @@
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="sub-title" *ngIf="profileClicked">My profile</h3>
-                        <h3 class="sub-title" *ngIf="paymentOptionsClicked">Payment options</h3>
-                        <button class="btn-add-payment" *ngIf="paymentOptionsClicked" (click)="onAddCard()">ADD
+                        <h3 class="sub-title">Payment options</h3>
+                        <button class="btn-add-payment" (click)="onAddCard()">ADD
                             CARD</button>
                         <div class="wrapper-profile-info">
                             <p *ngIf="me != '' ">{{ me.firstName }} {{ me.lastName }}</p>
@@ -32,42 +29,7 @@
                     </div>
                 </div>
 
-                <div class="card" *ngIf="profileClicked">
-                    <div class="row">
-                        <div class="col-md-12 col-profile-icon">
-                            <!-- <img class="icon-profile-body" src="/assets/images/logo-footer.png"
-                            alt="Legal Hamster profile icon avatar"> -->
-                        </div>
-                    </div>
-                    <div class="row-profile-info">
-                        <div class="row">
-                            <div class="col-md-6 col-right">
-                                <label>First name</label>
-                                <p>{{ me.firstName }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Last name</label>
-                                <p>{{ me.lastName }}</p>
-                            </div>
-                            <div class="col-md-6 col-right">
-                                <label>Email</label>
-                                <p>{{ me.email }}</p>
-                            </div>
-                            <div class="col-md-6">
-                                <label>Mobile</label>
-                                <p>{{ me.mobile }}</p>
-                            </div>
-                            <div class="col-md-6  col-right">
-                                <button (click)="onUpdateProfile()">UPDATE PROFILE</button>
-                            </div>
-                            <div class="col-md-6">
-                                <button (click)="onChangePassword()">CHANGE PASSWORD</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row" *ngIf="paymentOptionsClicked">
+                <div class="row">
                     <div class="col-md-12">
                         <p *ngIf="cards.length == 0">You have not added any cards</p>
                         <table class="table table-payment-options" *ngIf="cards.length != 0">

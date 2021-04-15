@@ -20,6 +20,8 @@ export class AuthService {
   private isLoading = new Subject<boolean>();
   private isAuthenticated: boolean = false;
   private isAuthenticatedUpdated = new Subject<boolean>();
+  private authMe: any;
+  private authMeSub = new Subject<any>();
 
   constructor(public afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
@@ -60,6 +62,8 @@ export class AuthService {
               cards: result.data.cards
             }
 
+            this.authMe = user;
+            this.authMeSub.next(this.authMe);
             this.saveAuthData(result.data.token, user);
             this.token = result.data.token;
             this.isLoading.next(false);
@@ -80,6 +84,10 @@ export class AuthService {
           duration: 3000
         });
       });
+  }
+
+  public getAuthMeUpdated() {
+    return this.authMeSub.asObservable();
   }
 
   public setAuthenticationStatus(status: boolean) {
