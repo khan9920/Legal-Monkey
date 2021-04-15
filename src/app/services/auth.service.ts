@@ -59,10 +59,6 @@ export class AuthService {
               createdDate: result.data.createdDate,
               cards: result.data.cards
             }
-            console.log(result);
-            console.log(user);
-
-
 
             this.saveAuthData(result.data.token, user);
             this.token = result.data.token;

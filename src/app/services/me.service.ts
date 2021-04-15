@@ -39,9 +39,9 @@ export class MeService {
         this.isLoading.next(false);
       }
     }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
+      // this.snackBar.open(error.error.data, 'Dismiss', {
+      //   duration: 3000
+      // });
     });
   }
 

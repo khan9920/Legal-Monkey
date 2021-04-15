@@ -32,6 +32,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
 
     this.meService.getMe();
+
     this.meSub = this.meService.getMeUpdated().subscribe(result => {
       this.me = result;
     });
