@@ -4,8 +4,10 @@ import { environment } from './../../environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
-import { VerifyAccountComponent } from '../components/auth/verify-account/verify-account.component';
 import { Router } from '@angular/router';
+
+import firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 const apiUrl = environment.apiURL;
 
@@ -16,93 +18,102 @@ export class AuthService {
 
   private token: string;
   private isLoading = new Subject<boolean>();
-  private isAuthenticated = new Subject<boolean>();
+  private isAuthenticated: boolean = false;
+  private isAuthenticatedUpdated = new Subject<boolean>();
+  private authMe: any;
+  private authMeSub = new Subject<any>();
 
-  constructor(private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(public afAuth: AngularFireAuth, private http: HttpClient, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
-  public setLoadingStatus(status: boolean) {
-    this.isLoading.next(status);
+  GoogleAuth() {
+    return this.AuthLogin(new firebase.auth.GoogleAuthProvider());
   }
 
-  public getLoadingStatus() {
-    return this.isLoading.asObservable();
+  FacebookAuth() {
+    return this.AuthLogin(new firebase.auth.FacebookAuthProvider());
+  }
+
+  AppleAuth() {
+    return this.AuthLogin(new firebase.auth.OAuthProvider('apple.com'));
+  }
+
+  OutlookAuth() {
+    return this.AuthLogin(new firebase.auth.OAuthProvider('microsoft.com'));
+  }
+
+  // Auth logic to run auth providers
+  AuthLogin(provider) {
+    return this.afAuth.signInWithPopup(provider)
+      .then((result) => {
+        const data = {
+          uid: result.user.uid,
+          name: result.user.displayName,
+          email: result.user.email
+        }
+
+        this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
+          if (result.success) {
+            const user = {
+              firstName: result.data.firstName,
+              lastName: result.data.lastName,
+              email: result.data.email,
+              userType: result.data.userType,
+              createdDate: result.data.createdDate,
+              cards: result.data.cards
+            }
+
+            this.authMe = user;
+            this.authMeSub.next(this.authMe);
+            this.saveAuthData(result.data.token, user);
+            this.token = result.data.token;
+            this.isLoading.next(false);
+            this.isAuthenticatedUpdated.next(true);
+            this.dialog.closeAll();
+
+            this.snackBar.open('Welcome to Legal Hamster!', 'Dismiss', {
+              duration: 3000
+            })
+          }
+        }, error => {
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        })
+      }).catch((error) => {
+        this.snackBar.open(error.message, 'Dismiss', {
+          duration: 3000
+        });
+      });
+  }
+
+  public getAuthMeUpdated() {
+    return this.authMeSub.asObservable();
   }
 
   public setAuthenticationStatus(status: boolean) {
-    this.isAuthenticated.next(status);
+    this.isAuthenticatedUpdated.next(status);
+  }
+
+  public getIsAuthenticated() {
+    return this.isAuthenticated;
   }
 
   public getAuthenticationStatus() {
-    return this.isAuthenticated.asObservable();
+    return this.isAuthenticatedUpdated.asObservable();
   }
 
   public getToken() {
     return this.token;
   }
 
-  public signUp(data: any): void {
-    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
-      if (result.success) {
-        this.saveAuthData(result.data.token);
-        this.token = result.data.token;
-        this.isLoading.next(false);
-        this.isAuthenticated.next(true);
-        this.dialog.closeAll();
-        this.dialog.open(VerifyAccountComponent, {
-          width: '400px',
-          maxHeight: '90vh',
-          disableClose: true
-        })
-      }
-    }, error => {
-      this.isLoading.next(false);
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
-  }
-
-  public login(data: any): void {
-    this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/login`, data).subscribe(result => {
-      if (result.success) {
-        this.saveAuthData(result.data.token);
-        this.token = result.data.token;
-        this.isAuthenticated.next(true);
-        this.isLoading.next(false);
-        this.dialog.closeAll();
-      }
-    }, error => {
-      this.isLoading.next(false);
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
-    });
-  }
-
-  public verifyAccount(data: any) {
-    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, data);
-  }
-
-  public resendVerificationCode() {
-    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/verify`, {});
-  }
-
-  public forgotPassword(data: any) {
-    return this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
-  }
-
-  public resetPassword(data: any) {
-    return this.http.put<{ success: boolean, data: any }>(`${apiUrl}/users/passwords`, data);
-  }
-
   public logout(): void {
     localStorage.removeItem('token');
     this.token = null;
-    this.isAuthenticated.next(false);
+    this.isAuthenticatedUpdated.next(false);
     this.router.navigate(['/']);
     this.snackBar.open('See you soon!', 'Dismiss', {
       duration: 3000
-    })
+    });
   }
 
   public autoAuth() {
@@ -110,12 +121,21 @@ export class AuthService {
 
     if (token !== '') {
       this.token = token;
-      this.isAuthenticated.next(true);
-      this.setAuthenticationStatus(true);
+      this.isAuthenticatedUpdated.next(true);
+      // this.setAuthenticationStatus(true);
     }
   }
 
-  private saveAuthData(token: string): void {
+  private saveAuthData(token: string, user: any): void {
     localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  public setLoadingStatus(status: boolean) {
+    this.isLoading.next(status);
+  }
+
+  public getLoadingStatus() {
+    return this.isLoading.asObservable();
   }
 }

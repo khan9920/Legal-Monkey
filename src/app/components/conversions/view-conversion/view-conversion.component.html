@@ -5,14 +5,16 @@
         </div>
         <div class="col-md-12">
             <div class="wrapper-conversion" *ngFor="let conversion of extract.conversions">
-                <!-- <p class="title">What's written:</p> -->
+                <p class="title">What's written:</p>
                 <p class="input">"{{ conversion.input }}"</p>
 
-                <!-- <p class="title">What it means:</p> -->
-                <p class="output" *ngFor="let output of conversion.outputs">
-                    <b>Suggestion :</b>
-                    {{ output }}
-                </p>
+                <p class="title">What it means:</p>
+                <div class="output" *ngFor="let output of conversion.outputs">
+                    <div class="wrapper">
+                        <p class="txt-suggestion">Suggestion</p>
+                        <p class="output" [innerHTML]="output"></p>
+                    </div>
+                </div>
             </div>
             <div class="wrapper-details">
                 <p class="date">Converted on: <span>23-05-2020</span></p>

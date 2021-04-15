@@ -1,9 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { SimplifyService } from 'src/app/services/simplify.service';
+import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
+
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
-import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
-import { SimplifyService } from 'src/app/services/simplify.service';
 
 @Component({
   selector: 'app-enter-title',

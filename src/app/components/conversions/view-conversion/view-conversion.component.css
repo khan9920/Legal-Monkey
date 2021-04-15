@@ -24,19 +24,23 @@ h4 {
 }
 
 .title {
-    margin-bottom: 0;
+    margin-bottom: 10px;
 }
 
 .input {
     font-style: italic;
     font-size: 18px;
     font-weight: 300;
+    margin-bottom: 30px;
 }
 
 .output {
+    margin-bottom: 15px;
     color: #226294;
-    margin: 10px 0;
+    font-weight: 500;
+    display: block;
 }
+
 
 .date, .cost {
     display: inline-block;
@@ -48,4 +52,11 @@ h4 {
 
 .cost {
     float: right;
+}
+
+.txt-suggestion {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #2129FA;
 }

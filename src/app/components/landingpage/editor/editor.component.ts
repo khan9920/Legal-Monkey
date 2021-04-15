@@ -20,7 +20,8 @@ export class EditorComponent implements OnInit, OnDestroy {
 
   public extraction: {
     _id: string,
-    text: string
+    text: string,
+    review: boolean
   };
 
   public extractionSub: Subscription;
@@ -28,15 +29,15 @@ export class EditorComponent implements OnInit, OnDestroy {
   public isLoading: boolean = false;
   public isLoadingSub: Subscription;
 
-  public feedbackButtonVisible: boolean = true;
+  public feedbackButtonVisible: boolean = false;
   private feedbackButtonVisibleSub: Subscription;
 
-  constructor(private simplifyService: SimplifyService, private reviewsService: ReviewsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.extraction = JSON.parse(localStorage.getItem('extraction'));
 
-    this.feedbackButtonVisibleSub = this.reviewsService.getFeedbackButtonVisibility().subscribe(result => {
+    this.feedbackButtonVisibleSub = this.simplifyService.getFeedbackButtonVisibility().subscribe(result => {
       this.feedbackButtonVisible = result;
     });
 
@@ -94,6 +95,7 @@ export class EditorComponent implements OnInit, OnDestroy {
       data: {
         _id: this.extraction._id,
         text: this.editor.nativeElement.innerHTML,
+        review: this.extraction.review || false,
         type: 'document'
       }
     });

@@ -1,6 +1,8 @@
 h2 {
     font-weight: 600;
     display: inline-block;
+    width: 95%;
+    margin-bottom: 20px;
 }
 
 .btn-close {
@@ -33,7 +35,7 @@ label {
 
 input {
     width: 100%;
-    border: 2px solid #2f86de;
+    border: 2px solid #2129fa;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
@@ -46,7 +48,6 @@ button {
     color: #fff;
     border-radius: 50px;
     width: 100%;
-    margin-bottom: 40px;
 }
 
 .invalid-input {

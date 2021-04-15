@@ -9,9 +9,9 @@ import { SimplifyService } from 'src/app/services/simplify.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { SignupComponent } from '../../auth/signup/signup.component';
 import { ShowPriceComponent } from '../show-price/show-price.component';
 import { EnterTitleComponent } from './enter-title/enter-title.component';
+import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
   selector: 'app-text-editor',
@@ -87,8 +87,8 @@ export class TextEditorComponent implements OnInit, OnDestroy {
   onSimplify() {
     const token = localStorage.getItem('token');
     if (token == '' || token == null) {
-      this.dialog.open(SignupComponent, {
-        width: '500px',
+      this.dialog.open(LoginComponent, {
+        width: '450',
         maxHeight: '90vh'
       });
       return;

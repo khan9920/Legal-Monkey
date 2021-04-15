@@ -1,11 +1,15 @@
-declare var $: any;
-declare var WebxpayTokenizeInit: any;
-import { get } from 'scriptjs';
-
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { MatDialog } from '@angular/material/dialog';
 import { MeService } from 'src/app/services/me.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 'ngx-intl-tel-input';
+
+declare var $: any;
+declare var WebxpayTokenizeInit: any;
+import { get } from 'scriptjs';
 
 @Component({
   selector: 'app-add-card',
@@ -14,15 +18,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AddCardComponent implements OnInit {
 
-  constructor(private meService: MeService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  public title: string = '';
+  public mobile: string = '';
+
+  separateDialCode = false;
+  SearchCountryField = SearchCountryField;
+  TooltipLabel = TooltipLabel;
+  CountryISO = CountryISO;
+  PhoneNumberFormat = PhoneNumberFormat;
+  preferredCountries: CountryISO[] = [CountryISO.UnitedStates, CountryISO.UnitedKingdom];
+
+  constructor(private meService: MeService, private route: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+
+  changePreferredCountries() {
+    this.preferredCountries = [CountryISO.SriLanka];
+  }
 
   ngOnInit() {
+    if (this.route.url === '/account') {
+      this.title = 'Add new card'
+    } else {
+      this.title = 'Free trial is over!'
+    }
+
+    const mobile = JSON.parse(localStorage.getItem('user')).mobile;
+    this.mobile = mobile;
 
     // const cardServices = CardService;
     const scope = this;
     // webxpay codes
     // init webxpay
-    get("https://cbcmpgs.gateway.mastercard.com/form/version/52/merchant/TESTWEBXPATOKLKR/session.js", () => {
+    get("https://cbcmpgs.gateway.mastercard.com/form/version/52/merchant/WEBXPATOKLKR/session.js", () => {
       WebxpayTokenizeInit({
         card: {
           number: "#card-number",
@@ -54,7 +80,8 @@ export class AddCardComponent implements OnInit {
       function handleSuccess(sessionId) {
 
         const data = {
-          session: sessionId
+          session: sessionId,
+          mobile: scope.mobile
         }
 
         scope.meService.addCard(data);

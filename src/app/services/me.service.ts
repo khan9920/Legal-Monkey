@@ -13,6 +13,7 @@ const apiUrl = environment.apiURL;
 export class MeService {
 
   private isLoading = new Subject<boolean>();
+  private me: any;
   private meSub = new Subject();
   private cards = new Subject<[]>();
 
@@ -35,13 +36,14 @@ export class MeService {
     this.isLoading.next(true);
     this.http.get<{ success: boolean, data: any }>(`${apiUrl}/users`).subscribe(result => {
       if (result.success) {
-        this.meSub.next(result.data);
+        this.me = result.data;
+        this.meSub.next(this.me);
         this.isLoading.next(false);
       }
     }, error => {
-      this.snackBar.open(error.error.data, 'Dismiss', {
-        duration: 3000
-      });
+      // this.snackBar.open(error.error.data, 'Dismiss', {
+      //   duration: 3000
+      // });
     });
   }
 

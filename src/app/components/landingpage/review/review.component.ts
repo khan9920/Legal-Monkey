@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ReviewsService } from 'src/app/services/reviews.service';
+import { SimplifyService } from 'src/app/services/simplify.service';
 
 @Component({
   selector: 'app-review',
@@ -30,7 +31,7 @@ export class ReviewComponent implements OnInit {
 
   public isLoading: boolean = false;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public type: any, private reviewsService: ReviewsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public type: any, private reviewsService: ReviewsService, private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -91,10 +92,10 @@ export class ReviewComponent implements OnInit {
 
     let reference = '';
 
-    if (this.type = 'Extract') {
+    if (this.type == 'Extract') {
       const convertedText = JSON.parse(localStorage.getItem('convertedText'));
       reference = convertedText._id;
-    } else if (this.type = 'Document') {
+    } else if (this.type == 'Document') {
       const convertedText = JSON.parse(localStorage.getItem('extraction'));
       reference = convertedText._id;
     }
@@ -109,7 +110,7 @@ export class ReviewComponent implements OnInit {
     this.reviewsService.giveFeedback(data).subscribe(result => {
       if (result.success) {
         this.isLoading = false;
-        this.reviewsService.setFeedbackButtonVisibility(false);
+        this.simplifyService.setFeedbackButtonVisibility(false);
         this.dialog.closeAll();
         this.snackBar.open('Thank you for your feedback!', 'Dismiss', {
           duration: 3000

@@ -1,6 +1,7 @@
 h2 {
     font-weight: 600;
     display: inline-block;
+    margin-bottom: 20px;
 }
 
 .btn-close {
@@ -33,7 +34,7 @@ label {
 
 input, .mobile-input {
     width: 100%;
-    border: 2px solid #2f86de;
+    border: 2px solid #2129fa;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
@@ -46,7 +47,6 @@ button {
     color: #fff;
     border-radius: 50px;
     width: 100%;
-    margin-bottom: 40px;
 }
 
 .text-login {
@@ -80,7 +80,7 @@ mat-spinner {
 
 .mobile-input input {
     width: 100% !important;
-    border: 2px solid #2f86de !important;
+    border: 2px solid #2129fa !important;
     border-radius: 5px !important;
     padding: 10px 20px !important;
     margin-bottom: 20px !important;

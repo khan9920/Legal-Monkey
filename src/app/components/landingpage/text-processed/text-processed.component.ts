@@ -1,7 +1,7 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-import { ReviewsService } from 'src/app/services/reviews.service';
+
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { ReviewComponent } from '../review/review.component';
 
@@ -15,24 +15,22 @@ export class TextProcessedComponent implements OnInit, OnDestroy {
   public conversions: [];
 
   public feedbackButtonVisible: boolean = true;
-  private feedbackButtonVisibleSub: Subscription;
+  private feedbackButtnSub: Subscription;
 
-  constructor(private simplifyService: SimplifyService, private reviewsService: ReviewsService, private dialog: MatDialog) { }
+  constructor(private simplifyService: SimplifyService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.feedbackButtonVisibleSub = this.reviewsService.getFeedbackButtonVisibility().subscribe(result => {
-      this.feedbackButtonVisible = result;
-    });
-
     const convertedText = JSON.parse(localStorage.getItem('convertedText'));
     this.conversions = convertedText.conversions;
 
-    if (convertedText.review == true) {
-      this.feedbackButtonVisible = false;
-    }
+    this.feedbackButtonVisible = convertedText.review;
+
+    this.feedbackButtnSub = this.simplifyService.getFeedbackButtonVisibility().subscribe(result => {
+      this.feedbackButtonVisible = result;
+    });
   }
 
-  onSimplify() {
+  onGoBack() {
     this.simplifyService.setEditorStatus(true);
   }
 
@@ -45,6 +43,6 @@ export class TextProcessedComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.feedbackButtonVisibleSub.unsubscribe();
+    this.feedbackButtnSub.unsubscribe();
   }
 }
