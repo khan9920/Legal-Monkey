@@ -5,24 +5,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <p>Hightlight the content you want to simplify using pop up tool and click on the Simplify button to see
-                    the
-                    results.</p>
-
+                <h4>Hightlight what you don't understand, mark it and click on the Simplify button</h4>
                 <div class="wrapper-editor">
                     <div class="editor" #editor [innerHTML]="extraction.text"
                         [ngClass]="{ 'editor-loading': isLoading}">
                     </div>
                     <button class="btn-simplify" type="button" (click)="onSimplify()" *ngIf="!isLoading">
-                        Simplify
+                        SIMPLIFY
                     </button>
 
 
-                    <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">Feedback</button>
+                    <button class="btn-feedback" (click)="onReview()" *ngIf="feedbackButtonVisible">FEEDBACK</button>
 
                     <button class="btn-simplify-is-loading" type="button" (click)="onSimplify()" *ngIf="isLoading">
                         <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
-                        Simplify
+                        SIMPLIFY
                     </button>
                 </div>
             </div>

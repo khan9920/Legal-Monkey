@@ -5,9 +5,6 @@ import { AuthService } from 'src/app/services/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
 
-import { ResetPasswordComponent } from '../reset-password/reset-password.component';
-import { SignupComponent } from '../signup/signup.component';
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,7 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.authService.setLoadingStatus(true);
-    this.authService.login(this.credentials);
   }
 
   private validator() {
@@ -60,27 +56,27 @@ export class LoginComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSignUp(): void {
-    this.dialog.closeAll();
-    this.dialog.open(SignupComponent, {
-      width: '500px',
-      maxHeight: '90vh'
-    });
-  }
-
-  onResetPassword(): void {
-    this.dialog.closeAll();
-    this.dialog.open(ResetPasswordComponent, {
-      width: '400px',
-      maxHeight: '90vh'
-    });
-  }
-
   onClose(): void {
     this.dialog.closeAll();
   }
 
   ngOnDestroy() {
     this.isLaodingSub.unsubscribe();
+  }
+
+  onGoogle() {
+    this.authService.GoogleAuth();
+  }
+
+  onFacebook() {
+    this.authService.FacebookAuth();
+  }
+
+  onApple() {
+    this.authService.AppleAuth();
+  }
+
+  onOutlook() {
+    this.authService.OutlookAuth();
   }
 }

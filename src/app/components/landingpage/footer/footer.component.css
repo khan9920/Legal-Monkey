@@ -4,6 +4,10 @@ footer {
     background-color: #2129fa;
 }
 
+.col-md-12 {
+    text-align: center;
+}
+
 .title {
     font-weight: 600;
 }
@@ -12,6 +16,7 @@ ul {
     padding: 0;
     list-style: none;
     margin: 0;
+    float: left;
 }
 
 ul li {
@@ -34,21 +39,19 @@ ul li a {
 .copy {
     margin: 0;
     font-size: 13px;
-    /* color: #717171; */
     color: #fff;
     display: inline-block;
 }
 
-.contact {
+.email {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
     float: right;
 }
 
-.contact ul li {
+.email span {
     font-size: 13px;
-    /* color: #717171; */
-    color: #fff;
-}
-
-.contact ul li b {
-    font-size: 13px;
+    font-weight: 500;
 }

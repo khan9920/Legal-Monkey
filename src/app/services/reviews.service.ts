@@ -10,19 +10,9 @@ const apiURL = environment.apiURL;
 })
 export class ReviewsService {
 
-  private feedbackButtonVisible = new Subject<boolean>();
-
   constructor(private http: HttpClient) { }
 
   giveFeedback(data: any) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/reviews`, data);
-  }
-
-  setFeedbackButtonVisibility(data: boolean) {
-    this.feedbackButtonVisible.next(data);
-  }
-
-  getFeedbackButtonVisibility() {
-    return this.feedbackButtonVisible.asObservable();
   }
 }

@@ -1,13 +1,14 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
+
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+
 import { AddCardComponent } from './add-card/add-card.component';
-import { ChangePasswordComponent } from './change-password/change-password.component';
-import { UpdateAccountComponent } from './update-account/update-account.component';
 
 @Component({
   selector: 'app-account',
@@ -15,9 +16,6 @@ import { UpdateAccountComponent } from './update-account/update-account.componen
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit, OnDestroy {
-
-  public profileClicked: boolean = true;
-  public paymentOptionsClicked: boolean = false;
 
   public me: any = '';
   private meSub: Subscription;
@@ -47,21 +45,6 @@ export class AccountComponent implements OnInit, OnDestroy {
     });
   }
 
-  onUpdateProfile() {
-    this.dialog.open(UpdateAccountComponent, {
-      width: '500px',
-      maxHeight: '90vh',
-      data: this.me
-    });
-  }
-
-  onChangePassword() {
-    this.dialog.open(ChangePasswordComponent, {
-      width: '400px',
-      maxHeight: '90vh'
-    });
-  }
-
   onAddCard() {
     this.dialog.open(AddCardComponent, {
       width: '400px',
@@ -87,16 +70,6 @@ export class AccountComponent implements OnInit, OnDestroy {
     this.meService.removeCard(data);
   }
 
-  onProfile() {
-    this.profileClicked = true;
-    this.paymentOptionsClicked = false;
-  }
-
-  onPaymentOptions() {
-    this.profileClicked = false;
-    this.paymentOptionsClicked = true;
-  }
-
   onBackToHome() {
     this.router.navigate(['/']);
   }
@@ -106,7 +79,7 @@ export class AccountComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.meSub.unsubscribe();
+    // this.meSub.unsubscribe();
     this.cardsSub.unsubscribe();
   }
 }

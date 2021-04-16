@@ -1,27 +1,22 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h2>Log in</h2>
+            <h2>Sign in to your account</h2>
             <span class="btn-close" (click)="onClose()">X</span>
-            <p class="sub-title">Enter your email and password</p>
         </div>
         <div class="col-md-12">
-            <!-- <label>Email</label> -->
-            <input type="text" placeholder="Your email" [ngClass]="{ 'invalid-input': !validation.email }"
-                [disabled]="isLoading" [(ngModel)]="credentials.email">
-        </div>
-        <div class="col-md-12">
-            <!-- <label>Password</label> -->
-            <input type="password" placeholder="Your password" [ngClass]="{ 'invalid-input': !validation.password }"
-                [disabled]="isLoading" [(ngModel)]="credentials.password">
-        </div>
-        <div class="col-md-12">
-            <button (click)="onLogin()" (keydown.enter)="onLogin()" type="submit">
-                <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
-                LOG IN
+            <button (click)="onGoogle()">
+                <img src="/assets/icons/icon-google.png" alt="">
+                Continue with Google
             </button>
-            <p class="text-reset-password">Forgot your password? <a (click)="onResetPassword()">Reset</a></p>
-            <p class="text-sign-up">You don't have an account? <a (click)="onSignUp()">Sign up!</a></p>
+            <!-- <button (click)="onFacebook()">
+                <img src="/assets/icons/icon-facebook.png" alt="">
+                Continue with Facebook
+            </button> -->
+            <!-- <button (click)="onOutlook()">
+                <img src="/assets/icons/icon-outlook.png" alt="">
+                Continue with Outlook
+            </button> -->
         </div>
     </div>
 </div>

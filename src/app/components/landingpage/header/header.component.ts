@@ -5,9 +5,9 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
 
-import { SignupComponent } from '../../auth/signup/signup.component';
-
 import { MatDialog } from '@angular/material/dialog'
+
+import { LoginComponent } from '../../auth/login/login.component';
 
 @Component({
   selector: 'app-header',
@@ -25,27 +25,34 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private meService: MeService, private router: Router, private dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.isAuthenticated = this.authService.getIsAuthenticated();
+
+    this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
+      this.isAuthenticated = result;
+    });
+
+    this.meService.getMe();
+
+    this.meSub = this.authService.getAuthMeUpdated().subscribe(result => {
+      this.me = result;
+    })
+
+    this.meSub = this.meService.getMeUpdated().subscribe(result => {
+      this.me = result;
+    });
+
     const token = localStorage.getItem('token');
 
     if (token == '' || token == null) {
       this.isAuthenticated = false;
     } else {
       this.isAuthenticated = true;
-      this.meService.setLoadingStatus(true);
-      this.meService.getMe();
-      this.meSub = this.meService.getMeUpdated().subscribe(result => {
-        this.me = result;
-      });
-
-      this.isAuthenticatedSub = this.authService.getAuthenticationStatus().subscribe(result => {
-        this.isAuthenticated = result;
-      });
     }
   }
 
-  onSignup(): void {
-    this.dialog.open(SignupComponent, {
-      width: '500px',
+  onSignin(): void {
+    this.dialog.open(LoginComponent, {
+      width: '450px',
       maxHeight: '90vh'
     });
   }
@@ -60,6 +67,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.isAuthenticatedSub.unsubscribe();
-    this.meSub.unsubscribe();
+    // this.meSub.unsubscribe();
   }
 }

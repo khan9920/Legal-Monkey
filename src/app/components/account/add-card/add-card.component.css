@@ -1,7 +1,7 @@
 h2 {
     font-weight: 600;
     display: inline-block;
-    margin-bottom: 25px;
+    width: 95%;
 }
 
 .btn-close {
@@ -85,4 +85,8 @@ mat-spinner {
 
 .form-group input {
     height: 100%;
+}
+
+.txt-condition {
+    font-style: italic;
 }

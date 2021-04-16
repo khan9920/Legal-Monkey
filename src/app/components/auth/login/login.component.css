@@ -1,6 +1,8 @@
 h2 {
     font-weight: 600;
     display: inline-block;
+    width: 95%;
+    margin-bottom: 35px;
 }
 
 .btn-close {
@@ -33,20 +35,30 @@ label {
 
 input {
     width: 100%;
-    border: 2px solid #2f86de;
+    border: 2px solid #2129fa;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
 }
 
 button {
-    background: #2129fa;
-    border: 2px solid #2129fa;
-    padding: 10px 40px;
+    background: #fff;
     color: #fff;
     border-radius: 50px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px;
+    color: #676464;
+    font-size: 17px;
+}
+
+button img {
+    width: 30px;
+    margin-right: 20px;
 }
 
 .text-reset-password, .text-sign-up {

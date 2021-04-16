@@ -14,6 +14,10 @@ import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { NgxIntlTelInputModule } from 'ngx-intl-tel-input';
 import { EditorComponent } from './components/landingpage/editor/editor.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -27,9 +31,6 @@ import { HeaderComponent } from './components/landingpage/header/header.componen
 import { TextEditorComponent } from './components/landingpage/text-editor/text-editor.component';
 import { TextProcessedComponent } from './components/landingpage/text-processed/text-processed.component';
 import { HeroComponent } from './components/landingpage/hero/hero.component';
-import { SignupComponent } from './components/auth/signup/signup.component';
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { VerifyAccountComponent } from './components/auth/verify-account/verify-account.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/landingpage/footer/footer.component';
 import { ConversionsComponent } from './components/conversions/conversions.component';
@@ -38,7 +39,6 @@ import { UpdateAccountComponent } from './components/account/update-account/upda
 import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 import { AddCardComponent } from './components/account/add-card/add-card.component';
 import { AuthInterceptor } from './services/auth-interceptor';
-import { UpdatePasswordComponent } from './components/auth/update-password/update-password.component';
 import { EnterTitleComponent } from './components/landingpage/text-editor/enter-title/enter-title.component';
 import { ViewConversionComponent } from './components/conversions/view-conversion/view-conversion.component';
 import { ShowPriceComponent } from './components/landingpage/show-price/show-price.component';
@@ -60,9 +60,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     TextProcessedComponent,
     HeroComponent,
     LoginComponent,
-    SignupComponent,
-    ResetPasswordComponent,
-    VerifyAccountComponent,
     FooterComponent,
     ConversionsComponent,
     AccountComponent,
@@ -70,7 +67,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ChangePasswordComponent,
     AddCardComponent,
     EditorComponent,
-    UpdatePasswordComponent,
     EnterTitleComponent,
     ViewConversionComponent,
     ShowPriceComponent,
@@ -85,6 +81,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     HttpClientModule,
     BrowserAnimationsModule,
     SwiperModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'legalhamster-dev'),
+    AngularFireAuthModule,
     NgxIntlTelInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,

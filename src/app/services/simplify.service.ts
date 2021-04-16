@@ -17,6 +17,8 @@ export class SimplifyService {
   private simplifiedTextSub = new Subject<any>();
   private documentsUpdated = new Subject<any>();
 
+  private feedbackButtonVisible = new Subject<boolean>();
+
   constructor(private http: HttpClient, private snackBar: MatSnackBar) { }
 
   simplify(data) {
@@ -48,7 +50,8 @@ export class SimplifyService {
       if (result.success) {
         this.setEditorStatus(false);
         this.documentsUpdated.next(result.data);
-        this.save(result.data._id, result.data.text);
+        this.save(result.data._id, result.data.text, result.data.review);
+        this.setFeedbackButtonVisibility(result.data.review);
       }
     }, error => {
       this.setEditorStatus(false);
@@ -66,10 +69,19 @@ export class SimplifyService {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/price`, data);
   }
 
-  public save(ID: string, Text: string) {
+  setFeedbackButtonVisibility(data: boolean) {
+    this.feedbackButtonVisible.next(data);
+  }
+
+  getFeedbackButtonVisibility() {
+    return this.feedbackButtonVisible.asObservable();
+  }
+
+  public save(ID: string, Text: string, Review: string) {
     const data = {
       _id: ID,
       text: Text,
+      review: Review
     }
 
     localStorage.setItem('extraction', JSON.stringify(data));
