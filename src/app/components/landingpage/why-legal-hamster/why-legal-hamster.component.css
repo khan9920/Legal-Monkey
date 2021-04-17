@@ -1,0 +1,17 @@
+.wrapper {
+    display: block;
+    width: 65%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 45px;
+    color: #2129fa;
+}
+
+p {
+    font-size: 20px;
+    font-weight: 100;
+}
