@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       return;
     }
     this.authService.setLoadingStatus(true);
+    this.authService.EmailPasswordAuth(this.credentials);
   }
 
   private validator() {

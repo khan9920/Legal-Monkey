@@ -41,6 +41,52 @@ export class AuthService {
     return this.AuthLogin(new firebase.auth.OAuthProvider('microsoft.com'));
   }
 
+  EmailPasswordAuth(data: any) {
+    return this.afAuth.createUserWithEmailAndPassword(data.email, data.password)
+      .then(result => {
+        const data = {
+          uid: result.user.uid,
+          // name: result.user.displayName,
+          email: result.user.email
+        }
+
+        this.http.post<{ success: boolean, data: any }>(`${apiUrl}/users`, data).subscribe(result => {
+          if (result.success) {
+            const user = {
+              firstName: result.data.firstName,
+              lastName: result.data.lastName,
+              email: result.data.email,
+              userType: result.data.userType,
+              createdDate: result.data.createdDate,
+              cards: result.data.cards
+            }
+
+            this.authMe = user;
+            this.authMeSub.next(this.authMe);
+            this.saveAuthData(result.data.token, user);
+            this.token = result.data.token;
+            this.isLoading.next(false);
+            this.isAuthenticatedUpdated.next(true);
+            this.dialog.closeAll();
+
+            this.snackBar.open('Welcome to Legal Hamster!', 'Dismiss', {
+              duration: 3000
+            })
+          }
+        }, error => {
+          this.isLoading.next(false);
+          this.snackBar.open(error.error.data, 'Dismiss', {
+            duration: 3000
+          });
+        });
+      })
+      .catch((error) => {
+        this.snackBar.open(error.message, 'Dismiss', {
+          duration: 3000
+        });
+      });
+  }
+
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
