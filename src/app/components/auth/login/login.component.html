@@ -5,18 +5,40 @@
             <span class="btn-close" (click)="onClose()">X</span>
         </div>
         <div class="col-md-12">
-            <button (click)="onGoogle()">
-                <img src="/assets/icons/icon-google.png" alt="">
-                Continue with Google
-            </button>
-            <!-- <button (click)="onFacebook()">
-                <img src="/assets/icons/icon-facebook.png" alt="">
-                Continue with Facebook
-            </button> -->
-            <!-- <button (click)="onOutlook()">
-                <img src="/assets/icons/icon-outlook.png" alt="">
-                Continue with Outlook
-            </button> -->
+            <div class="col-md-12">
+                <!-- <label>Email</label> -->
+                <input type="text" placeholder="Email" [ngClass]="{ 'invalid-input': !validation.email }"
+                    [disabled]="isLoading" [(ngModel)]="credentials.email">
+            </div>
+            <div class="col-md-12">
+                <!-- <label>Password</label> -->
+                <input type="password" placeholder="Password"
+                    [ngClass]="{ 'invalid-input': !validation.password }" [disabled]="isLoading"
+                    [(ngModel)]="credentials.password">
+            </div>
+            <div class="col-md-12">
+                <button (click)="onLogin()" class="btn-login">
+                    <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                    LOG IN
+                </button>
+            </div>
+            <div class="col-md-12">
+                <p class="txt-or">or</p>
+            </div>
+            <div class="col-md-12">
+                <button (click)="onGoogle()" class="btn-auth">
+                    <img src="/assets/icons/icon-google.png" alt="">
+                    Continue with Google
+                </button>
+                <!-- <button (click)="onFacebook()">
+                    <img src="/assets/icons/icon-facebook.png" alt="">
+                    Continue with Facebook
+                </button> -->
+                <!-- <button (click)="onOutlook()">
+                    <img src="/assets/icons/icon-outlook.png" alt="">
+                    Continue with Outlook
+                </button> -->
+            </div>
         </div>
     </div>
 </div>
