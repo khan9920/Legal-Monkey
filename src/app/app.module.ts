@@ -45,6 +45,9 @@ import { ShowPriceComponent } from './components/landingpage/show-price/show-pri
 import { ReviewComponent } from './components/landingpage/review/review.component';
 import { TncComponent } from './components/tnc/tnc.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { WhyLegalHamsterComponent } from './components/landingpage/why-legal-hamster/why-legal-hamster.component';
+import { WhoLegalHamsterComponent } from './components/landingpage/who-legal-hamster/who-legal-hamster.component';
+import { SignupComponent } from './components/auth/signup/signup.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -73,6 +76,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ReviewComponent,
     TncComponent,
     PrivacyPolicyComponent,
+    WhyLegalHamsterComponent,
+    WhoLegalHamsterComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

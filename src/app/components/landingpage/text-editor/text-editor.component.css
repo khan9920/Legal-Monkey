@@ -1,6 +1,5 @@
 .section {
     margin: 50px 0;
-    padding: 0px 0 70px 0;
 }
 
 .title {
@@ -43,6 +42,10 @@ h4 {
 
 textarea:focus {
     outline: 0;
+}
+
+textarea::placeholder {
+    color: #2129fa;
 }
   
 .textarea-container button {
