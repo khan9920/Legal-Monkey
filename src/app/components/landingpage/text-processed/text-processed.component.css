@@ -82,3 +82,14 @@ button {
     margin-bottom: 5px;
     color: #2129FA;
 }
+
+.sub-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2129FA;
+}
+
+.sub-text {
+    font-weight: 600;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,37 @@
+.section {
+    margin: 50px 0;
+}
+
+.wrapper {
+    display: block;
+    width: 65%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 45px;
+    color: #2129fa;
+}
+
+.wrapper p {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.wrapper-icon {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 70px 0;
+    padding-top: 30px;
+}
+
+.wrapper-icon img {
+    width: 100px;
+}
+
+.wrapper-icon p { 
+    font-size: 20px;
+}
