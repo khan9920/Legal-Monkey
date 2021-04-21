@@ -1,0 +1,107 @@
+h2 {
+    font-weight: 600;
+    display: inline-block;
+    width: 95%;
+    margin-bottom: 35px;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: #2129fa;
+}
+
+.sub-title {
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    border: 2px solid #2129fa;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.btn-auth {
+    background: #fff;
+    color: #fff;
+    border-radius: 50px;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #fff;
+    text-align: left;
+    padding: 10px;
+    color: #676464;
+    font-size: 17px;
+}
+
+.btn-auth img {
+    width: 30px;
+    margin-right: 20px;
+}
+
+.btn-login {
+    background: #2129fa;
+    border: 2px solid #2129fa;
+    padding: 8px 30px;
+    color: #fff;
+    border-radius: 50px;
+    width: 100%;
+}
+
+
+.text-reset-password, .text-sign-up {
+    text-align: center;
+}
+
+.text-reset-password a, .text-sign-up a {
+    color: #2129fa;
+    text-decoration: none;
+}
+
+.text-reset-password a:hover, .text-sign-up a:hover {
+    color: #226294;
+    cursor: pointer;
+}
+
+.invalid-input {
+    border: 2px solid red;
+}
+
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
+}
+
+.txt-or {
+    margin: 20px;
+    text-align: center;
+    font-size: 20px;
+}

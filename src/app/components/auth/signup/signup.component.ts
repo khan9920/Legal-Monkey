@@ -1,24 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
-
 import { AuthService } from 'src/app/services/auth.service';
 
-import { MatDialog } from '@angular/material/dialog';
-import { SignupComponent } from '../signup/signup.component';
-
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class SignupComponent implements OnInit {
 
   public credentials = {
+    name: '',
     email: '',
     password: ''
   }
 
   public validation = {
+    name: true,
     email: true,
     password: true
   }
@@ -37,16 +36,23 @@ export class LoginComponent implements OnInit, OnDestroy {
   onLogin() {
     this.validator();
 
-    if (!this.credentials.email ||
+    if (!this.validation.name ||
+      !this.credentials.email ||
       !this.validation.password
     ) {
       return;
     }
     this.authService.setLoadingStatus(true);
-    this.authService.EmailPasswordSignIn(this.credentials);
+    this.authService.EmailPasswordSignUp(this.credentials);
   }
 
   private validator() {
+    if (this.credentials.name == '') {
+      this.validation.name = false;
+    } else {
+      this.validation.name = true;
+    }
+
     if (this.credentials.email == '') {
       this.validation.email = false;
     } else {
@@ -82,13 +88,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onOutlook() {
     this.authService.OutlookAuth();
-  }
-
-  onSignUp() {
-    this.dialog.closeAll();
-    this.dialog.open(SignupComponent, {
-      width: '450px',
-      maxHeight: '90vh'
-    });
   }
 }
