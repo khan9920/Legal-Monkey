@@ -48,6 +48,7 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { WhyLegalHamsterComponent } from './components/landingpage/why-legal-hamster/why-legal-hamster.component';
 import { WhoLegalHamsterComponent } from './components/landingpage/who-legal-hamster/who-legal-hamster.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { SimpleConversionComponent } from './components/landingpage/simple-conversion/simple-conversion.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -79,6 +80,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     WhyLegalHamsterComponent,
     WhoLegalHamsterComponent,
     SignupComponent,
+    SimpleConversionComponent,
   ],
   imports: [
     BrowserModule,

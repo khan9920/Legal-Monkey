@@ -10,4 +10,5 @@ $custom-theme:   mat-light-theme($custom-theme-primary, $custom-theme-accent, $c
 @include angular-material-theme($custom-theme);
 
 $color-primary: #829FDA;
-$color-white: #FFFFFF
+$color-white: #FFFFFF;
+$color-grey: #E1E1E1;
