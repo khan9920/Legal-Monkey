@@ -93,7 +93,6 @@ export class AuthService {
       .then(result => {
         const user = {
           uid: result.user.uid,
-          // name: data.name,
           email: result.user.email
         }
 
@@ -129,9 +128,15 @@ export class AuthService {
       })
       .catch((error) => {
         this.isLoading.next(false);
-        this.snackBar.open(error.message, 'Dismiss', {
-          duration: 3000
-        });
+        if (error.message == 'There is no user record corresponding to this identifier. The user may have been deleted.') {
+          this.snackBar.open('User does not exist. Please sign up.', 'Dismiss', {
+            duration: 3000
+          });
+        } else {
+          this.snackBar.open(error.message, 'Dismiss', {
+            duration: 3000
+          });
+        }
       });
   }
 

@@ -6,17 +6,18 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-12">
-                <!-- <label>Email</label> -->
-                <input type="text" placeholder="Your name" [ngClass]="{ 'invalid-input': !validation.name }"
-                    [disabled]="isLoading" [(ngModel)]="credentials.name">
+                <input type="text" placeholder="First Name" [ngClass]="{ 'invalid-input': !validation.firstName }"
+                    [disabled]="isLoading" [(ngModel)]="credentials.firstName">
             </div>
             <div class="col-md-12">
-                <!-- <label>Email</label> -->
+                <input type="text" placeholder="Last Name" [ngClass]="{ 'invalid-input': !validation.lastName }"
+                    [disabled]="isLoading" [(ngModel)]="credentials.lastName">
+            </div>
+            <div class="col-md-12">
                 <input type="text" placeholder="Email" [ngClass]="{ 'invalid-input': !validation.email }"
                     [disabled]="isLoading" [(ngModel)]="credentials.email">
             </div>
             <div class="col-md-12">
-                <!-- <label>Password</label> -->
                 <input type="password" placeholder="Password" [ngClass]="{ 'invalid-input': !validation.password }"
                     [disabled]="isLoading" [(ngModel)]="credentials.password">
             </div>

@@ -11,13 +11,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent implements OnInit {
 
   public credentials = {
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
     password: ''
   }
 
   public validation = {
-    name: true,
+    firstName: true,
+    lastName: true,
     email: true,
     password: true
   }
@@ -36,21 +38,37 @@ export class SignupComponent implements OnInit {
   onLogin() {
     this.validator();
 
-    if (!this.validation.name ||
+    if (!this.validation.firstName ||
+      !this.validation.lastName ||
       !this.credentials.email ||
       !this.validation.password
     ) {
       return;
     }
+    const data = {
+      name: `${this.credentials.firstName} ${this.credentials.lastName}`,
+      email: this.credentials.email,
+      password: this.credentials.password
+    }
+
+    console.log(data);
+
+
     this.authService.setLoadingStatus(true);
-    this.authService.EmailPasswordSignUp(this.credentials);
+    this.authService.EmailPasswordSignUp(data);
   }
 
   private validator() {
-    if (this.credentials.name == '') {
-      this.validation.name = false;
+    if (this.credentials.firstName == '') {
+      this.validation.firstName = false;
     } else {
-      this.validation.name = true;
+      this.validation.firstName = true;
+    }
+
+    if (this.credentials.lastName == '') {
+      this.validation.lastName = false;
+    } else {
+      this.validation.lastName = true;
     }
 
     if (this.credentials.email == '') {
