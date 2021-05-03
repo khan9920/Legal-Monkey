@@ -1,0 +1,18 @@
+@import './../../../../custom-theme.scss';
+
+.section {
+    padding: 25px 0;
+    background-color: $color-primary;
+
+    .wrapper-hero h1 {
+        font-weight: 600;
+        font-size: 45px;
+        color: $color-white;
+    }
+
+    .wrapper-hero p {
+        font-size: 20px;
+        font-weight: 100;
+        color: $color-white;
+    }
+}
