@@ -1,23 +1,23 @@
+@import "./../../../../custom-theme.scss";
+
 .section {
-    background-color: #2129fa;
-    color: #fff;
+    background-color: $color-primary;
+    color: $color-white;
+
+    .row {
+        padding: 20px 0;
+
+        .img-logo {
+            width: 45%;
+        }
+
+        .img-logo:hover {
+            cursor: pointer;
+        }
+    }
 }
 
-.row {
-    padding: 20px 0;
-}
 
-h1 {
-    margin: 0;
-}
-
-.logo {
-    width: 60%;
-}
-
-.logo:hover {
-    cursor: pointer;
-}
 
 ul {
     padding: 0;
@@ -38,22 +38,6 @@ ul li p {
 
 a {
     color: #000;
-}
-
-button {
-    background: #fff;
-    border: 2px solid #2129fa;
-    padding: 5px 40px;
-    color: #2129fa;
-    border-radius: 50px;
-}
-
-button:hover {
-    background: #fff;
-    border: 2px solid #2129fa;
-    padding: 5px 40px;
-    color: #2129fa;
-    border-radius: 50px;
 }
 
 .mat-menu-item {

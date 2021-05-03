@@ -2,17 +2,12 @@
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-4">
-                <img src="/assets/images/logo.png" class="logo" alt="Legal Hamsster Logo" (click)="onHome()">
-                <!-- <h3 class="title">LEGAL HAMSTER</h3> -->
+                <img src="/assets/images/logo.png" class="img-logo" alt="Legal Hamsster Logo" (click)="onHome()">
             </div>
             <div class="col-6 col-md-8">
                 <ul>
-                    <!-- <li><a href="#">HOME</a></li>
-                <li><a href="#">ACCOUNT</a></li>
-                <li><a href="#">PRICING</a></li>
-                <li><a href="#">ABOUT US</a></li> -->
                     <li *ngIf="!isAuthenticated">
-                        <button (click)="onSignin()">SIGN IN</button>
+                        <button (click)="onSignin()" class="btn-auth">SIGN IN</button>
                     </li>
                     <li *ngIf="isAuthenticated">
                         <p class="txt-me">{{ me.firstName }} {{ me.lastName }}</p>

@@ -16,5 +16,19 @@ textarea:focus,
 input:focus {
     outline: 0;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn-auth {
+    background: $color-primary;
+    border: 2px solid $color-white;
+    padding: 5px 40px;
+    color: $color-white;
+    border-radius: 50px;
+}
+
+.btn-auth:hover {
+    background: $color-white;
+    border: 2px solid $color-primary;
+    padding: 5px 40px;
+    color: $color-primary;
+    border-radius: 50px;
+}
