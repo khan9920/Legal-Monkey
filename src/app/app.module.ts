@@ -28,8 +28,6 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 
 import { LandingpageComponent } from './components/landingpage/landingpage.component';
 import { HeaderComponent } from './components/landingpage/header/header.component';
-import { TextEditorComponent } from './components/landingpage/text-editor/text-editor.component';
-import { TextProcessedComponent } from './components/landingpage/text-processed/text-processed.component';
 import { HeroComponent } from './components/landingpage/hero/hero.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { FooterComponent } from './components/landingpage/footer/footer.component';
@@ -39,14 +37,11 @@ import { UpdateAccountComponent } from './components/account/update-account/upda
 import { ChangePasswordComponent } from './components/account/change-password/change-password.component';
 import { AddCardComponent } from './components/account/add-card/add-card.component';
 import { AuthInterceptor } from './services/auth-interceptor';
-import { EnterTitleComponent } from './components/landingpage/text-editor/enter-title/enter-title.component';
 import { ViewConversionComponent } from './components/conversions/view-conversion/view-conversion.component';
 import { ShowPriceComponent } from './components/landingpage/show-price/show-price.component';
 import { ReviewComponent } from './components/landingpage/review/review.component';
 import { TncComponent } from './components/tnc/tnc.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
-import { WhyLegalHamsterComponent } from './components/landingpage/why-legal-hamster/why-legal-hamster.component';
-import { WhoLegalHamsterComponent } from './components/landingpage/who-legal-hamster/who-legal-hamster.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { SimpleConversionComponent } from './components/landingpage/simple-conversion/simple-conversion.component';
 
@@ -60,8 +55,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppComponent,
     LandingpageComponent,
     HeaderComponent,
-    TextEditorComponent,
-    TextProcessedComponent,
     HeroComponent,
     LoginComponent,
     FooterComponent,
@@ -71,14 +64,11 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     ChangePasswordComponent,
     AddCardComponent,
     EditorComponent,
-    EnterTitleComponent,
     ViewConversionComponent,
     ShowPriceComponent,
     ReviewComponent,
     TncComponent,
     PrivacyPolicyComponent,
-    WhyLegalHamsterComponent,
-    WhoLegalHamsterComponent,
     SignupComponent,
     SimpleConversionComponent,
   ],

@@ -1,15 +1,7 @@
+@import './../../../../custom-theme.scss';
+
 footer {
     padding: 15px 0;
-    /* background-color: #fbfbfb; */
-    background-color: #2129fa;
-}
-
-.col-md-12 {
-    text-align: center;
-}
-
-.title {
-    font-weight: 600;
 }
 
 ul {
@@ -25,10 +17,9 @@ ul li {
 }
 
 ul li a {
-    /* color: #717171; */
-    color: #fff;
     font-weight: 400;
     font-size: 14px;
+    color: $color-black;
 }
 
 .logo {
@@ -39,13 +30,11 @@ ul li a {
 .copy {
     margin: 0;
     font-size: 13px;
-    color: #fff;
     display: inline-block;
 }
 
 .email {
     margin: 0;
-    color: #fff;
     font-size: 13px;
     font-weight: 600;
     float: right;
