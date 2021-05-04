@@ -1,0 +1,32 @@
+<div class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <p class="txt-suggestion">SUGGESTED FOR: Non-Disclosure Agreement (NDA), Independent Contractor
+                    Agreement, Business Contract, Employment Contract, Shareholder Agreement Etc.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper-input">
+                    <div class="wrapper-upload">
+                        <button class="btn-auth">Upload</button>
+                        <p>Upload your legal document</p>
+                    </div>
+                    <hr>
+                    <form (submit)="onSimplify(form)" #form="ngForm">
+                        <textarea name="" id="" cols="30" rows="8" placeholder="Or paste one paragraph..." name="text"
+                            [disabled]="isLoading" ngModel></textarea>
+                        <button class="btn-auth btn-loading" *ngIf="isLoading">
+                            <mat-spinner class="btn-loader" [diameter]="20"></mat-spinner>
+                        </button>
+                        <button class="btn-auth" type="submit" *ngIf="!isLoading">Translate</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper-output">
+                    <p>Translation appears here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

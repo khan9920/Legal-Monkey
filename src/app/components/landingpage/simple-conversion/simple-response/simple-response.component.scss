@@ -1,0 +1,79 @@
+@import './../../../../../custom-theme.scss';
+
+.section {
+    padding: 25px 0;
+
+    button {
+        padding: 5px 25px;
+    }
+
+    .row {
+        .txt-suggestion {
+            font-size: 14px;
+        }
+
+        .wrapper-input {
+            border: 1px solid $color-grey;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            width: 100%;
+
+            .wrapper-top {
+                .title {
+                    color: $color-primary-dark;
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin: 0;
+                }
+
+                .text {
+                    margin: 0;
+                }
+            }
+        }
+
+        .wrapper-output {
+            border: 1px solid $color-grey;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+
+            .wrapper-top {
+                margin: -15px;
+                padding: 15px;
+                margin-bottom: 10px;
+                background-color: $color-grey;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+
+                .title {
+                    color: $color-primary-dark;
+                    font-size: 18px;
+                    font-weight: 600;
+                    margin: 0;
+                }
+
+                .sub-title {
+                    font-weight: 600;
+                    font-style: italic;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+.btn-loading {
+    display: block;
+    padding: 8px 25px !important;
+    width: 118px;
+    
+    .btn-loader {
+        margin: 0 auto;
+    }
+}
+
+::ng-deep .btn-loader circle, .btn-loader circle {
+    stroke: $color-white !important;
+}

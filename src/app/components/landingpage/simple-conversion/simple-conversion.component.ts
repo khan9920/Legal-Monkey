@@ -1,45 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ExtractsService } from 'src/app/services/extracts.service';
-
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-simple-conversion',
   templateUrl: './simple-conversion.component.html',
   styleUrls: ['./simple-conversion.component.scss']
 })
-export class SimpleConversionComponent implements OnInit {
+export class SimpleConversionComponent implements OnInit, OnDestroy {
 
-  public isLoading: boolean = false;
-  public response: any;
+  public enableEditor: boolean = true;
+  private enableEditorSub: Subscription;
 
-  constructor(private extractsService: ExtractsService, private snackBar: MatSnackBar) { }
+  constructor(private extractsService: ExtractsService) { }
 
   ngOnInit(): void {
+    this.enableEditorSub = this.extractsService.getEditorStatus().subscribe(result => {
+      this.enableEditor = result;
+    });
   }
 
-  onSimplify(form: NgForm) {
-    this.isLoading = true;
-    if (form.value.text == '') {
-      this.isLoading = false;
-      this.snackBar.open('Please paste a paragraph and click on translate!', 'Dismiss', {
-        duration: 3000
-      });
-      return;
-    }
-
-    this.extractsService.simplify(form.value).subscribe(result => {
-      if (result.success) {
-        this.isLoading = false;
-        this.response = result.data;
-      }
-    }, error => {
-      this.isLoading = false;
-      this.snackBar.open(error.error.error, 'Dismiss', {
-        duration: 3000
-      });
-    });
+  ngOnDestroy() {
+    this.enableEditorSub.unsubscribe();
   }
 }

@@ -44,6 +44,8 @@ import { TncComponent } from './components/tnc/tnc.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { SimpleConversionComponent } from './components/landingpage/simple-conversion/simple-conversion.component';
+import { SimpleEditorComponent } from './components/landingpage/simple-conversion/simple-editor/simple-editor.component';
+import { SimpleResponseComponent } from './components/landingpage/simple-conversion/simple-response/simple-response.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -71,6 +73,8 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     PrivacyPolicyComponent,
     SignupComponent,
     SimpleConversionComponent,
+    SimpleEditorComponent,
+    SimpleResponseComponent,
   ],
   imports: [
     BrowserModule,
