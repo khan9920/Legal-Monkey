@@ -51,9 +51,6 @@ export class SignupComponent implements OnInit {
       password: this.credentials.password
     }
 
-    console.log(data);
-
-
     this.authService.setLoadingStatus(true);
     this.authService.EmailPasswordSignUp(data);
   }
