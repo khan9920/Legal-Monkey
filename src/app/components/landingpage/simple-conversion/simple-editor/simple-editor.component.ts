@@ -20,6 +20,7 @@ export class SimpleEditorComponent implements OnInit {
   constructor(private extractsService: ExtractsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    // get token from local storage
     this.token = localStorage.getItem('token');
   }
 
