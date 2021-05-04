@@ -32,3 +32,11 @@ input:focus {
     color: $color-primary;
     border-radius: 50px;
 }
+
+.btn-loading:hover {
+    background: $color-primary;
+    border: 2px solid $color-white;
+    padding: 5px 40px;
+    color: $color-white;
+    border-radius: 50px;
+}

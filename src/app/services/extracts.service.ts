@@ -11,6 +11,10 @@ export class ExtractsService {
 
   constructor(private http: HttpClient) { }
 
+  simplify(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/simplify`, data);
+  }
+
   getExtracts() {
     return this.http.get<{ success: boolean, data: any }>(`${apiURL}/extracts`);
   }

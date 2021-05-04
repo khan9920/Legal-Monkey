@@ -12,13 +12,29 @@
                         <p>Upload your legal document</p>
                     </div>
                     <hr>
-                    <textarea name="" id="" cols="30" rows="8" placeholder="Or paste one paragraph..."></textarea>
-                    <button class="btn-auth">Translate</button>
+                    <form (submit)="onSimplify(form)" #form="ngForm">
+                        <textarea name="" id="" cols="30" rows="8" placeholder="Or paste one paragraph..." name="text"
+                            [disabled]="isLoading" ngModel></textarea>
+                        <button class="btn-auth btn-loading" *ngIf="isLoading">
+                            <mat-spinner class="btn-loader" [diameter]="20"></mat-spinner>
+                        </button>
+                        <button class="btn-auth" type="submit" *ngIf="!isLoading">Translate</button>
+                    </form>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="wrapper-output">
+                <div class="wrapper-output" *ngIf="!response">
                     <p>Translation appears here</p>
+                </div>
+                <div class="wrapper-output" *ngIf="response">
+                    <div class="wrapper-top">
+                        <p class="title">Translation</p>
+                        <p class="sub-title">Disclaimer: The following translation(s) does not constitute any form of
+                            legal advise. The following translation is meant only help users understand what is written
+                            so that they can address issues as they deem fit; on their own or by retaining a licensed
+                            lawyer.
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
