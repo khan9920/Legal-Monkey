@@ -34,7 +34,6 @@ export class SimpleConversionComponent implements OnInit {
       if (result.success) {
         this.isLoading = false;
         this.response = result.data;
-        console.log(this.response);
       }
     }, error => {
       this.isLoading = false;
