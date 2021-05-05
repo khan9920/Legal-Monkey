@@ -13,6 +13,7 @@ export class UploadDocumentComponent implements OnInit {
   @ViewChild('filesButton')
   filesButton: ElementRef;
 
+  public isLoading: boolean = false;
   public selectedFile: File;
   public fileName: string = '';
   public fileType: string = '';
