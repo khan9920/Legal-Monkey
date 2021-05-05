@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
 import { ShowPriceComponent } from '../../show-price/show-price.component';
+import { UploadDocumentComponent } from '../../document-conversion/upload-document/upload-document.component';
 
 @Component({
   selector: 'app-simple-editor',
@@ -67,6 +68,13 @@ export class SimpleEditorComponent implements OnInit {
         text: form.value.text,
         type: 'text'
       }
+    });
+  }
+
+  onUpload() {
+    this.dialog.open(UploadDocumentComponent, {
+      width: '600px',
+      maxHeight: '90vh'
     });
   }
 }

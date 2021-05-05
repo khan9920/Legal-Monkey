@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4 class="title">UPLOAD YOUR DOCUMENT OR PICTURE</h4>
+            <div class="wrapper-upload-files">
+
+                <div class="wrapper-file" *ngIf="fileName !== '' ">
+                    <img src="/assets/icons/icon-word.svg" *ngIf="fileType == 'doc' ">
+                    <img src="/assets/icons/icon-pdf.svg" *ngIf="fileType == 'pdf' ">
+                    <p class="name">{{ fileName }}</p>
+                    <a class="link-close" (click)="onRemoveFile()">X</a>
+                </div>
+
+                <button class="btn-auth" type="button" *ngIf="fileName == '' " (click)="filesButton.click()">SELECT
+                    FILE</button>
+                <input hidden type="file" name="files" (change)="onSelectFiles($event)" #filesButton>
+
+                <button class="btn-auth" type="button" *ngIf="fileName !== '' " (click)="onUpload()">
+                    <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
+                    UPLOAD
+                </button>
+            </div>
+        </div>
+    </div>

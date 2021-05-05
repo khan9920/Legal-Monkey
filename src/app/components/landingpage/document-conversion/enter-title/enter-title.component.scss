@@ -1,0 +1,68 @@
+@import './../../../../../custom-theme.scss';
+
+.title {
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 95%;
+}
+
+.btn-close {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+}
+
+.btn-close:hover {
+    float: right;
+    font-size: 18px;
+    position: relative;
+    top: -10px;
+    right: -15px;
+    font-weight: 600;
+    cursor: pointer;
+    color: $color-primary;
+}
+
+.sub-title {
+    margin-bottom: 40px;
+}
+
+label {
+    display: block;
+}
+
+input {
+    width: 100%;
+    border: 2px solid $color-primary;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    background: $color-primary;
+    border: 2px solid$color-primary;
+    padding: 10px 40px;
+    color: #fff;
+    border-radius: 50px;
+    width: 100%;
+}
+
+.invalid-input {
+    border: 2px solid red;
+}
+
+mat-spinner {
+    display: inline-block;
+    position: relative;
+    left: -10px;
+    top: 4px;
+}
+
+::ng-deep .spinner-simplify circle, .spinner-simplify circle {
+    stroke: #fff;
+}

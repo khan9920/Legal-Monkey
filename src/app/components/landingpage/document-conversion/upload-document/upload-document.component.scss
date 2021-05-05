@@ -1,0 +1,37 @@
+@import './../../../../../custom-theme.scss';
+
+.title {
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.wrapper-upload-files {
+    border: 2px solid $color-primary;
+    border-style: dashed;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+}
+
+.wrapper-file img {
+    width: 40px;
+}
+
+.wrapper-file .name {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.link-close {
+    margin-left: 20px;
+    position: relative;
+    top: 1px;
+    font-weight: 600;
+    color: $color-primary;
+}
+
+.link-close:hover {
+    cursor: pointer;
+    text-decoration: none;
+}

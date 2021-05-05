@@ -46,6 +46,9 @@ import { SignupComponent } from './components/auth/signup/signup.component';
 import { SimpleConversionComponent } from './components/landingpage/simple-conversion/simple-conversion.component';
 import { SimpleEditorComponent } from './components/landingpage/simple-conversion/simple-editor/simple-editor.component';
 import { SimpleResponseComponent } from './components/landingpage/simple-conversion/simple-response/simple-response.component';
+import { DocumentConversionComponent } from './components/landingpage/document-conversion/document-conversion.component';
+import { UploadDocumentComponent } from './components/landingpage/document-conversion/upload-document/upload-document.component';
+import { EnterTitleComponent } from './components/landingpage/document-conversion/enter-title/enter-title.component';
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
@@ -75,6 +78,9 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     SimpleConversionComponent,
     SimpleEditorComponent,
     SimpleResponseComponent,
+    DocumentConversionComponent,
+    UploadDocumentComponent,
+    EnterTitleComponent,
   ],
   imports: [
     BrowserModule,
