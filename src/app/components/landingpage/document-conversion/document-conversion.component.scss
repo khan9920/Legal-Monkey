@@ -1,0 +1,122 @@
+@import './../../../../custom-theme.scss';
+
+.section-top {
+    padding: 25px 0;
+    background-color: $color-primary;
+
+    .wrapper-hero {
+        h1 {
+            font-weight: 600;
+            font-size: 45px;
+            color: $color-white;
+
+        }
+
+        p {
+            font-size: 20px;
+            font-weight: 100;
+            color: $color-white;
+        }
+
+        ol {    
+            padding: 0 0 0 15px;
+            color: #fff;
+
+            li {
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+        }
+    } 
+}
+
+.section-bottom {
+    padding: 25px 0;
+
+    button {
+        padding: 5px 25px;
+    }
+
+    .row {
+        .txt-suggestion {
+            font-size: 14px;
+        }
+
+        .wrapper-top {
+            padding: 10px;
+            
+            .title {
+                color: $color-primary-dark;
+                font-size: 18px;
+                font-weight: 600;
+                margin: 0;
+            }
+        }
+
+        .wrapper-input {
+            border: 1px solid $color-grey;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            width: 100%;
+            transition: 0.3s;
+            
+            .text {
+                margin: 0;
+            }
+        }
+
+        .wrapper-input:hover {
+            background-color: #EFF3FA;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .wrapper-disclaimer {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: $color-grey;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+            .title {
+                color: $color-primary-dark;
+                font-size: 18px;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            .sub-title {
+                font-weight: 600;
+                font-style: italic;
+                margin: 0;
+            }
+        }
+
+        .wrapper-output {
+            border: 1px solid $color-grey;
+            border-radius: 10px;
+            padding: 15px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+}
+
+.btn-loading {
+    display: block;
+    padding: 8px 25px !important;
+    width: 118px;
+    
+    .btn-loader {
+        margin: 0 auto;
+    }
+}
+
+::ng-deep .btn-loader circle, .btn-loader circle {
+    stroke: $color-white !important;
+}
+
+.selected-input {
+    background-color: #EFF3FA;
+}
