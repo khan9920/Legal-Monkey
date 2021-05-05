@@ -1,3 +1,5 @@
+@import './../../../../custom-theme.scss';
+
 h2 {
     font-weight: 600;
     display: inline-block;
@@ -22,7 +24,7 @@ h2 {
     right: -15px;
     font-weight: 600;
     cursor: pointer;
-    color: #2129fa;
+    color: $color-primary;
 }
 
 .sub-title {
@@ -35,21 +37,21 @@ label {
 
 input {
     width: 100%;
-    border: 2px solid #2129fa;
+    border: 2px solid $color-primary;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
 }
 
 .btn-auth {
-    background: #fff;
-    color: #fff;
+    background:$color-white;
+    color: $color-white;
     border-radius: 50px;
     border: none;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
     width: 100%;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: $color-white;
     text-align: left;
     padding: 10px;
     color: #676464;
@@ -62,10 +64,10 @@ input {
 }
 
 .btn-login {
-    background: #2129fa;
-    border: 2px solid #2129fa;
+    background: $color-primary;
+    border: 2px solid $color-primary;
     padding: 8px 30px;
-    color: #fff;
+    color: $color-white;
     border-radius: 50px;
     width: 100%;
 }
@@ -76,7 +78,7 @@ input {
 }
 
 .text-reset-password a, .text-sign-up a {
-    color: #2129fa;
+    color: $color-primary;
     text-decoration: none;
 }
 
@@ -97,7 +99,7 @@ mat-spinner {
 }
 
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
-    stroke: #fff;
+    stroke: $color-white;
 }
 
 .txt-or {

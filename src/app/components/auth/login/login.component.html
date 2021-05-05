@@ -6,12 +6,10 @@
         </div>
         <div class="col-md-12">
             <div class="col-md-12">
-                <!-- <label>Email</label> -->
                 <input type="text" placeholder="Email" [ngClass]="{ 'invalid-input': !validation.email }"
                     [disabled]="isLoading" [(ngModel)]="credentials.email">
             </div>
             <div class="col-md-12">
-                <!-- <label>Password</label> -->
                 <input type="password" placeholder="Password" [ngClass]="{ 'invalid-input': !validation.password }"
                     [disabled]="isLoading" [(ngModel)]="credentials.password">
             </div>
