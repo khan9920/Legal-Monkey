@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ConversionsService } from 'src/app/services/conversions.service';
+import { ExtractsService } from 'src/app/services/extracts.service';
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { AddCardComponent } from '../../account/add-card/add-card.component';
 
@@ -16,7 +17,7 @@ export class ShowPriceComponent implements OnInit {
   public wordCount: number;
   public isLoading: Boolean = true;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private consersionsService: ConversionsService, private simplifyService: SimplifyService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private consersionsService: ConversionsService, private simplifyService: SimplifyService, private extractsService: ExtractsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -78,12 +79,12 @@ export class ShowPriceComponent implements OnInit {
         text: this.data.text
       }
 
-      this.simplifyService.simplify(data).subscribe(result => {
+      this.extractsService.simplify(data).subscribe(result => {
         if (result.success) {
           this.isLoading = false;
-          localStorage.setItem('convertedText', JSON.stringify(result.data));
-          this.simplifyService.setEditorStatus(false);
           this.dialog.closeAll();
+          this.extractsService.setEditorStatus(false);
+          localStorage.setItem('simpleExtraction', result.data);
         }
       }, error => {
         this.isLoading = false;

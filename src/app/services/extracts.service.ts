@@ -22,6 +22,10 @@ export class ExtractsService {
     return this.editorStatusSub.asObservable();
   }
 
+  checkPrice(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/price`, data);
+  }
+
   simplify(data: any) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/extracts/simplify`, data);
   }

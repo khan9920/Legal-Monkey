@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { ExtractsService } from 'src/app/services/extracts.service';
-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
+import { ShowPriceComponent } from '../../show-price/show-price.component';
 
 @Component({
   selector: 'app-simple-editor',
@@ -17,7 +16,7 @@ export class SimpleEditorComponent implements OnInit {
   public isLoading: boolean = false;
   private token: string = '';
 
-  constructor(private extractsService: ExtractsService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // get token from local storage
@@ -61,17 +60,13 @@ export class SimpleEditorComponent implements OnInit {
       return;
     }
 
-    this.extractsService.simplify(form.value).subscribe(result => {
-      if (result.success) {
-        this.isLoading = false;
-        this.extractsService.setEditorStatus(false);
-        localStorage.setItem('simpleExtraction', result.data);
+    this.dialog.open(ShowPriceComponent, {
+      width: '400px',
+      maxHeight: '90vh',
+      data: {
+        text: form.value.text,
+        type: 'text'
       }
-    }, error => {
-      this.isLoading = false;
-      this.snackBar.open(error.error.error, 'Dismiss', {
-        duration: 3000
-      });
     });
   }
 }
