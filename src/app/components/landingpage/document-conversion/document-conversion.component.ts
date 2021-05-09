@@ -25,8 +25,5 @@ export class DocumentConversionComponent implements OnInit {
     } else {
       this.selected = true;
     }
-
-    console.log(this.selected);
-
   }
 }

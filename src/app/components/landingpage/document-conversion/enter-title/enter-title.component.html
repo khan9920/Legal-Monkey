@@ -8,6 +8,11 @@
                 [ngClass]="{ 'invalid-input': !isTitleValid }">
         </div>
         <div class="col-md-12">
+            <select name="agreementType" [(ngModel)]="agreementType">
+                <option [value]="type" *ngFor="let type of types">{{ type }}</option>
+            </select>
+        </div>
+        <div class="col-md-12">
             <button (click)="onUpload()">
                 <mat-spinner class="spinner-simplify" *ngIf="isLoading" [diameter]="20"></mat-spinner>
                 UPLOAD

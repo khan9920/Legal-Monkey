@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 import { SimplifyService } from 'src/app/services/simplify.service';
 import { MixpanelServiceService } from 'src/app/services/mixpanel-service.service';
+import { METAService } from 'src/app/services/meta.service';
 
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-
 
 @Component({
   selector: 'app-enter-title',
@@ -19,22 +19,44 @@ export class EnterTitleComponent implements OnInit {
   public title: string = '';
   public isTitleValid: boolean = true;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private simplifyService: SimplifyService, private mixpanelService: MixpanelServiceService, private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  public agreementType: string = '';
+  public isTypeValid: boolean = true;
+
+  public types: any = [];
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private simplifyService: SimplifyService,
+    private mixpanelService: MixpanelServiceService,
+    private META: METAService,
+    private router: Router,
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
+    this.META.getMETAData().subscribe(result => {
+      if (result.success) {
+        this.types = result.data.agreementTypes;
+        this.agreementType = this.types[0];
+      }
+    });
   }
 
   onUpload() {
     this.isLoading = true;
 
-    if (this.title == '') {
+    if (this.title == '' || this.agreementType == '') {
       this.isTitleValid = false;
       this.isLoading = false;
+      console.log(this.agreementType);
+
     } else {
       const data = new FormData();
 
       data.append('document', this.data.file);
       data.append('title', this.title);
+      data.append('agreementType', this.agreementType);
 
       this.simplifyService.uploadDocuments(data).subscribe(result => {
         if (result.success) {

@@ -66,3 +66,11 @@ mat-spinner {
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
     stroke: #fff;
 }
+
+select {
+    width: 100%;
+    border: 2px solid #829FDA;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
