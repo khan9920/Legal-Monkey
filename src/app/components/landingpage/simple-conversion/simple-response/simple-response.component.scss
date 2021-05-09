@@ -60,6 +60,13 @@
                     margin: 0;
                 }
             }
+
+            .wrapper-response {
+                .txt-other {
+                    color: $color-primary;
+                    font-weight: 600;
+                }
+            }
         }
     }
 }

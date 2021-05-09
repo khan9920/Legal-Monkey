@@ -9,10 +9,14 @@ import { ExtractsService } from 'src/app/services/extracts.service';
 export class SimpleResponseComponent implements OnInit {
 
   public isLoading: boolean = false;
+  public extraction: any;
 
   constructor(private extractsService: ExtractsService) { }
 
   ngOnInit(): void {
+    this.extraction = JSON.parse(localStorage.getItem('simpleExtraction'));
+    console.log(this.extraction);
+
   }
 
   onGoBack() {

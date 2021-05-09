@@ -9,7 +9,7 @@ import { AddCardComponent } from '../../account/add-card/add-card.component';
 @Component({
   selector: 'app-show-price',
   templateUrl: './show-price.component.html',
-  styleUrls: ['./show-price.component.css']
+  styleUrls: ['./show-price.component.scss']
 })
 export class ShowPriceComponent implements OnInit {
 
@@ -32,7 +32,6 @@ export class ShowPriceComponent implements OnInit {
           this.isLoading = false;
 
           if (result.data.price === 0) {
-
             this.onContinue('text');
           }
           this.price = result.data.price;
@@ -84,7 +83,11 @@ export class ShowPriceComponent implements OnInit {
           this.isLoading = false;
           this.dialog.closeAll();
           this.extractsService.setEditorStatus(false);
-          localStorage.setItem('simpleExtraction', result.data);
+          const data = {
+            original: this.data.text,
+            conversions: result.data.conversions
+          }
+          localStorage.setItem('simpleExtraction', JSON.stringify(data));
         }
       }, error => {
         this.isLoading = false;

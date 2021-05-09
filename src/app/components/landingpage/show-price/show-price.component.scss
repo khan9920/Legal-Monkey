@@ -1,3 +1,5 @@
+@import './../../../../custom-theme.scss';
+
 h2 {
     font-weight: 600;
     display: inline-block;
@@ -20,7 +22,7 @@ h2 {
     right: -15px;
     font-weight: 600;
     cursor: pointer;
-    color: #2129fa;
+    color: $color-primary;
 }
 
 .sub-title {
@@ -33,24 +35,24 @@ label {
 
 input {
     width: 100%;
-    border: 2px solid #2129fa;
+    border: 2px solid $color-primary;
     border-radius: 5px;
     padding: 10px 20px;
     margin-bottom: 20px;
 }
 
 button {
-    background: #2129fa;
-    border: 2px solid #2129fa;
+    background: $color-primary;
+    border: 2px solid $color-primary;
     padding: 10px 40px;
-    color: #fff;
+    color: $color-white;
     border-radius: 50px;
     width: 100%;
 }
 
 .text-price {
     font-weight: 600;
-    color: #2129fa;
+    color: $color-primary;
 }
 
 mat-spinner {
@@ -67,11 +69,11 @@ mat-spinner {
 }
 
 ::ng-deep .spinner-simplify circle, .spinner-simplify circle {
-    stroke: #fff;
+    stroke: $color-white;
 }
 
 ::ng-deep .spinner-loader circle, .spinner-loader circle {
-    stroke: #2129fa;
+    stroke: $color-primary;
 }
 
 .col-loader {
