@@ -84,7 +84,7 @@ export class ShowPriceComponent implements OnInit {
           this.dialog.closeAll();
           this.extractsService.setEditorStatus(false);
           const data = {
-            original: this.data.text,
+            text: result.data.text,
             conversions: result.data.conversions
           }
           localStorage.setItem('simpleExtraction', JSON.stringify(data));

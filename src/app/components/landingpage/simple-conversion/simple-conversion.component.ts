@@ -10,7 +10,7 @@ import { ExtractsService } from 'src/app/services/extracts.service';
 })
 export class SimpleConversionComponent implements OnInit, OnDestroy {
 
-  public enableEditor: boolean = true;
+  public enableEditor: boolean = false;
   private enableEditorSub: Subscription;
 
   constructor(private extractsService: ExtractsService) { }

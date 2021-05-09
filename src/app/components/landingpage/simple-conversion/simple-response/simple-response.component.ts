@@ -15,6 +15,7 @@ export class SimpleResponseComponent implements OnInit {
 
   ngOnInit(): void {
     this.extraction = JSON.parse(localStorage.getItem('simpleExtraction'));
+    console.log(this.extraction);
   }
 
   onGoBack() {

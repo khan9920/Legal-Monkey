@@ -7,27 +7,30 @@
             </div>
             <div class="col-md-6">
                 <div class="wrapper-input">
-                    <div class="wrapper-top">
-                        <p class="title">Original clause</p>
-                        <p class="text">{{ extraction.original }}</p>
-                    </div>
+                    <p class="title">Original clause</p>
+                    <p class="text" [innerHTML]="extraction.text"></p>
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Go back</button>
             </div>
             <div class="col-md-6">
-                <div class="wrapper-output">
-                    <div class="wrapper-top">
-                        <p class="title">Translation</p>
-                        <p class="sub-title">Disclaimer: The following translation(s) does not constitute any form of
-                            legal advise. The following translation is meant only help users understand what is written
-                            so that they can address issues as they deem fit; on their own or by retaining a licensed
-                            lawyer.
-                        </p>
-                    </div>
-                    <div class="wrapper-response" *ngFor="let conversion of extraction.conversions">
+                <div class="wrapper-top">
+                    <p class="title">Translation</p>
+                    <p class="sub-title">Disclaimer: The following translation(s) does not constitute any form of
+                        legal advise. The following translation is meant only help users understand what is written
+                        so that they can address issues as they deem fit; on their own or by retaining a licensed
+                        lawyer.
+                    </p>
+                </div>
+                <div class="wrapper-output" *ngFor="let conversion of extraction.conversions">
+                    <div class="wrapper-response">
+                        <p class="title">Paragraph</p>
                         <p>{{ conversion.input }}</p>
-                        <p class="txt-other">Other possible meanings</p>
-                        <div *ngFor="let output of conversion.outputs">
+
+                        <p class="title">Possible meaning</p>
+                        <p>{{ conversion.output }}</p>
+
+                        <p class="title">Other possible meanings</p>
+                        <div *ngFor="let output of conversion.otherOutputs">
                             <p [innerHTML]="output"></p>
                         </div>
                     </div>
