@@ -24,14 +24,15 @@
                 <p class="txt-suggestion">SUGGESTED FOR: Non-Disclosure Agreement (NDA), Independent Contractor
                     Agreement, Business Contract, Employment Contract, Shareholder Agreement Etc.</p>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <div class="wrapper-top">
                     <p class="title">Your original legal document</p>
                 </div>
-                <div class="wrapper-input" [ngClass]="{ 'selected': selected }" (click)="onSelect()">
-                    <p class="text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ab harum nulla,
-                        atque accusamus nisi repellendus id, beatae labore sapiente pariatur ratione enim at quis,
-                        rerum odio quibusdam quae. Harum?</p>
+            </div>
+            <div class="col-md-6">
+                <div class="wrapper-input" [ngClass]="{ 'selected': selected }" (click)="onSelect()"
+                    *ngFor="let input of extraction.inputs">
+                    <p class="text">{{ input.input }} </p>
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Go back</button>
             </div>
@@ -46,14 +47,7 @@
                 </div>
                 <div class="wrapper-output">
                     <div class="wrapper-response">
-                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati assumenda aliquam
-                            perspiciatis similique asperiores, cupiditate reprehenderit dolores optio, quibusdam numquam
-                            molestiae maxime sequi soluta laudantium! Id dignissimos dolores eos eveniet!
-
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Adipisci fugiat sapiente sit,
-                            facere dignissimos non repudiandae! Quasi placeat voluptatem a quis aut ullam labore,
-                            distinctio eius blanditiis sequi vero repellendus?
-                        </p>
+                        <p>Translation appears here</p>
                     </div>
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Download PDF</button>

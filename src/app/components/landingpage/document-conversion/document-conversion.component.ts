@@ -9,10 +9,12 @@ import { Router } from '@angular/router';
 export class DocumentConversionComponent implements OnInit {
 
   public selected: boolean = false;
+  public extraction: any;
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.extraction = JSON.parse(localStorage.getItem('extraction'));
   }
 
   onGoBack() {

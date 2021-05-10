@@ -61,12 +61,8 @@ export class EnterTitleComponent implements OnInit {
       this.simplifyService.uploadDocuments(data).subscribe(result => {
         if (result.success) {
           this.isLoading = false;
-          const data = {
-            _id: result.data._id,
-            text: result.data.text,
-          }
           this.dialog.closeAll();
-          localStorage.setItem('extraction', JSON.stringify(data));
+          localStorage.setItem('extraction', JSON.stringify(result.data));
           this.mixpanelService.init();
           this.mixpanelService.track('Document Converted', {
             verified: true
