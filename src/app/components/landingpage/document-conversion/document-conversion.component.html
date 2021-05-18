@@ -30,9 +30,9 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="wrapper-input" [ngClass]="{ 'selected': selected }" (click)="onSelect()"
-                    *ngFor="let input of extraction.inputs">
-                    <p class="text">{{ input.input }} </p>
+                <div class="wrapper-input" (click)="onSelect()" *ngFor="let input of extraction.inputs"
+                    [ngClass]="{ 'selected': selected }">
+                    <div class="text" [innerHTML]="input.input"></div>
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Go back</button>
             </div>

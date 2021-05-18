@@ -15,6 +15,8 @@ export class DocumentConversionComponent implements OnInit {
 
   ngOnInit(): void {
     this.extraction = JSON.parse(localStorage.getItem('extraction'));
+    console.log(this.extraction);
+
   }
 
   onGoBack() {
