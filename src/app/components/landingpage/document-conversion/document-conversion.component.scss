@@ -66,10 +66,20 @@
             }
         }
 
-        .wrapper-input:hover {
-            background-color: #EFF3FA;
-            cursor: pointer;
-            transition: 0.3s;
+        .invalid {
+            border: 0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            width: 100%;
+            
+            .text {
+                margin: 0;
+            }
+        }
+
+        .invalid:hover {
+            background-color: #FFF;
         }
 
         .wrapper-disclaimer {

@@ -9,25 +9,20 @@ import { Router } from '@angular/router';
 export class DocumentConversionComponent implements OnInit {
 
   public selected: boolean = false;
-  public extraction: any;
+  public inputs: any = [];
 
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.extraction = JSON.parse(localStorage.getItem('extraction'));
-    console.log(this.extraction);
-
+    this.inputs = JSON.parse(localStorage.getItem('extraction')).inputs;
   }
 
   onGoBack() {
     this.router.navigate(['/']);
   }
 
-  onSelect() {
-    if (this.selected) {
-      this.selected = false;
-    } else {
-      this.selected = true;
-    }
+  onSelect(ID: string) {
+
+
   }
 }
