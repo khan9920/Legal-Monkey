@@ -66,6 +66,12 @@
             }
         }
 
+        .wrapper-input:hover {
+            background-color: #EFF3FA;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
         .invalid {
             border: 0;
             border-radius: 10px;
@@ -80,6 +86,7 @@
 
         .invalid:hover {
             background-color: #FFF;
+            cursor: default;
         }
 
         .wrapper-disclaimer {
