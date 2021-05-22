@@ -44,12 +44,18 @@
 
         .wrapper-top {
             padding: 10px;
+            width: 50%;
             
             .title {
                 color: $color-primary-dark;
                 font-size: 18px;
                 font-weight: 600;
                 margin: 0;
+                display: inline-block;
+            }
+
+            button {
+                float: right;
             }
         }
 
@@ -87,6 +93,14 @@
         .invalid:hover {
             background-color: #FFF;
             cursor: default;
+        }
+
+        .highlight {
+            background-color: #ffdede;
+            
+            .text {
+                margin: 0;
+            }
         }
 
         .wrapper-disclaimer {

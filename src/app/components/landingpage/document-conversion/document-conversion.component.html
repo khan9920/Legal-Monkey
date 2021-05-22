@@ -23,16 +23,19 @@
             <div class="col-md-12">
                 <p class="txt-suggestion">SUGGESTED FOR: Non-Disclosure Agreement (NDA), Independent Contractor
                     Agreement, Business Contract, Employment Contract, Shareholder Agreement Etc.</p>
+
             </div>
             <div class="col-md-12">
                 <div class="wrapper-top">
                     <p class="title">Your original legal document</p>
+                    <button class="btn-auth" (click)="onHighlight()">Hightlight</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="wrapper-input" (click)="onSelect(input._id)" *ngFor="let input of inputs" [ngClass]=" { 
                         'invalid': input.valid == false,
-                        'selected': input.selected == true
+                        'selected': input.selected == true,
+                        'highlight': input.highlight == true
                     } " [innerHTML]="input.input">
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Go back</button>

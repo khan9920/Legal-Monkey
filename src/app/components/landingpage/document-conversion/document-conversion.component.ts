@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { DocumentsService } from 'src/app/services/documents.service';
 
@@ -11,10 +12,12 @@ export class DocumentConversionComponent implements OnInit {
 
   public selected: boolean = false;
   public inputs: any = [];
+  public extraction: any;
 
-  constructor(private documentsService: DocumentsService, private router: Router) { }
+  constructor(private documentsService: DocumentsService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this.extraction = JSON.parse(localStorage.getItem('extraction'));
     this.inputs = JSON.parse(localStorage.getItem('extraction')).inputs;
   }
 
@@ -36,7 +39,25 @@ export class DocumentConversionComponent implements OnInit {
     }
 
     this.documentsService.simplify(data).subscribe(result => {
-      console.log(result);
-    })
+      if (result.success) {
+        console.log(result.data);
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
+  }
+
+  onHighlight() {
+    this.documentsService.highlight({ _id: this.extraction._id }).subscribe(result => {
+      if (result.success) {
+        this.inputs = result.data.inputs;
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 }

@@ -22,4 +22,8 @@ export class DocumentsService {
   simplify(data: any) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/simplify`, data);
   }
+
+  highlight(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/highlight`, data);
+  }
 }
