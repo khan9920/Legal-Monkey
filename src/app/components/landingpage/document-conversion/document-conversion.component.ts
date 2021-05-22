@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DocumentsService } from 'src/app/services/documents.service';
 
 @Component({
   selector: 'app-document-conversion',
@@ -11,7 +12,7 @@ export class DocumentConversionComponent implements OnInit {
   public selected: boolean = false;
   public inputs: any = [];
 
-  constructor(private router: Router) { }
+  constructor(private documentsService: DocumentsService, private router: Router) { }
 
   ngOnInit(): void {
     this.inputs = JSON.parse(localStorage.getItem('extraction')).inputs;
@@ -22,7 +23,20 @@ export class DocumentConversionComponent implements OnInit {
   }
 
   onSelect(ID: string) {
+    this.inputs.forEach(input => {
+      if (input._id == ID) {
+        input.selected = true;
+      } else {
+        input.selected = false
+      }
+    });
 
+    const data = {
+      // document: 
+    }
 
+    this.documentsService.simplify(data).subscribe(result => {
+      console.log(result);
+    })
   }
 }

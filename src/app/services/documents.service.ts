@@ -18,4 +18,8 @@ export class DocumentsService {
   getDocument(data: any) {
     return this.http.get<{ success: boolean, data: any }>(`${apiURL}/documents/id?_id=${data}`);
   }
+
+  simplify(data: any) {
+    return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/simplify`, data);
+  }
 }

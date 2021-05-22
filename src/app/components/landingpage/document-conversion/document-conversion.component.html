@@ -30,8 +30,10 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="wrapper-input" (click)="onSelect(input._id)" *ngFor="let input of inputs"
-                    [ngClass]=" {'invalid': input.valid == false} " [innerHTML]="input.input">
+                <div class="wrapper-input" (click)="onSelect(input._id)" *ngFor="let input of inputs" [ngClass]=" { 
+                        'invalid': input.valid == false,
+                        'selected': input.selected == true
+                    } " [innerHTML]="input.input">
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Go back</button>
             </div>
