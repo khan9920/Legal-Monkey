@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from 'src/app/components/auth/login/login.component';
 import { ShowPriceComponent } from '../../show-price/show-price.component';
 import { UploadDocumentComponent } from '../../document-conversion/upload-document/upload-document.component';
+import { METAService } from 'src/app/services/meta.service';
 
 @Component({
   selector: 'app-simple-editor',
@@ -16,12 +17,23 @@ export class SimpleEditorComponent implements OnInit {
 
   public isLoading: boolean = false;
   private token: string = '';
+  private META_DATA: any;
 
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(private META: METAService, private dialog: MatDialog, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     // get token from local storage
     this.token = localStorage.getItem('token');
+
+    this.META_DATA = this.META.getMETAData().subscribe(result => {
+      if (result.success) {
+        this.META_DATA = result.data;
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 
   onSimplify(form: NgForm) {
@@ -39,6 +51,26 @@ export class SimpleEditorComponent implements OnInit {
       });
 
       // stop execution
+      return;
+    }
+
+    if (form.value.text.length < this.META_DATA.textLimits.MINIMUM) {
+      // set loading status to false
+      this.isLoading = false;
+
+      this.snackBar.open('This seems too short to be a clause', 'Dismiss', {
+        duration: 3000
+      });
+
+      return;
+    } else if (form.value.text.length > this.META_DATA.textLimits.MAXIMUM) {
+      // set loading status to false
+      this.isLoading = false;
+
+      this.snackBar.open('This seems too long to be a clause. Try our document upload service', 'Dismiss', {
+        duration: 3000
+      });
+
       return;
     }
 
