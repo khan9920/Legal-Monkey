@@ -28,7 +28,11 @@ export class DocumentConversionComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  onSelect(ID: string) {
+  onSelect(ID: string, valid: boolean) {
+    if (valid == false) {
+      return;
+    }
+
     this.inputs.forEach(input => {
       if (input._id == ID) {
         input.selected = true;
@@ -67,6 +71,14 @@ export class DocumentConversionComponent implements OnInit {
   }
 
   onDownload() {
-
+    this.documentsService.download().subscribe(result => {
+      if (result.success) {
+        console.log(result.data);
+      }
+    }, error => {
+      this.snackBar.open(error.error.data, 'Dismiss', {
+        duration: 3000
+      });
+    });
   }
 }
