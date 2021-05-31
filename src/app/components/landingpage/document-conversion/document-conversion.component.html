@@ -50,8 +50,11 @@
                     </p>
                 </div>
                 <div class="wrapper-output">
-                    <div class="wrapper-response">
+                    <div class="wrapper-response" *ngIf="!receivedOutput">
                         <p>Translation appears here</p>
+                    </div>
+                    <div class="wrapper-response" *ngIf="receivedOutput">
+                        <p *ngFor="let output of outputs">{{ output }}</p>
                     </div>
                 </div>
                 <button class="btn-auth" (click)="onGoBack()">Download PDF</button>

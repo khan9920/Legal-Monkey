@@ -14,6 +14,9 @@ export class DocumentConversionComponent implements OnInit {
   public inputs: any = [];
   public extraction: any;
 
+  public receivedOutput: boolean = false;
+  public outputs: any = [];
+
   constructor(private documentsService: DocumentsService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
@@ -35,12 +38,14 @@ export class DocumentConversionComponent implements OnInit {
     });
 
     const data = {
-      // document: 
+      _id: this.extraction._id,
+      passageID: ID
     }
 
     this.documentsService.simplify(data).subscribe(result => {
       if (result.success) {
-        console.log(result.data);
+        this.receivedOutput = true;
+        this.outputs = result.data.outputs;
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {
