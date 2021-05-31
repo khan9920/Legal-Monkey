@@ -26,4 +26,8 @@ export class DocumentsService {
   highlight(data: any) {
     return this.http.post<{ success: boolean, data: any }>(`${apiURL}/documents/highlight`, data);
   }
+
+  download() {
+    return this.http.get<{ success: boolean, data: any }>(`${apiURL}/documents/downloads`);
+  }
 }

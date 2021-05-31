@@ -65,4 +65,8 @@ export class DocumentConversionComponent implements OnInit {
       });
     });
   }
+
+  onDownload() {
+
+  }
 }
