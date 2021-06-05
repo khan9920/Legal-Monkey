@@ -1,3 +1,5 @@
+@import './../../../custom-theme.scss';
+
 .col-md-9 {
     height: 100vh;
     overflow: scroll;
@@ -28,7 +30,7 @@
 }
 
 a.mat-menu-item {
-    background: #fff;
+    background: $color-white;
     padding: 0px 20px;
     color: #000;
     font-size: 16px;
@@ -36,9 +38,9 @@ a.mat-menu-item {
 }
 
 a.mat-menu-item:hover {
-    background: rgb(245, 245, 245);
+    background: $color-white;
     padding: 0px 20px;
-    color: #2129fa;
+    color: $color-primary;
     font-size: 16px;
     font-family: 'Lato', sans-serif;
     text-decoration: none;
@@ -79,7 +81,7 @@ a.mat-menu-item:hover {
 }
 
 .is-active {
-    background-color: #2129fa;
+    background-color: $color-primary;
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     color: #fff;

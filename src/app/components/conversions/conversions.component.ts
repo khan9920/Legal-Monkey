@@ -1,19 +1,23 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
-import * as Moment from 'moment';
-import { MatDialog } from '@angular/material/dialog';
-import { ViewConversionComponent } from './view-conversion/view-conversion.component';
-import { ExtractsService } from 'src/app/services/extracts.service';
-import { DocumentsService } from 'src/app/services/documents.service';
 import { Subscription } from 'rxjs';
+
+import { AuthService } from 'src/app/services/auth.service';
 import { MeService } from 'src/app/services/me.service';
+import { DocumentsService } from 'src/app/services/documents.service';
+import { ExtractsService } from 'src/app/services/extracts.service';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+
+import { ViewConversionComponent } from './view-conversion/view-conversion.component';
+
+import * as Moment from 'moment';
 
 @Component({
   selector: 'app-conversions',
   templateUrl: './conversions.component.html',
-  styleUrls: ['./conversions.component.css']
+  styleUrls: ['./conversions.component.scss']
 })
 export class ConversionsComponent implements OnInit, OnDestroy {
 
@@ -89,12 +93,8 @@ export class ConversionsComponent implements OnInit, OnDestroy {
   onViewDocument(ID: string) {
     this.documentsService.getDocument(ID).subscribe(result => {
       if (result.success) {
-        const data = {
-          _id: result.data._id,
-          text: result.data.text,
-        }
-        localStorage.setItem('extraction', JSON.stringify(data));
-        this.router.navigate(['/editor']);
+        localStorage.setItem('extraction', JSON.stringify(result.data));
+        this.router.navigate(['/documents']);
       }
     }, error => {
       this.snackBar.open(error.error.data, 'Dismiss', {

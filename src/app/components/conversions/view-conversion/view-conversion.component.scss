@@ -1,3 +1,5 @@
+@import "./../../../../custom-theme.scss";
+
 h4 {
     font-weight: 600;
     display: inline-block;
@@ -20,7 +22,7 @@ h4 {
     right: -15px;
     font-weight: 600;
     cursor: pointer;
-    color: #2129fa;
+    color: $color-primary;
 }
 
 .title {
@@ -36,7 +38,7 @@ h4 {
 
 .output {
     margin-bottom: 15px;
-    color: #226294;
+    color: $color-primary;
     font-weight: 500;
     display: block;
 }
@@ -58,5 +60,18 @@ h4 {
     display: block;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #2129FA;
+    color: $color-primary;
+}
+
+.wrapper-output {
+    border-radius: 10px;
+    width: 100%;
+
+    .wrapper-response {
+        .title {
+            color: $color-primary;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+    }
 }

@@ -1,12 +1,14 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { ExtractsService } from 'src/app/services/extracts.service';
+
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-view-conversion',
   templateUrl: './view-conversion.component.html',
-  styleUrls: ['./view-conversion.component.css']
+  styleUrls: ['./view-conversion.component.scss']
 })
 export class ViewConversionComponent implements OnInit {
 
